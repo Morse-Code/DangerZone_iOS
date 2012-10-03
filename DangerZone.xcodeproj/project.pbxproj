@@ -1,0 +1,362 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FDEC3DA8161C7241009C623E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DA7161C7241009C623E /* UIKit.framework */; };
+		FDEC3DAA161C7241009C623E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DA9161C7241009C623E /* Foundation.framework */; };
+		FDEC3DAC161C7241009C623E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DAB161C7241009C623E /* CoreGraphics.framework */; };
+		FDEC3DB2161C7242009C623E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DB0161C7242009C623E /* InfoPlist.strings */; };
+		FDEC3DB4161C7242009C623E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEC3DB3161C7242009C623E /* main.m */; };
+		FDEC3DB8161C7242009C623E /* DZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEC3DB7161C7242009C623E /* DZAppDelegate.m */; };
+		FDEC3DBA161C7242009C623E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DB9161C7242009C623E /* Default.png */; };
+		FDEC3DBC161C7242009C623E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DBB161C7242009C623E /* Default@2x.png */; };
+		FDEC3DBE161C7243009C623E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DBD161C7242009C623E /* Default-568h@2x.png */; };
+		FDEC3DC1161C7243009C623E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DBF161C7243009C623E /* MainStoryboard.storyboard */; };
+		FDEC3DC4161C7243009C623E /* DZFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEC3DC3161C7243009C623E /* DZFirstViewController.m */; };
+		FDEC3DC6161C7243009C623E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DC5161C7243009C623E /* first.png */; };
+		FDEC3DC8161C7243009C623E /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DC7161C7243009C623E /* first@2x.png */; };
+		FDEC3DCB161C7243009C623E /* DZSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEC3DCA161C7243009C623E /* DZSecondViewController.m */; };
+		FDEC3DCD161C7243009C623E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DCC161C7243009C623E /* second.png */; };
+		FDEC3DCF161C7243009C623E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DCE161C7243009C623E /* second@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FDEC3DA3161C7241009C623E /* DangerZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DangerZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDEC3DA7161C7241009C623E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FDEC3DA9161C7241009C623E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FDEC3DAB161C7241009C623E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FDEC3DAF161C7242009C623E /* DangerZone-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DangerZone-Info.plist"; sourceTree = "<group>"; };
+		FDEC3DB1161C7242009C623E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FDEC3DB3161C7242009C623E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FDEC3DB5161C7242009C623E /* DangerZone-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DangerZone-Prefix.pch"; sourceTree = "<group>"; };
+		FDEC3DB6161C7242009C623E /* DZAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZAppDelegate.h; sourceTree = "<group>"; };
+		FDEC3DB7161C7242009C623E /* DZAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZAppDelegate.m; sourceTree = "<group>"; };
+		FDEC3DB9161C7242009C623E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		FDEC3DBB161C7242009C623E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		FDEC3DBD161C7242009C623E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		FDEC3DC0161C7243009C623E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		FDEC3DC2161C7243009C623E /* DZFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZFirstViewController.h; sourceTree = "<group>"; };
+		FDEC3DC3161C7243009C623E /* DZFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZFirstViewController.m; sourceTree = "<group>"; };
+		FDEC3DC5161C7243009C623E /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		FDEC3DC7161C7243009C623E /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		FDEC3DC9161C7243009C623E /* DZSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZSecondViewController.h; sourceTree = "<group>"; };
+		FDEC3DCA161C7243009C623E /* DZSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZSecondViewController.m; sourceTree = "<group>"; };
+		FDEC3DCC161C7243009C623E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		FDEC3DCE161C7243009C623E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FDEC3DA0161C7241009C623E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDEC3DA8161C7241009C623E /* UIKit.framework in Frameworks */,
+				FDEC3DAA161C7241009C623E /* Foundation.framework in Frameworks */,
+				FDEC3DAC161C7241009C623E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FDEC3D98161C7241009C623E = {
+			isa = PBXGroup;
+			children = (
+				FDEC3DAD161C7241009C623E /* DangerZone */,
+				FDEC3DA6161C7241009C623E /* Frameworks */,
+				FDEC3DA4161C7241009C623E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FDEC3DA4161C7241009C623E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FDEC3DA3161C7241009C623E /* DangerZone.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FDEC3DA6161C7241009C623E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FDEC3DA7161C7241009C623E /* UIKit.framework */,
+				FDEC3DA9161C7241009C623E /* Foundation.framework */,
+				FDEC3DAB161C7241009C623E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDEC3DAD161C7241009C623E /* DangerZone */ = {
+			isa = PBXGroup;
+			children = (
+				FDEC3DE2161C7524009C623E /* App Delegate */,
+				FDEC3DE1161C7511009C623E /* View */,
+				FDEC3DDE161C74B9009C623E /* Controller-View */,
+				FDEC3DE0161C74EA009C623E /* Graphic Assets */,
+				FDEC3DAE161C7242009C623E /* Supporting Files */,
+			);
+			path = DangerZone;
+			sourceTree = "<group>";
+		};
+		FDEC3DAE161C7242009C623E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FDEC3DAF161C7242009C623E /* DangerZone-Info.plist */,
+				FDEC3DB0161C7242009C623E /* InfoPlist.strings */,
+				FDEC3DB3161C7242009C623E /* main.m */,
+				FDEC3DB5161C7242009C623E /* DangerZone-Prefix.pch */,
+				FDEC3DB9161C7242009C623E /* Default.png */,
+				FDEC3DBB161C7242009C623E /* Default@2x.png */,
+				FDEC3DBD161C7242009C623E /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FDEC3DDE161C74B9009C623E /* Controller-View */ = {
+			isa = PBXGroup;
+			children = (
+				FDEC3DC2161C7243009C623E /* DZFirstViewController.h */,
+				FDEC3DC3161C7243009C623E /* DZFirstViewController.m */,
+				FDEC3DC9161C7243009C623E /* DZSecondViewController.h */,
+				FDEC3DCA161C7243009C623E /* DZSecondViewController.m */,
+			);
+			name = "Controller-View";
+			sourceTree = "<group>";
+		};
+		FDEC3DE0161C74EA009C623E /* Graphic Assets */ = {
+			isa = PBXGroup;
+			children = (
+				FDEC3DE3161C756B009C623E /* Tab Images */,
+			);
+			name = "Graphic Assets";
+			sourceTree = "<group>";
+		};
+		FDEC3DE1161C7511009C623E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FDEC3DBF161C7243009C623E /* MainStoryboard.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		FDEC3DE2161C7524009C623E /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				FDEC3DB6161C7242009C623E /* DZAppDelegate.h */,
+				FDEC3DB7161C7242009C623E /* DZAppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		FDEC3DE3161C756B009C623E /* Tab Images */ = {
+			isa = PBXGroup;
+			children = (
+				FDEC3DC5161C7243009C623E /* first.png */,
+				FDEC3DC7161C7243009C623E /* first@2x.png */,
+				FDEC3DCC161C7243009C623E /* second.png */,
+				FDEC3DCE161C7243009C623E /* second@2x.png */,
+			);
+			name = "Tab Images";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FDEC3DA2161C7241009C623E /* DangerZone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDEC3DD2161C7243009C623E /* Build configuration list for PBXNativeTarget "DangerZone" */;
+			buildPhases = (
+				FDEC3D9F161C7241009C623E /* Sources */,
+				FDEC3DA0161C7241009C623E /* Frameworks */,
+				FDEC3DA1161C7241009C623E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DangerZone;
+			productName = DangerZone;
+			productReference = FDEC3DA3161C7241009C623E /* DangerZone.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FDEC3D9A161C7241009C623E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DZ;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = iCompute;
+			};
+			buildConfigurationList = FDEC3D9D161C7241009C623E /* Build configuration list for PBXProject "DangerZone" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FDEC3D98161C7241009C623E;
+			productRefGroup = FDEC3DA4161C7241009C623E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FDEC3DA2161C7241009C623E /* DangerZone */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FDEC3DA1161C7241009C623E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDEC3DB2161C7242009C623E /* InfoPlist.strings in Resources */,
+				FDEC3DBA161C7242009C623E /* Default.png in Resources */,
+				FDEC3DBC161C7242009C623E /* Default@2x.png in Resources */,
+				FDEC3DBE161C7243009C623E /* Default-568h@2x.png in Resources */,
+				FDEC3DC1161C7243009C623E /* MainStoryboard.storyboard in Resources */,
+				FDEC3DC6161C7243009C623E /* first.png in Resources */,
+				FDEC3DC8161C7243009C623E /* first@2x.png in Resources */,
+				FDEC3DCD161C7243009C623E /* second.png in Resources */,
+				FDEC3DCF161C7243009C623E /* second@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FDEC3D9F161C7241009C623E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDEC3DB4161C7242009C623E /* main.m in Sources */,
+				FDEC3DB8161C7242009C623E /* DZAppDelegate.m in Sources */,
+				FDEC3DC4161C7243009C623E /* DZFirstViewController.m in Sources */,
+				FDEC3DCB161C7243009C623E /* DZSecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FDEC3DB0161C7242009C623E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDEC3DB1161C7242009C623E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FDEC3DBF161C7243009C623E /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDEC3DC0161C7243009C623E /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FDEC3DD0161C7243009C623E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FDEC3DD1161C7243009C623E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FDEC3DD3161C7243009C623E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DangerZone/DangerZone-Prefix.pch";
+				INFOPLIST_FILE = "DangerZone/DangerZone-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FDEC3DD4161C7243009C623E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DangerZone/DangerZone-Prefix.pch";
+				INFOPLIST_FILE = "DangerZone/DangerZone-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FDEC3D9D161C7241009C623E /* Build configuration list for PBXProject "DangerZone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDEC3DD0161C7243009C623E /* Debug */,
+				FDEC3DD1161C7243009C623E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDEC3DD2161C7243009C623E /* Build configuration list for PBXNativeTarget "DangerZone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDEC3DD3161C7243009C623E /* Debug */,
+				FDEC3DD4161C7243009C623E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FDEC3D9A161C7241009C623E /* Project object */;
+}

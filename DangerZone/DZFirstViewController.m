@@ -35,10 +35,12 @@
 - (void)sendGet
 {
     
-    NSString *urlAsString = @"http://m.google.com/search?";
+    NSString *urlAsString = @"http://10.245.15.67/api/request";
 
-    urlAsString = [urlAsString stringByAppendingString:@"?q=UVM"];
-    urlAsString = [urlAsString stringByAppendingString:@"&output=xml"];
+    urlAsString = [urlAsString stringByAppendingString:@"?latitude=1.000"];
+    urlAsString = [urlAsString stringByAppendingString:@"&longitude=2.000"];
+    urlAsString = [urlAsString stringByAppendingString:@"&category=new"];
+    urlAsString = [urlAsString stringByAppendingString:@"&radius=5"];
     
     NSURL *url = [NSURL URLWithString:urlAsString];
     
@@ -53,20 +55,32 @@
                                                                                         NSData *data, NSError *error)
      
     {
-        NSString *object;
+        NSString *output;
         if ([data length] >0 && error == nil){
-            object = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"HTML = %@", html);
+            
+            NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"Successfully downloaded JSON from server.");
+            NSLog(@"JSON String = %@\n", jsonString);
+
+            NSError *jsonParsingError = nil;
+
+            NSDictionary *deserializedJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonParsingError];
+
+            output = [NSString stringWithFormat:@"Dictionary: \n%@\n%@", deserializedJson, jsonString];
+
+            NSLog(@"Dictionary String = %@\n", deserializedJson);
         }
         else if ([data length] == 0 && error == nil){
             NSLog(@"Nothing was downloaded.");
         }
         else if (error != nil){
-            NSLog(@"Error happened = %@", error);
+            output = [NSString stringWithFormat:@"HTTP response status: %@\n", error];
         }
         
-        [self performSelectorOnMainThread:@selector(displayText:) withObject:object waitUntilDone:NO];
-        [self performSelectorOnMainThread:@selector(displayPage:) withObject:object waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(displayText:) withObject:output waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(displayPage:) withObject:output waitUntilDone:NO];
+       
+
     }];
 }
 
@@ -75,7 +89,7 @@
 }
 
 - (void)displayPage:(NSString *)text{
-    [webView loadHTMLString:text baseURL:[NSURL URLWithString:@"http://maps.google.com/"]];
+    [webView loadHTMLString:text baseURL:[NSURL URLWithString:@"http://10.245.15.67/"]];
 }
 
 @end

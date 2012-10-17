@@ -10,4 +10,14 @@
 
 @interface DZObject : NSObject
 
+
+@property (readonly) NSString *locale;
+@property (readonly) double latitude;
+@property (readonly) double longitude;
+@property (readonly) NSUInteger id;
+@property (readonly) NSUInteger category;
+@property (readonly) NSUInteger range;
+@property (readonly) NSUInteger severity;
+
+
 @end

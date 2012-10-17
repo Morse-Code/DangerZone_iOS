@@ -8,6 +8,18 @@
 
 #import "DZObject.h"
 
+// http://dangerzone.cems.umv.edu/api/
+
 @implementation DZObject
+
+
+@synthesize locale = _locale;
+@synthesize latitude = _latitude;
+@synthesize longitude = _longitude;
+@synthesize id = _id;
+@synthesize category = _category;
+@synthesize range = _range;
+@synthesize severity = _severity;
+
 
 @end

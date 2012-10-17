@@ -7,22 +7,43 @@
 //
 
 #import "DZFirstViewController.h"
+#import "AFJSONRequestOperation.h"
+#import "AFHTTPClient.h"
+#import "DZObject.h"
+
 
 @interface DZFirstViewController ()
 
 @end
 
-@implementation DZFirstViewController
+@implementation DZFirstViewController {
+@private
+
+    __strong UIActivityIndicatorView *_activityIndicatorView;
+}
+
+
 @synthesize textView;
 @synthesize html;
 @synthesize webView;
 
+- (void)loadView
+{
+    [super loadView];
+
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    _activityIndicatorView.hidesWhenStopped = YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     [self sendGet];
 	// Do any additional setup after loading the view, typically from a nib.
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -50,6 +71,15 @@
     [urlRequest setHTTPMethod:@"GET"];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:urlAsString];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"Public Timeline: %@", JSON);
+    } failure:nil];
+    [operation start];
+    
+    
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,
                                                                                         NSData *data, NSError *error)

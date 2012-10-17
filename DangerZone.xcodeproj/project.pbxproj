@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0785E481162F50F400BC98F6 /* DZObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0785E480162F50F400BC98F6 /* DZObject.m */; };
+		49ED6F850CBC0A21B6325DC6 /* DZSharedClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */; };
+		DC0B5E640C4245DA98206337 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9B08F97064480596412F15 /* libPods.a */; };
 		FDEC3DA8161C7241009C623E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DA7161C7241009C623E /* UIKit.framework */; };
 		FDEC3DAA161C7241009C623E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DA9161C7241009C623E /* Foundation.framework */; };
 		FDEC3DAC161C7241009C623E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DAB161C7241009C623E /* CoreGraphics.framework */; };
@@ -26,10 +29,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0785E47F162F50F400BC98F6 /* DZObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZObject.h; sourceTree = "<group>"; };
+		0785E480162F50F400BC98F6 /* DZObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZObject.m; sourceTree = "<group>"; };
+		49ED63AF00E7693359F38122 /* DZSharedClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSharedClient.h; sourceTree = "<group>"; };
+		49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSharedClient.m; sourceTree = "<group>"; };
+		61F761F1C8A04BAC8522E551 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		9A9B08F97064480596412F15 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEC3DA3161C7241009C623E /* DangerZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DangerZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FDEC3DA7161C7241009C623E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		FDEC3DA9161C7241009C623E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		FDEC3DAB161C7241009C623E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FDEC3DA7161C7241009C623E /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FDEC3DA9161C7241009C623E /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FDEC3DAB161C7241009C623E /* CoreGraphics.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FDEC3DAF161C7242009C623E /* DangerZone-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DangerZone-Info.plist"; sourceTree = "<group>"; };
 		FDEC3DB1161C7242009C623E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FDEC3DB3161C7242009C623E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -58,18 +67,38 @@
 				FDEC3DA8161C7241009C623E /* UIKit.framework in Frameworks */,
 				FDEC3DAA161C7241009C623E /* Foundation.framework in Frameworks */,
 				FDEC3DAC161C7241009C623E /* CoreGraphics.framework in Frameworks */,
+				DC0B5E640C4245DA98206337 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0785E47E162F50A800BC98F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0785E47F162F50F400BC98F6 /* DZObject.h */,
+				0785E480162F50F400BC98F6 /* DZObject.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		49ED6E012E303A975914C96F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				49ED63AF00E7693359F38122 /* DZSharedClient.h */,
+				49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
 		FDEC3D98161C7241009C623E = {
 			isa = PBXGroup;
 			children = (
 				FDEC3DAD161C7241009C623E /* DangerZone */,
 				FDEC3DA6161C7241009C623E /* Frameworks */,
 				FDEC3DA4161C7241009C623E /* Products */,
+				61F761F1C8A04BAC8522E551 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,6 +116,7 @@
 				FDEC3DA7161C7241009C623E /* UIKit.framework */,
 				FDEC3DA9161C7241009C623E /* Foundation.framework */,
 				FDEC3DAB161C7241009C623E /* CoreGraphics.framework */,
+				9A9B08F97064480596412F15 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -94,11 +124,13 @@
 		FDEC3DAD161C7241009C623E /* DangerZone */ = {
 			isa = PBXGroup;
 			children = (
+				0785E47E162F50A800BC98F6 /* Model */,
 				FDEC3DE2161C7524009C623E /* App Delegate */,
 				FDEC3DE1161C7511009C623E /* View */,
 				FDEC3DDE161C74B9009C623E /* Controller-View */,
 				FDEC3DE0161C74EA009C623E /* Graphic Assets */,
 				FDEC3DAE161C7242009C623E /* Supporting Files */,
+				49ED6E012E303A975914C96F /* Networking */,
 			);
 			path = DangerZone;
 			sourceTree = "<group>";
@@ -174,6 +206,7 @@
 				FDEC3D9F161C7241009C623E /* Sources */,
 				FDEC3DA0161C7241009C623E /* Frameworks */,
 				FDEC3DA1161C7241009C623E /* Resources */,
+				A8ACC20501B2460FAC570F7A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,6 +263,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A8ACC20501B2460FAC570F7A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FDEC3D9F161C7241009C623E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -239,6 +289,8 @@
 				FDEC3DB8161C7242009C623E /* DZAppDelegate.m in Sources */,
 				FDEC3DC4161C7243009C623E /* DZFirstViewController.m in Sources */,
 				FDEC3DCB161C7243009C623E /* DZSecondViewController.m in Sources */,
+				0785E481162F50F400BC98F6 /* DZObject.m in Sources */,
+				49ED6F850CBC0A21B6325DC6 /* DZSharedClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +338,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -306,7 +358,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -315,22 +367,30 @@
 		};
 		FDEC3DD3161C7243009C623E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61F761F1C8A04BAC8522E551 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DangerZone/DangerZone-Prefix.pch";
 				INFOPLIST_FILE = "DangerZone/DangerZone-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		FDEC3DD4161C7243009C623E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61F761F1C8A04BAC8522E551 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DangerZone/DangerZone-Prefix.pch";
 				INFOPLIST_FILE = "DangerZone/DangerZone-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

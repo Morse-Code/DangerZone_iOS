@@ -6,9 +6,10 @@
 
 
 #import <Foundation/Foundation.h>
+#import "AFHTTPClient.h"
 
+@interface DZSharedClient : AFHTTPClient
 
-@interface DZSharedClient : NSObject
-
++ (DZSharedClient *)sharedClient;
 
 @end

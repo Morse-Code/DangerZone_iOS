@@ -12,12 +12,16 @@
 
 
 @property (readonly) NSString *locale;
-@property (readonly) double latitude;
-@property (readonly) double longitude;
-@property (readonly) NSUInteger id;
+@property (readonly) float latitude;
+@property (readonly) float longitude;
+@property (readonly) NSUInteger uid;
 @property (readonly) NSUInteger category;
 @property (readonly) NSUInteger range;
 @property (readonly) NSUInteger severity;
 
+- (id)initWithAttributes:(NSDictionary *)attributes;
+
++ (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *dangerZones, NSError *error))block;
++ (NSString *)stringFromCategory:(NSUInteger)category;
 
 @end

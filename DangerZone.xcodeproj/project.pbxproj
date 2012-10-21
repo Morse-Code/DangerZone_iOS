@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0785E481162F50F400BC98F6 /* DZObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0785E480162F50F400BC98F6 /* DZObject.m */; };
+		079B13F4162FA31F00066AA0 /* DZTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 079B13F3162FA31F00066AA0 /* DZTableViewViewController.m */; };
+		079B13F8162FADFC00066AA0 /* DZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 079B13F7162FADFC00066AA0 /* DZTableViewCell.m */; };
 		49ED6F850CBC0A21B6325DC6 /* DZSharedClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */; };
 		DC0B5E640C4245DA98206337 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9B08F97064480596412F15 /* libPods.a */; };
 		FDEC3DA8161C7241009C623E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DA7161C7241009C623E /* UIKit.framework */; };
@@ -31,6 +33,10 @@
 /* Begin PBXFileReference section */
 		0785E47F162F50F400BC98F6 /* DZObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZObject.h; sourceTree = "<group>"; };
 		0785E480162F50F400BC98F6 /* DZObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZObject.m; sourceTree = "<group>"; };
+		079B13F2162FA31F00066AA0 /* DZTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTableViewViewController.h; sourceTree = "<group>"; };
+		079B13F3162FA31F00066AA0 /* DZTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTableViewViewController.m; sourceTree = "<group>"; };
+		079B13F6162FADFC00066AA0 /* DZTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTableViewCell.h; sourceTree = "<group>"; };
+		079B13F7162FADFC00066AA0 /* DZTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTableViewCell.m; sourceTree = "<group>"; };
 		49ED63AF00E7693359F38122 /* DZSharedClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSharedClient.h; sourceTree = "<group>"; };
 		49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSharedClient.m; sourceTree = "<group>"; };
 		61F761F1C8A04BAC8522E551 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -152,6 +158,8 @@
 		FDEC3DDE161C74B9009C623E /* Controller-View */ = {
 			isa = PBXGroup;
 			children = (
+				079B13F2162FA31F00066AA0 /* DZTableViewViewController.h */,
+				079B13F3162FA31F00066AA0 /* DZTableViewViewController.m */,
 				FDEC3DC2161C7243009C623E /* DZFirstViewController.h */,
 				FDEC3DC3161C7243009C623E /* DZFirstViewController.m */,
 				FDEC3DC9161C7243009C623E /* DZSecondViewController.h */,
@@ -172,6 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				FDEC3DBF161C7243009C623E /* MainStoryboard.storyboard */,
+				079B13F6162FADFC00066AA0 /* DZTableViewCell.h */,
+				079B13F7162FADFC00066AA0 /* DZTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -291,6 +301,8 @@
 				FDEC3DCB161C7243009C623E /* DZSecondViewController.m in Sources */,
 				0785E481162F50F400BC98F6 /* DZObject.m in Sources */,
 				49ED6F850CBC0A21B6325DC6 /* DZSharedClient.m in Sources */,
+				079B13F4162FA31F00066AA0 /* DZTableViewViewController.m in Sources */,
+				079B13F8162FADFC00066AA0 /* DZTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,7 +385,7 @@
 				GCC_PREFIX_HEADER = "DangerZone/DangerZone-Prefix.pch";
 				INFOPLIST_FILE = "DangerZone/DangerZone-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "${inherited}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
@@ -388,7 +400,7 @@
 				GCC_PREFIX_HEADER = "DangerZone/DangerZone-Prefix.pch";
 				INFOPLIST_FILE = "DangerZone/DangerZone-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "${inherited}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;

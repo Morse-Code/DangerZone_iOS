@@ -39,7 +39,7 @@
 {
     [super viewDidLoad];
 
-    [self sendGet];
+    //[self sendGet];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -73,7 +73,7 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:urlAsString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSLog(@"Public Timeline: %@", JSON);
     } failure:nil];

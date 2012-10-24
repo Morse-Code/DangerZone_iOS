@@ -55,7 +55,7 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 #pragma mark -
 
 + (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block {
-    [[DZSharedClient sharedClient] getPath:@"request"  parameters:@"?uid=5&category" success:^(AFHTTPRequestOperation *operation, id JSON) {
+    [[DZSharedClient sharedClient] getPath:@""  parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON) {
         NSMutableArray *mutableDangerZones = [NSMutableArray arrayWithCapacity:[JSON count]];
         for (NSDictionary *attributes in JSON) {
             DZObject *dangerZone = [[DZObject alloc] initWithAttributes:attributes];

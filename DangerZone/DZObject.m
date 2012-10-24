@@ -8,7 +8,7 @@
 
 #import "DZObject.h"
 #import "DZSharedClient.h"
-static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire"};
+static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Horrid Fart"};
 
 // http://dangerzone.cems.umv.edu/api/
 
@@ -26,7 +26,7 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire"};
 + (NSString *)stringFromCategory:(NSUInteger)category
 {
     //    NSArray *categories = [NSArray arrayWithObjects:@"Fire", @"Accident", @"Riot", @"Gunfire", nil];
-    NSArray *categories = [NSArray arrayWithObjects:CATEGORIES count:4];
+    NSArray *categories = [NSArray arrayWithObjects:CATEGORIES count:5];
     NSString *categoryString = [categories objectAtIndex:category];
     NSLog(@"%@",categoryString);
     return categoryString;
@@ -55,7 +55,7 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire"};
 #pragma mark -
 
 + (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block {
-    [[DZSharedClient sharedClient] getPath:@"?id=5"  parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON) {
+    [[DZSharedClient sharedClient] getPath:@"request"  parameters:@"?uid=5&category" success:^(AFHTTPRequestOperation *operation, id JSON) {
         NSMutableArray *mutableDangerZones = [NSMutableArray arrayWithCapacity:[JSON count]];
         for (NSDictionary *attributes in JSON) {
             DZObject *dangerZone = [[DZObject alloc] initWithAttributes:attributes];

@@ -66,7 +66,7 @@
                                                 <constraint firstAttribute="height" constant="59" id="BpQ-Qu-zNK"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRO-Tu-HGG">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nRO-Tu-HGG">
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="141" id="9IQ-sd-JGY"/>
                                             </constraints>
@@ -481,6 +481,18 @@
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>
+        <class className="DZMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZMapViewController.h"/>
+        </class>
+        <class className="DZReportViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZReportViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="onReturnPressed:"/>
+                <relationship kind="action" name="onSubmitPressed:"/>
+                <relationship kind="outlet" name="localeText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="picker" candidateClass="UIPickerView"/>
+            </relationships>
+        </class>
         <class className="DZTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DZTableViewCell.h"/>
             <relationships>
@@ -493,23 +505,8 @@
         <class className="DZTableViewViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DZTableViewViewController.h"/>
         </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="mapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/mapViewController.h"/>
-        </class>
-        <class className="reportViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/reportViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="onReturnPressed:"/>
-                <relationship kind="action" name="onSubmitPressed:"/>
-                <relationship kind="outlet" name="localeText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="picker" candidateClass="UIPickerView"/>
-            </relationships>
-        </class>
-        <class className="updateViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/updateViewController.h"/>
+        <class className="DZUpdateViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZUpdateViewController.h"/>
             <relationships>
                 <relationship kind="action" name="onGlobalPressed:"/>
                 <relationship kind="action" name="onReturnPressed:"/>
@@ -517,6 +514,9 @@
                 <relationship kind="outlet" name="localeText" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="picker" candidateClass="UIPickerView"/>
             </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

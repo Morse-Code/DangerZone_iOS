@@ -1,5 +1,5 @@
 //
-//  updateViewController.m
+//  DZUpdateViewController.m
 //  Danger_Tab
 //
 //  Created by rbelford on 10/16/12.
@@ -9,14 +9,14 @@
 #import <CoreLocation/CLLocation.h>
 #import <CoreLocation/CLGeocoder.h>
 #import <CoreLocation/CLPlacemark.h>
-#import "updateViewController.h"
+#import "DZUpdateViewController.h"
 #import "DTMutableObject.h"
 
-@interface updateViewController ()
+@interface DZUpdateViewController ()
 
 @end
 
-@implementation updateViewController
+@implementation DZUpdateViewController
 
 //@synthesize uid,category,longitude,latitude,range,locale,categoryString,rangeString;
 

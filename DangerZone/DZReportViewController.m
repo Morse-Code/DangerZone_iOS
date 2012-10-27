@@ -1,5 +1,5 @@
 //
-//  reportViewController.m
+//  DZReportViewController.m
 //  Danger_Tab
 //
 //  Created by rbelford on 10/16/12.
@@ -9,14 +9,14 @@
 #import <CoreLocation/CLLocation.h>
 #import <CoreLocation/CLGeocoder.h>
 #import <CoreLocation/CLPlacemark.h>
-#import "reportViewController.h"
+#import "DZReportViewController.h"
 #import "DTMutableObject.h"
 
-@interface reportViewController ()
+@interface DZReportViewController ()
 
 @end
 
-@implementation reportViewController
+@implementation DZReportViewController
 
 @synthesize picker = _picker;
 @synthesize updateObj = _updateObj;

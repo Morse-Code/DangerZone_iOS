@@ -239,7 +239,7 @@
         <!--Report View Controller - Report Danger-->
         <scene sceneID="cM9-Oq-kXj">
             <objects>
-                <viewController id="uPi-Ss-2Yh" customClass="reportViewController" sceneMemberID="viewController">
+                <viewController id="uPi-Ss-2Yh" customClass="DZReportViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zAY-oJ-otb">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -330,7 +330,7 @@
         <!--Update View Controller - Update Dangers-->
         <scene sceneID="lei-jQ-eVc">
             <objects>
-                <viewController id="8oh-QD-IO0" customClass="updateViewController" sceneMemberID="viewController">
+                <viewController id="8oh-QD-IO0" customClass="DZUpdateViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lwS-AU-uob">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

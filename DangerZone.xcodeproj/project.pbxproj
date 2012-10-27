@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0765A7A0163B8C640048CE83 /* MTWhitney.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A79F163B8C640048CE83 /* MTWhitney.png */; };
+		0765A7A4163B8CE10048CE83 /* mapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0765A7A3163B8CE10048CE83 /* mapViewController.m */; };
+		0765A7AA163B8FB30048CE83 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0765A7A9163B8FB30048CE83 /* CoreLocation.framework */; };
 		0785E481162F50F400BC98F6 /* DZObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0785E480162F50F400BC98F6 /* DZObject.m */; };
 		079B13F4162FA31F00066AA0 /* DZTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 079B13F3162FA31F00066AA0 /* DZTableViewViewController.m */; };
 		079B13F8162FADFC00066AA0 /* DZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 079B13F7162FADFC00066AA0 /* DZTableViewCell.m */; };
+		49ED66F88B01B4569394C97B /* DTMutableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6F3BE4DAD5CCB001638B /* DTMutableObject.m */; };
+		49ED696E00B9F0624C7AEEC4 /* updateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED65F355C9702985EB95E1 /* updateViewController.m */; };
+		49ED69CBF2B6F5778B186F69 /* reportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6470453ABD86B509A4CA /* reportViewController.m */; };
 		49ED6F850CBC0A21B6325DC6 /* DZSharedClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */; };
 		DC0B5E640C4245DA98206337 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9B08F97064480596412F15 /* libPods.a */; };
 		FDEC3DA8161C7241009C623E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DA7161C7241009C623E /* UIKit.framework */; };
@@ -25,12 +31,15 @@
 		FDEC3DC4161C7243009C623E /* DZFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEC3DC3161C7243009C623E /* DZFirstViewController.m */; };
 		FDEC3DC6161C7243009C623E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DC5161C7243009C623E /* first.png */; };
 		FDEC3DC8161C7243009C623E /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DC7161C7243009C623E /* first@2x.png */; };
-		FDEC3DCB161C7243009C623E /* DZSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEC3DCA161C7243009C623E /* DZSecondViewController.m */; };
 		FDEC3DCD161C7243009C623E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DCC161C7243009C623E /* second.png */; };
 		FDEC3DCF161C7243009C623E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDEC3DCE161C7243009C623E /* second@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0765A79F163B8C640048CE83 /* MTWhitney.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MTWhitney.png; sourceTree = "<group>"; };
+		0765A7A2163B8CE10048CE83 /* mapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapViewController.h; sourceTree = "<group>"; };
+		0765A7A3163B8CE10048CE83 /* mapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapViewController.m; sourceTree = "<group>"; };
+		0765A7A9163B8FB30048CE83 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0785E47F162F50F400BC98F6 /* DZObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZObject.h; sourceTree = "<group>"; };
 		0785E480162F50F400BC98F6 /* DZObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZObject.m; sourceTree = "<group>"; };
 		079B13F2162FA31F00066AA0 /* DZTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTableViewViewController.h; sourceTree = "<group>"; };
@@ -38,7 +47,13 @@
 		079B13F6162FADFC00066AA0 /* DZTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTableViewCell.h; sourceTree = "<group>"; };
 		079B13F7162FADFC00066AA0 /* DZTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTableViewCell.m; sourceTree = "<group>"; };
 		49ED63AF00E7693359F38122 /* DZSharedClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSharedClient.h; sourceTree = "<group>"; };
+		49ED6470453ABD86B509A4CA /* reportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = reportViewController.m; sourceTree = "<group>"; };
+		49ED65F355C9702985EB95E1 /* updateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = updateViewController.m; sourceTree = "<group>"; };
+		49ED67E347C315D1F7E60788 /* updateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = updateViewController.h; sourceTree = "<group>"; };
+		49ED6A0AABAA9330CACB888B /* DTMutableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTMutableObject.h; sourceTree = "<group>"; };
 		49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSharedClient.m; sourceTree = "<group>"; };
+		49ED6F3BE4DAD5CCB001638B /* DTMutableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTMutableObject.m; sourceTree = "<group>"; };
+		49ED6FE5BFEA1FEE5706DF14 /* reportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reportViewController.h; sourceTree = "<group>"; };
 		61F761F1C8A04BAC8522E551 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		9A9B08F97064480596412F15 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEC3DA3161C7241009C623E /* DangerZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DangerZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,8 +74,6 @@
 		FDEC3DC3161C7243009C623E /* DZFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZFirstViewController.m; sourceTree = "<group>"; };
 		FDEC3DC5161C7243009C623E /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		FDEC3DC7161C7243009C623E /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		FDEC3DC9161C7243009C623E /* DZSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZSecondViewController.h; sourceTree = "<group>"; };
-		FDEC3DCA161C7243009C623E /* DZSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZSecondViewController.m; sourceTree = "<group>"; };
 		FDEC3DCC161C7243009C623E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		FDEC3DCE161C7243009C623E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0765A7AA163B8FB30048CE83 /* CoreLocation.framework in Frameworks */,
 				FDEC3DA8161C7241009C623E /* UIKit.framework in Frameworks */,
 				FDEC3DAA161C7241009C623E /* Foundation.framework in Frameworks */,
 				FDEC3DAC161C7241009C623E /* CoreGraphics.framework in Frameworks */,
@@ -80,11 +94,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0765A7AB163B91D20048CE83 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MapView;
+			sourceTree = "<group>";
+		};
+		0765A7AC163B91DE0048CE83 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				079B13F6162FADFC00066AA0 /* DZTableViewCell.h */,
+				079B13F7162FADFC00066AA0 /* DZTableViewCell.m */,
+				079B13F2162FA31F00066AA0 /* DZTableViewViewController.h */,
+				079B13F3162FA31F00066AA0 /* DZTableViewViewController.m */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
+		0765A7AD163B91FB0048CE83 /* UpdateAndSubmit */ = {
+			isa = PBXGroup;
+			children = (
+				49ED6FE5BFEA1FEE5706DF14 /* reportViewController.h */,
+				49ED6470453ABD86B509A4CA /* reportViewController.m */,
+				49ED67E347C315D1F7E60788 /* updateViewController.h */,
+				49ED65F355C9702985EB95E1 /* updateViewController.m */,
+			);
+			name = UpdateAndSubmit;
+			sourceTree = "<group>";
+		};
 		0785E47E162F50A800BC98F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				0785E47F162F50F400BC98F6 /* DZObject.h */,
 				0785E480162F50F400BC98F6 /* DZObject.m */,
+				49ED6A0AABAA9330CACB888B /* DTMutableObject.h */,
+				49ED6F3BE4DAD5CCB001638B /* DTMutableObject.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -101,6 +146,7 @@
 		FDEC3D98161C7241009C623E = {
 			isa = PBXGroup;
 			children = (
+				0765A7A9163B8FB30048CE83 /* CoreLocation.framework */,
 				FDEC3DAD161C7241009C623E /* DangerZone */,
 				FDEC3DA6161C7241009C623E /* Frameworks */,
 				FDEC3DA4161C7241009C623E /* Products */,
@@ -133,7 +179,7 @@
 				0785E47E162F50A800BC98F6 /* Model */,
 				FDEC3DE2161C7524009C623E /* App Delegate */,
 				FDEC3DE1161C7511009C623E /* View */,
-				FDEC3DDE161C74B9009C623E /* Controller-View */,
+				FDEC3DDE161C74B9009C623E /* Controllers */,
 				FDEC3DE0161C74EA009C623E /* Graphic Assets */,
 				FDEC3DAE161C7242009C623E /* Supporting Files */,
 				49ED6E012E303A975914C96F /* Networking */,
@@ -155,22 +201,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		FDEC3DDE161C74B9009C623E /* Controller-View */ = {
+		FDEC3DDE161C74B9009C623E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				079B13F2162FA31F00066AA0 /* DZTableViewViewController.h */,
-				079B13F3162FA31F00066AA0 /* DZTableViewViewController.m */,
+				0765A7AD163B91FB0048CE83 /* UpdateAndSubmit */,
+				0765A7AC163B91DE0048CE83 /* TableView */,
+				0765A7AB163B91D20048CE83 /* MapView */,
+				0765A7A2163B8CE10048CE83 /* mapViewController.h */,
+				0765A7A3163B8CE10048CE83 /* mapViewController.m */,
 				FDEC3DC2161C7243009C623E /* DZFirstViewController.h */,
 				FDEC3DC3161C7243009C623E /* DZFirstViewController.m */,
-				FDEC3DC9161C7243009C623E /* DZSecondViewController.h */,
-				FDEC3DCA161C7243009C623E /* DZSecondViewController.m */,
 			);
-			name = "Controller-View";
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		FDEC3DE0161C74EA009C623E /* Graphic Assets */ = {
 			isa = PBXGroup;
 			children = (
+				0765A79F163B8C640048CE83 /* MTWhitney.png */,
 				FDEC3DE3161C756B009C623E /* Tab Images */,
 			);
 			name = "Graphic Assets";
@@ -180,8 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				FDEC3DBF161C7243009C623E /* MainStoryboard.storyboard */,
-				079B13F6162FADFC00066AA0 /* DZTableViewCell.h */,
-				079B13F7162FADFC00066AA0 /* DZTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -268,6 +314,7 @@
 				FDEC3DC8161C7243009C623E /* first@2x.png in Resources */,
 				FDEC3DCD161C7243009C623E /* second.png in Resources */,
 				FDEC3DCF161C7243009C623E /* second@2x.png in Resources */,
+				0765A7A0163B8C640048CE83 /* MTWhitney.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,11 +345,14 @@
 				FDEC3DB4161C7242009C623E /* main.m in Sources */,
 				FDEC3DB8161C7242009C623E /* DZAppDelegate.m in Sources */,
 				FDEC3DC4161C7243009C623E /* DZFirstViewController.m in Sources */,
-				FDEC3DCB161C7243009C623E /* DZSecondViewController.m in Sources */,
 				0785E481162F50F400BC98F6 /* DZObject.m in Sources */,
 				49ED6F850CBC0A21B6325DC6 /* DZSharedClient.m in Sources */,
 				079B13F4162FA31F00066AA0 /* DZTableViewViewController.m in Sources */,
 				079B13F8162FADFC00066AA0 /* DZTableViewCell.m in Sources */,
+				49ED66F88B01B4569394C97B /* DTMutableObject.m in Sources */,
+				49ED69CBF2B6F5778B186F69 /* reportViewController.m in Sources */,
+				49ED696E00B9F0624C7AEEC4 /* updateViewController.m in Sources */,
+				0765A7A4163B8CE10048CE83 /* mapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

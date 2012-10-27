@@ -1,18 +1,18 @@
 //
-//  mapViewController.m
+//  DZMapViewController.m
 //  Danger_Tab
 //
 //  Created by rbelford on 10/16/12.
 //  Copyright (c) 2012 rbelford. All rights reserved.
 //
 
-#import "mapViewController.h"
+#import "DZMapViewController.h"
 
-@interface mapViewController ()
+@interface DZMapViewController ()
 
 @end
 
-@implementation mapViewController
+@implementation DZMapViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

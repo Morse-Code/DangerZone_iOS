@@ -1,5 +1,5 @@
 //
-//  mapViewController.h
+//  DZMapViewController.h
 //  Danger_Tab
 //
 //  Created by rbelford on 10/16/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface mapViewController : UIViewController
+@interface DZMapViewController : UIViewController
 
 @end

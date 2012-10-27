@@ -33,6 +33,7 @@
     return self;
 }
 
+
 - (void)reload:(id)sender
 {
     [_activityIndicatorView startAnimating];
@@ -61,9 +62,11 @@
 {
     [super loadView];
 
-    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    _activityIndicatorView = [[UIActivityIndicatorView alloc]
+                                                       initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     _activityIndicatorView.hidesWhenStopped = YES;
 }
+
 
 - (void)viewDidLoad
 {

@@ -18,10 +18,12 @@
 @property (readonly) NSUInteger category;
 @property (readonly) NSUInteger range;
 @property (readonly) NSUInteger severity;
+@property (readonly) NSDate *timestamp;
 
 - (id)initWithAttributes:(NSDictionary *)attributes;
 
 + (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *dangerZones, NSError *error))block;
+
 + (NSString *)stringFromCategory:(NSUInteger)category;
 
 @end

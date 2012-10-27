@@ -8,24 +8,30 @@
 #import "DZSharedClient.h"
 #import "AFJSONRequestOperation.h"
 
-static NSString * const kDZDangerZoneAPIBaseURLString = @"http://www.cems.uvm.edu/~01cmorse/dz/dangerzone.php";
+static NSString *const kDZDangerZoneAPIBaseURLString = @"http://www.cems.uvm.edu/~01cmorse/dz/dangerzone.php";
 //static NSString * const kDZDangerZoneAPIBaseURLString = @"https://alpha-api.app.net/";
 
 @implementation DZSharedClient
 {
 
 }
-+ (DZSharedClient *)sharedClient {
+
+
++ (DZSharedClient *)sharedClient
+{
     static DZSharedClient *_sharedClient = nil;
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedClient = [[DZSharedClient alloc] initWithBaseURL:[NSURL URLWithString:kDZDangerZoneAPIBaseURLString]];
-    });
+    dispatch_once(&onceToken, ^
+{
+    _sharedClient = [[DZSharedClient alloc] initWithBaseURL:[NSURL URLWithString:kDZDangerZoneAPIBaseURLString]];
+});
 
     return _sharedClient;
 }
 
-- (id)initWithBaseURL:(NSURL *)url {
+
+- (id)initWithBaseURL:(NSURL *)url
+{
     self = [super initWithBaseURL:url];
     if (!self) {
         return nil;

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0765A7A0163B8C640048CE83 /* MTWhitney.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A79F163B8C640048CE83 /* MTWhitney.png */; };
-		0765A7A4163B8CE10048CE83 /* mapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0765A7A3163B8CE10048CE83 /* mapViewController.m */; };
+		0765A7A4163B8CE10048CE83 /* DZMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0765A7A3163B8CE10048CE83 /* DZMapViewController.m */; };
 		0765A7AA163B8FB30048CE83 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0765A7A9163B8FB30048CE83 /* CoreLocation.framework */; };
 		0785E481162F50F400BC98F6 /* DZObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0785E480162F50F400BC98F6 /* DZObject.m */; };
 		079B13F4162FA31F00066AA0 /* DZTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 079B13F3162FA31F00066AA0 /* DZTableViewViewController.m */; };
@@ -37,8 +37,8 @@
 
 /* Begin PBXFileReference section */
 		0765A79F163B8C640048CE83 /* MTWhitney.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MTWhitney.png; sourceTree = "<group>"; };
-		0765A7A2163B8CE10048CE83 /* mapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapViewController.h; sourceTree = "<group>"; };
-		0765A7A3163B8CE10048CE83 /* mapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapViewController.m; sourceTree = "<group>"; };
+		0765A7A2163B8CE10048CE83 /* DZMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMapViewController.h; sourceTree = "<group>"; };
+		0765A7A3163B8CE10048CE83 /* DZMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMapViewController.m; sourceTree = "<group>"; };
 		0765A7A9163B8FB30048CE83 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0785E47F162F50F400BC98F6 /* DZObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZObject.h; sourceTree = "<group>"; };
 		0785E480162F50F400BC98F6 /* DZObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZObject.m; sourceTree = "<group>"; };
@@ -97,8 +97,8 @@
 		0765A7AB163B91D20048CE83 /* Map View */ = {
 			isa = PBXGroup;
 			children = (
-				0765A7A2163B8CE10048CE83 /* mapViewController.h */,
-				0765A7A3163B8CE10048CE83 /* mapViewController.m */,
+				0765A7A2163B8CE10048CE83 /* DZMapViewController.h */,
+				0765A7A3163B8CE10048CE83 /* DZMapViewController.m */,
 				FDEC3DC2161C7243009C623E /* DZFirstViewController.h */,
 				FDEC3DC3161C7243009C623E /* DZFirstViewController.m */,
 			);
@@ -352,7 +352,7 @@
 				49ED66F88B01B4569394C97B /* DTMutableObject.m in Sources */,
 				49ED69CBF2B6F5778B186F69 /* DZReportViewController.m in Sources */,
 				49ED696E00B9F0624C7AEEC4 /* DZUpdateViewController.m in Sources */,
-				0765A7A4163B8CE10048CE83 /* mapViewController.m in Sources */,
+				0765A7A4163B8CE10048CE83 /* DZMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

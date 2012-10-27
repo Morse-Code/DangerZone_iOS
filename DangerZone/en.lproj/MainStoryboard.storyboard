@@ -204,7 +204,7 @@
         <!--Map View Controller - Danger Map-->
         <scene sceneID="ric-VG-hnj">
             <objects>
-                <viewController id="7it-CO-XD1" customClass="mapViewController" sceneMemberID="viewController">
+                <viewController id="7it-CO-XD1" customClass="DZMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fG1-Oo-kNW">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -8,6 +8,7 @@
 
 #import "DZObject.h"
 #import "DZSharedClient.h"
+
 static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Horrid Fart"};
 
 // http://dangerzone.cems.umv.edu/api/
@@ -22,22 +23,27 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 @synthesize category = _category;
 @synthesize range = _range;
 @synthesize severity = _severity;
+@synthesize timestamp = _timestamp;
+
+//static NSDateFormatter *dateFormatter = nil;
 
 + (NSString *)stringFromCategory:(NSUInteger)category
 {
     //    NSArray *categories = [NSArray arrayWithObjects:@"Fire", @"Accident", @"Riot", @"Gunfire", nil];
     NSArray *categories = [NSArray arrayWithObjects:CATEGORIES count:5];
     NSString *categoryString = [categories objectAtIndex:category];
-    NSLog(@"%@",categoryString);
+    NSLog(@"%@", categoryString);
     return categoryString;
 }
 
-- (id)initWithAttributes:(NSDictionary *)attributes {
+
+- (id)initWithAttributes:(NSDictionary *)attributes
+{
     self = [super init];
     if (!self) {
         return nil;
     }
-    
+
     _locale = [attributes valueForKeyPath:@"locale"];
     _uid = [[attributes valueForKeyPath:@"uid"] integerValue];
     _category = [[attributes valueForKeyPath:@"category"] integerValue];
@@ -45,8 +51,9 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
     _severity = [[attributes valueForKeyPath:@"severity"] integerValue];
     _latitude = [[attributes valueForKeyPath:@"category"] floatValue];
     _longitude = [[attributes valueForKeyPath:@"category"] floatValue];
-    
-    
+
+
+
 //    _category = [[attributes valueForKeyPath:@"id"] integerValue];
 //     = [attributes valueForKeyPath:@"text"];
     return self;
@@ -54,18 +61,21 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 
 #pragma mark -
 
-+ (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block {
-    [[DZSharedClient sharedClient] getPath:@""  parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON) {
++ (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block
+{
+    [[DZSharedClient sharedClient] getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
+    {
         NSMutableArray *mutableDangerZones = [NSMutableArray arrayWithCapacity:[JSON count]];
         for (NSDictionary *attributes in JSON) {
             DZObject *dangerZone = [[DZObject alloc] initWithAttributes:attributes];
             [mutableDangerZones addObject:dangerZone];
         }
-        
+
         if (block) {
             block([NSArray arrayWithArray:mutableDangerZones], nil);
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    }                              failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
         if (block) {
             block([NSArray array], error);
         }

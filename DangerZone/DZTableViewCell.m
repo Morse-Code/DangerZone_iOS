@@ -19,7 +19,8 @@
 @synthesize dangerZone = _dangerZone;
 
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithStyle:(UITableViewCellStyle)style
+    reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -28,19 +29,22 @@
     return self;
 }
 
+
 - (void)setDangerZone:(DZObject *)dangerZone
 {
     _dangerZone = dangerZone;
-    
-    
+
+
     self.name.text = [DZObject stringFromCategory:_dangerZone.category];
 //    self.name.text = [NSString stringWithFormat:@"%d",dangerZone.category];
-    self.distance.text = [NSString stringWithFormat:@"%d",dangerZone.range];
-    self.bearing.text = [NSString stringWithFormat:@"%d",dangerZone.severity];
+    self.distance.text = [NSString stringWithFormat:@"%d", dangerZone.range];
+    self.bearing.text = [NSString stringWithFormat:@"%d", dangerZone.severity];
 
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+
+- (void)setSelected:(BOOL)selected
+           animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 

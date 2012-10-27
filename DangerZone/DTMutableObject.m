@@ -10,6 +10,7 @@
 
 @implementation DTMutableObject
 
+
 @synthesize locale = _locale;
 @synthesize latitude = _latitude;
 @synthesize longitude = _longitude;
@@ -18,21 +19,22 @@
 @synthesize range = _range;
 @synthesize severity = _severity;
 
+
 - (id)initWithZeros
 {
-   self = [super init];
+    self = [super init];
     if (!self) {
         return nil;
     }
-    
-    _locale = (NSMutableString *) @"";
-    _latitude =  0;
+
+    _locale = (NSMutableString *)@"";
+    _latitude = 0;
     _longitude = 0;
     _uid = 0;
     _category = 0;
-    _range  = 1;
+    _range = 1;
     _severity = 1;
-    
+
     return self;
 }
 

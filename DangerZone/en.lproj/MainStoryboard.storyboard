@@ -201,22 +201,27 @@
             </objects>
             <point key="canvasLocation" x="527" y="914"/>
         </scene>
-        <!--Map View Controller - Danger Map-->
+        <!--Map View Controller - DangerMap-->
         <scene sceneID="ric-VG-hnj">
             <objects>
-                <viewController id="7it-CO-XD1" customClass="DZMapViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fG1-Oo-kNW">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EfH-3N-dOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="7it-CO-XD1" userLabel="Map View Controller - DangerMap" customClass="DZMapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wCL-ef-9Be">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="MTWhitney.png" translatesAutoresizingMaskIntoConstraints="NO" id="v2U-dz-yvb"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ti2-29-a49">
+                                <connections>
+                                    <outlet property="delegate" destination="7it-CO-XD1" id="19C-f3-xjx"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="v2U-dz-yvb" firstAttribute="leading" secondItem="fG1-Oo-kNW" secondAttribute="leading" type="default" id="8nK-Tr-YYI"/>
-                            <constraint firstItem="v2U-dz-yvb" firstAttribute="top" secondItem="fG1-Oo-kNW" secondAttribute="top" type="default" id="N9Y-KQ-7WP"/>
-                            <constraint firstItem="v2U-dz-yvb" firstAttribute="trailing" secondItem="fG1-Oo-kNW" secondAttribute="trailing" type="default" id="Ous-6e-Mh7"/>
-                            <constraint firstItem="v2U-dz-yvb" firstAttribute="bottom" secondItem="fG1-Oo-kNW" secondAttribute="bottom" type="default" id="dqe-tR-WPd"/>
+                            <constraint firstItem="Ti2-29-a49" firstAttribute="top" secondItem="wCL-ef-9Be" secondAttribute="top" type="default" id="KD9-sn-O11"/>
+                            <constraint firstItem="Ti2-29-a49" firstAttribute="trailing" secondItem="wCL-ef-9Be" secondAttribute="trailing" type="default" id="YSZ-Up-gIo"/>
+                            <constraint firstItem="Ti2-29-a49" firstAttribute="bottom" secondItem="wCL-ef-9Be" secondAttribute="bottom" type="default" id="eEB-QJ-vFP"/>
+                            <constraint firstItem="Ti2-29-a49" firstAttribute="leading" secondItem="wCL-ef-9Be" secondAttribute="leading" type="default" id="pjb-K2-QKl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Danger Map" id="8zD-j1-tqW">
@@ -231,8 +236,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dangerMap" destination="Ti2-29-a49" id="kx0-G6-Y47"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EfH-3N-dOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1053" y="118"/>
         </scene>
@@ -469,7 +476,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MTWhitney.png" width="483" height="712"/>
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
@@ -483,6 +489,9 @@
         </class>
         <class className="DZMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DZMapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dangerMap" candidateClass="MKMapView"/>
+            </relationships>
         </class>
         <class className="DZReportViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DZReportViewController.h"/>

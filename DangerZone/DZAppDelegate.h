@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class DZMapViewController;
+@class DZTableViewViewController;
+
 @interface DZAppDelegate : UIResponder < UIApplicationDelegate >
 
 

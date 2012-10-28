@@ -8,9 +8,17 @@
 
 #import "DZAppDelegate.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "DZMapViewController.h"
+#import "DZTableViewViewController.h"
 
 
 @implementation DZAppDelegate
+{
+
+}
+
+
+@synthesize window = _window;
 
 
 - (BOOL)          application:(UIApplication *)application
@@ -21,8 +29,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024
                                                              diskPath:nil];
     [NSURLCache setSharedURLCache:URLCache];
+    UITabBarController *tabBarController = (UITabBarController *)[_window rootViewController];
+    NSArray *tabs = [tabBarController viewControllers];
+    DZTableViewViewController *tableViewController
+            = (DZTableViewViewController *)[(UINavigationController *)[tabs objectAtIndex:2] topViewController];
+    DZMapViewController *mapViewController = (DZMapViewController *)[(UINavigationController *)[tabs objectAtIndex:1] topViewController];
+    mapViewController.tableView = tableViewController;
+
 
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+
     return YES;
 }
 

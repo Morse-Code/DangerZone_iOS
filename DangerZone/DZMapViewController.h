@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Mapkit/MapKit.h>
 
-@interface DZMapViewController : UIViewController
+@class DZTableViewViewController;
 
+@interface DZMapViewController : UIViewController < MKMapViewDelegate >
+
+
+@property (nonatomic, weak) IBOutlet MKMapView *dangerMap;
+@property (nonatomic, weak) DZTableViewViewController *tableView;
 
 @end

@@ -13,6 +13,7 @@
 		0785E481162F50F400BC98F6 /* DZObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0785E480162F50F400BC98F6 /* DZObject.m */; };
 		079B13F4162FA31F00066AA0 /* DZTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 079B13F3162FA31F00066AA0 /* DZTableViewViewController.m */; };
 		079B13F8162FADFC00066AA0 /* DZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 079B13F7162FADFC00066AA0 /* DZTableViewCell.m */; };
+		07A1763A163D093B006D0AF6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A17639163D093B006D0AF6 /* MapKit.framework */; };
 		49ED66F88B01B4569394C97B /* DTMutableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6F3BE4DAD5CCB001638B /* DTMutableObject.m */; };
 		49ED696E00B9F0624C7AEEC4 /* DZUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED65F355C9702985EB95E1 /* DZUpdateViewController.m */; };
 		49ED69CBF2B6F5778B186F69 /* DZReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6470453ABD86B509A4CA /* DZReportViewController.m */; };
@@ -46,6 +47,7 @@
 		079B13F3162FA31F00066AA0 /* DZTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTableViewViewController.m; sourceTree = "<group>"; };
 		079B13F6162FADFC00066AA0 /* DZTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTableViewCell.h; sourceTree = "<group>"; };
 		079B13F7162FADFC00066AA0 /* DZTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTableViewCell.m; sourceTree = "<group>"; };
+		07A17639163D093B006D0AF6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		49ED63AF00E7693359F38122 /* DZSharedClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSharedClient.h; sourceTree = "<group>"; };
 		49ED6470453ABD86B509A4CA /* DZReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZReportViewController.m; sourceTree = "<group>"; };
 		49ED65F355C9702985EB95E1 /* DZUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZUpdateViewController.m; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A1763A163D093B006D0AF6 /* MapKit.framework in Frameworks */,
 				0765A7AA163B8FB30048CE83 /* CoreLocation.framework in Frameworks */,
 				FDEC3DA8161C7241009C623E /* UIKit.framework in Frameworks */,
 				FDEC3DAA161C7241009C623E /* Foundation.framework in Frameworks */,
@@ -150,7 +153,6 @@
 		FDEC3D98161C7241009C623E = {
 			isa = PBXGroup;
 			children = (
-				0765A7A9163B8FB30048CE83 /* CoreLocation.framework */,
 				FDEC3DAD161C7241009C623E /* DangerZone */,
 				FDEC3DA6161C7241009C623E /* Frameworks */,
 				FDEC3DA4161C7241009C623E /* Products */,
@@ -169,6 +171,8 @@
 		FDEC3DA6161C7241009C623E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07A17639163D093B006D0AF6 /* MapKit.framework */,
+				0765A7A9163B8FB30048CE83 /* CoreLocation.framework */,
 				FDEC3DA7161C7241009C623E /* UIKit.framework */,
 				FDEC3DA9161C7241009C623E /* Foundation.framework */,
 				FDEC3DAB161C7241009C623E /* CoreGraphics.framework */,

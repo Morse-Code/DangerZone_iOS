@@ -24,6 +24,9 @@
 }
 
 
+@synthesize dangerZones = _dangerZones;
+
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -118,7 +121,7 @@
         cell = [[DZTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    cell.dangerZone = [_dangerZones objectAtIndex:indexPath.row];
+    cell.dangerZone = [_dangerZones objectAtIndex:(NSUInteger)indexPath.row];
     return cell;
 }
 

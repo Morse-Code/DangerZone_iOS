@@ -11,4 +11,5 @@
 @interface DZTableViewViewController : UITableViewController
 
 
+@property (nonatomic, strong) NSArray *dangerZones;
 @end

@@ -6,11 +6,8 @@
 //  Copyright (c) 2012 rbelford. All rights reserved.
 //
 
-#import <CoreLocation/CLLocation.h>
-#import <CoreLocation/CLGeocoder.h>
 #import <CoreLocation/CLPlacemark.h>
 #import "DZReportViewController.h"
-#import "DTMutableObject.h"
 
 @interface DZReportViewController ()
 
@@ -94,11 +91,11 @@ numberOfRowsInComponent:(NSInteger)component
             forComponent:(NSInteger)component
 {
     if (component == 0) { // category strings
-        return [self.categoryStrings objectAtIndex:row];
+        return [self.categoryStrings objectAtIndex:(NSUInteger)row];
     }
     else
     { // severity strings
-        return [self.severityStrings objectAtIndex:row];
+        return [self.severityStrings objectAtIndex:(NSUInteger)row];
     }
 }
 
@@ -107,13 +104,7 @@ numberOfRowsInComponent:(NSInteger)component
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
-    if (component == 0) { // category selected
-        self.updateObj.category = row;
-    }
-    else
-    { // severity selected
-        self.updateObj.severity = row + 1; // indeces start at 0
-    }
+    component == 0 ? (self.updateObj.category = (NSUInteger)row) : (self.updateObj.severity = (NSUInteger)(row + 1));
     NSLog(@"Report Selection: row=%d component=%d", row, component);
     NSLog(@"Report Selection: category=%d severity=%d", self.updateObj.category, self.updateObj.severity);
 }
@@ -142,8 +133,8 @@ numberOfRowsInComponent:(NSInteger)component
         {
             for (CLPlacemark *aPlacemark in placemarks)
             {
-                self.updateObj.latitude = aPlacemark.location.coordinate.latitude;
-                self.updateObj.longitude = aPlacemark.location.coordinate.longitude;
+                self.updateObj.latitude = (float)aPlacemark.location.coordinate.latitude;
+                self.updateObj.longitude = (float)aPlacemark.location.coordinate.longitude;
                 NSLog(@"setting latitude %f", self.updateObj.latitude);
                 NSLog(@"setting longitude %f", self.updateObj.longitude);
             }

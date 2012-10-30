@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class DZStoredObjects;
+
 @interface DZTableViewViewController : UITableViewController
 
+@property (nonatomic, strong) DZStoredObjects *dangerZones;
 
-@property (nonatomic, strong) NSArray *dangerZones;
+- (void)reloadTableData;
+
+
 @end

@@ -9,6 +9,7 @@
 #import "DZTableViewViewController.h"
 #import "DZObject.h"
 #import "DZTableViewCell.h"
+#import "DZStoredObjects.h"
 
 @interface DZTableViewViewController ()
 
@@ -18,8 +19,6 @@
 @implementation DZTableViewViewController
 {
 @private
-    NSArray *_dangerZones;
-
     __strong UIActivityIndicatorView *_activityIndicatorView;
 }
 
@@ -51,8 +50,8 @@
         }
         else
         {
-            _dangerZones = dangerZones;
-            [self.tableView reloadData];
+            [self.dangerZones updateWithArray:dangerZones];
+//            [self.tableView reloadData];
         }
 
         [_activityIndicatorView stopAnimating];
@@ -83,9 +82,40 @@
                                                                                     target:self
                                                                                     action:@selector(reload:)];
 
-//    self.tableView.rowHeight = 70.0f;
 
     [self reload:nil];
+}
+
+
+- (void)setDangerZones:(DZStoredObjects *)dangerZones
+{
+    if ([_dangerZones isEqual:dangerZones]) {
+        return;
+    }
+    if (_dangerZones != nil) {
+        [_dangerZones removeObserver:self forKeyPath:KVOZonesChangeKey];
+    }
+    _dangerZones = dangerZones;
+    if (_dangerZones != nil) {
+        [self.dangerZones addObserver:self forKeyPath:KVOZonesChangeKey options:NSKeyValueObservingOptionNew
+                              context:nil];
+    }
+    if (self.isViewLoaded) {
+        [self reloadTableData];
+    }
+}
+
+
+- (void)viewDidUnload
+{
+    [self.dangerZones removeObserver:self forKeyPath:KVOZonesChangeKey];
+    [super viewDidUnload];
+}
+
+
+- (void)reloadTableData
+{
+    [self.tableView reloadData];
 }
 
 
@@ -108,7 +138,7 @@
  numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_dangerZones count];
+    return [self.dangerZones.zones count];
 }
 
 
@@ -116,12 +146,13 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"DangerZone";
-    DZTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[DZTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    DZTableViewCell *cell;
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (!cell) {
+//        cell = [[DZTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
     // Configure the cell...
-    cell.dangerZone = [_dangerZones objectAtIndex:(NSUInteger)indexPath.row];
+    cell.dangerZone = [self.dangerZones.zones objectAtIndex:(NSUInteger)indexPath.row];
     return cell;
 }
 
@@ -176,6 +207,26 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - Notification Methods
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+
+    if ([keyPath isEqualToString:KVOZonesChangeKey]) {
+        [self zonesChange:change];
+    }
+}
+
+
+- (void)zonesChange:(NSDictionary *)dictionary
+{
+    NSLog(@"Received KVO notification");
+    [self reloadTableData];
 }
 
 @end

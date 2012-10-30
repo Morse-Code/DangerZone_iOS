@@ -126,7 +126,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
-                <tabBarController id="4" sceneMemberID="viewController">
+                <tabBarController id="4" customClass="DZTabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
@@ -204,15 +204,16 @@
         <!--Map View Controller - DangerMap-->
         <scene sceneID="ric-VG-hnj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EfH-3N-dOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="7it-CO-XD1" userLabel="Map View Controller - DangerMap" customClass="DZMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wCL-ef-9Be">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ti2-29-a49">
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="7it-CO-XD1" id="19C-f3-xjx"/>
+                                    <outletCollection property="gestureRecognizers" destination="Jod-TS-qEq" appends="YES" id="cRc-e9-NPM"/>
                                 </connections>
                             </mapView>
                         </subviews>
@@ -240,6 +241,12 @@
                         <outlet property="dangerMap" destination="Ti2-29-a49" id="kx0-G6-Y47"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EfH-3N-dOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="2.0000000000000004" id="Jod-TS-qEq">
+                    <connections>
+                        <action selector="handlePinDrop:" destination="7it-CO-XD1" id="Pvc-SM-dck"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1053" y="118"/>
         </scene>
@@ -490,6 +497,7 @@
         <class className="DZMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DZMapViewController.h"/>
             <relationships>
+                <relationship kind="action" name="handlePinDrop:" candidateClass="UILongPressGestureRecognizer"/>
                 <relationship kind="outlet" name="dangerMap" candidateClass="MKMapView"/>
             </relationships>
         </class>
@@ -501,6 +509,9 @@
                 <relationship kind="outlet" name="localeText" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="picker" candidateClass="UIPickerView"/>
             </relationships>
+        </class>
+        <class className="DZTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZTabBarController.h"/>
         </class>
         <class className="DZTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DZTableViewCell.h"/>

@@ -17,6 +17,8 @@
 		49ED66F88B01B4569394C97B /* DTMutableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6F3BE4DAD5CCB001638B /* DTMutableObject.m */; };
 		49ED696E00B9F0624C7AEEC4 /* DZUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED65F355C9702985EB95E1 /* DZUpdateViewController.m */; };
 		49ED69CBF2B6F5778B186F69 /* DZReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6470453ABD86B509A4CA /* DZReportViewController.m */; };
+		49ED6A65EC14DD74F77E32F9 /* DZStoredObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6F41CD020ED8B68F1409 /* DZStoredObjects.m */; };
+		49ED6B61BD1F8A360CC47BF4 /* DZTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED68081F08F2C7F1E83950 /* DZTabBarController.m */; };
 		49ED6F850CBC0A21B6325DC6 /* DZSharedClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */; };
 		DC0B5E640C4245DA98206337 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9B08F97064480596412F15 /* libPods.a */; };
 		FDEC3DA8161C7241009C623E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DA7161C7241009C623E /* UIKit.framework */; };
@@ -37,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		074DFCB6163E82E800A22703 /* DangerZone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DangerZone.entitlements; sourceTree = "<group>"; };
 		0765A79F163B8C640048CE83 /* MTWhitney.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MTWhitney.png; sourceTree = "<group>"; };
 		0765A7A2163B8CE10048CE83 /* DZMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMapViewController.h; sourceTree = "<group>"; };
 		0765A7A3163B8CE10048CE83 /* DZMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMapViewController.m; sourceTree = "<group>"; };
@@ -51,10 +54,14 @@
 		49ED63AF00E7693359F38122 /* DZSharedClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSharedClient.h; sourceTree = "<group>"; };
 		49ED6470453ABD86B509A4CA /* DZReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZReportViewController.m; sourceTree = "<group>"; };
 		49ED65F355C9702985EB95E1 /* DZUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZUpdateViewController.m; sourceTree = "<group>"; };
+		49ED66438B547CB79F9E5438 /* DZStoredObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZStoredObjects.h; sourceTree = "<group>"; };
 		49ED67E347C315D1F7E60788 /* DZUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZUpdateViewController.h; sourceTree = "<group>"; };
+		49ED68081F08F2C7F1E83950 /* DZTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTabBarController.m; sourceTree = "<group>"; };
 		49ED6A0AABAA9330CACB888B /* DTMutableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTMutableObject.h; sourceTree = "<group>"; };
 		49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSharedClient.m; sourceTree = "<group>"; };
 		49ED6F3BE4DAD5CCB001638B /* DTMutableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTMutableObject.m; sourceTree = "<group>"; };
+		49ED6F41CD020ED8B68F1409 /* DZStoredObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZStoredObjects.m; sourceTree = "<group>"; };
+		49ED6FB46F90FE4A92894D7A /* DZTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTabBarController.h; sourceTree = "<group>"; };
 		49ED6FE5BFEA1FEE5706DF14 /* DZReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZReportViewController.h; sourceTree = "<group>"; };
 		61F761F1C8A04BAC8522E551 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		9A9B08F97064480596412F15 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +144,8 @@
 				0785E480162F50F400BC98F6 /* DZObject.m */,
 				49ED6A0AABAA9330CACB888B /* DTMutableObject.h */,
 				49ED6F3BE4DAD5CCB001638B /* DTMutableObject.m */,
+				49ED66438B547CB79F9E5438 /* DZStoredObjects.h */,
+				49ED6F41CD020ED8B68F1409 /* DZStoredObjects.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -184,6 +193,7 @@
 		FDEC3DAD161C7241009C623E /* DangerZone */ = {
 			isa = PBXGroup;
 			children = (
+				074DFCB6163E82E800A22703 /* DangerZone.entitlements */,
 				FDEC3DE2161C7524009C623E /* App Delegate */,
 				49ED6E012E303A975914C96F /* Networking */,
 				FDEC3DDE161C74B9009C623E /* Controllers */,
@@ -215,6 +225,8 @@
 				0765A7AD163B91FB0048CE83 /* Update and  Submit Views */,
 				0765A7AC163B91DE0048CE83 /* Table View */,
 				0765A7AB163B91D20048CE83 /* Map View */,
+				49ED6FB46F90FE4A92894D7A /* DZTabBarController.h */,
+				49ED68081F08F2C7F1E83950 /* DZTabBarController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -357,6 +369,8 @@
 				49ED69CBF2B6F5778B186F69 /* DZReportViewController.m in Sources */,
 				49ED696E00B9F0624C7AEEC4 /* DZUpdateViewController.m in Sources */,
 				0765A7A4163B8CE10048CE83 /* DZMapViewController.m in Sources */,
+				49ED6A65EC14DD74F77E32F9 /* DZStoredObjects.m in Sources */,
+				49ED6B61BD1F8A360CC47BF4 /* DZTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +449,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61F761F1C8A04BAC8522E551 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DangerZone/DangerZone.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DangerZone/DangerZone-Prefix.pch";
 				INFOPLIST_FILE = "DangerZone/DangerZone-Info.plist";
@@ -450,6 +465,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61F761F1C8A04BAC8522E551 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DangerZone/DangerZone.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DangerZone/DangerZone-Prefix.pch";
 				INFOPLIST_FILE = "DangerZone/DangerZone-Info.plist";

@@ -6,14 +6,28 @@
 //  Copyright (c) 2012 iCompute. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "DZObject.h"
 #import "DZSharedClient.h"
 
 static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Horrid Fart"};
 
+//NSCoding Keys
+static NSString *kLOCALE_KEY = @"locale";
+static NSString *kLATITUDE_KEY = @"latitude";
+static NSString *kLONGITUDE_KEY = @"longitude";
+static NSString *kUID_KEY = @"uid";
+static NSString *kCATEGORY_KEY = @"category";
+static NSString *kRANGE_KEY = @"range";
+static NSString *kSEVERITY_KEY = @"severity";
+static NSString *kTIMESTAMP_KEY = @"timestamp";
+
 // http://dangerzone.cems.umv.edu/api/
 
 @implementation DZObject
+{
+//    CLLocationCoordinate2D _coordinate;
+}
 
 
 @synthesize locale = _locale;
@@ -27,7 +41,7 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 @synthesize pinColor = _pinColor;
 @synthesize title = _title;
 @synthesize subTitle = _subTitle;
-
+@synthesize coordinate = _coordinate;
 
 
 
@@ -38,7 +52,7 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 #pragma mark -
 #pragma mark MKAnnotationView convenience methods
 
-+ (NSString *)reusableIdentifierforPinColor :(MKPinAnnotationColor)paramColor
++ (NSString *)reusableIdentifierForPinColor :(MKPinAnnotationColor)paramColor
 {
     NSString *result = nil;
     switch (paramColor) {
@@ -76,10 +90,17 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 
 - (CLLocationCoordinate2D)coordinate
 {
-    coordinate.latitude = [self.latitude doubleValue];
-    coordinate.longitude = [self.longitude doubleValue];
-    return coordinate;
+
+    _coordinate.latitude = [self.latitude doubleValue];
+    _coordinate.longitude = [self.longitude doubleValue];
+    return _coordinate;
 }
+
+- (void)setCoordinate:(CLLocationCoordinate2D)coordinate{
+    _latitude = [NSNumber numberWithDouble:coordinate.latitude];
+    _longitude = [NSNumber numberWithDouble:coordinate.longitude];
+}
+
 
 #pragma mark -
 #pragma mark Initialize objects
@@ -93,17 +114,41 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 
     // Set DZObject properties from JSON
     _locale = [attributes valueForKeyPath:@"locale"];
+    _latitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"latitude"] doubleValue]];
+    _longitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"longitude"] doubleValue]];
     _uid = [[attributes valueForKeyPath:@"uid"] integerValue];
     _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
     _range = [[attributes valueForKeyPath:@"range"] integerValue];
     _severity = [[attributes valueForKeyPath:@"severity"] integerValue];
-    _latitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"latitude"] doubleValue]];
-    _longitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"longitude"] doubleValue]];
+    _timestamp = [NSDate date];
 
     // Set MKAnnotation properties
     _title = [DZObject stringFromCategory:(NSUInteger)_category];
     _subTitle = [NSString stringWithFormat:@"Severity level: %d", _severity];
     _pinColor = MKPinAnnotationColorRed;
+
+    return self;
+}
+
+
+- (id)initWithCoordinate:(CLLocationCoordinate2D)passedCoordinate
+{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    _locale = nil;
+    _latitude = [NSNumber numberWithDouble:passedCoordinate.latitude];
+    _longitude = [NSNumber numberWithDouble:passedCoordinate.longitude];
+    _uid = 0;
+    _category = 0;
+    _range = 0;
+    _severity = 0;
+    _timestamp = [NSDate date];
+    
+    _title = @"Report DangerZone?";
+    _subTitle = @"tap to submit";
+    _pinColor = MKPinAnnotationColorPurple;
 
 
     return self;
@@ -111,6 +156,23 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 
 #pragma mark -
 #pragma mark JSON Parsing
+
+- (void)configureWithAttributes:(NSDictionary *)attributes
+{
+    _locale = [attributes valueForKeyPath:@"locale"];
+    _latitude = [attributes valueForKeyPath:@"latitude"];
+    _longitude =[attributes valueForKeyPath:@"longitude"];
+    _uid = [[attributes valueForKeyPath:@"uid"] integerValue];
+    _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
+    _range = [[attributes valueForKeyPath:@"range"] integerValue];
+    _severity = [[attributes valueForKeyPath:@"severity"] integerValue];
+    _timestamp = [NSDate date];
+
+    // Set MKAnnotation properties
+    _title = [DZObject stringFromCategory:(NSUInteger)_category];
+    _subTitle = [NSString stringWithFormat:@"Severity level: %d", _severity];
+}
+
 
 + (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block
 {
@@ -132,5 +194,46 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
         }
     }];
 }
+
+#pragma mark -
+#pragma mark NSCoder protocol Keyed Arching
+
+//===========================================================
+//  Keyed Archiving
+//
+//===========================================================
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:self.locale forKey:kLOCALE_KEY];
+    [encoder encodeObject:self.latitude forKey:kLATITUDE_KEY];
+    [encoder encodeObject:self.longitude forKey:kLONGITUDE_KEY];
+    [encoder encodeInteger:self.uid forKey:kUID_KEY];
+    [encoder encodeInteger:self.category forKey:kCATEGORY_KEY];
+    [encoder encodeInteger:self.range forKey:kRANGE_KEY];
+    [encoder encodeInteger:self.severity forKey:kSEVERITY_KEY];
+    [encoder encodeObject:self.timestamp forKey:kTIMESTAMP_KEY];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (self) {
+        _locale = [decoder decodeObjectForKey:kLOCALE_KEY];
+        _latitude = [decoder decodeObjectForKey:kLATITUDE_KEY];
+        _longitude = [decoder decodeObjectForKey:kLONGITUDE_KEY];
+        _uid = [decoder decodeIntegerForKey:kUID_KEY];
+        _category = (NSUInteger)[decoder decodeIntegerForKey:kCATEGORY_KEY];
+        _range = [decoder decodeIntegerForKey:kRANGE_KEY];
+        _severity = [decoder decodeIntegerForKey:kSEVERITY_KEY];
+        _timestamp = [decoder decodeObjectForKey:kTIMESTAMP_KEY];
+        
+        // Set MKAnnotation properties
+        _title = [DZObject stringFromCategory:(NSUInteger)_category];
+        _subTitle = [NSString stringWithFormat:@"Severity level: %d", _severity];
+        _pinColor = MKPinAnnotationColorRed;
+    }
+    return self;
+}
+
 
 @end

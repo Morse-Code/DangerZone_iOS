@@ -17,17 +17,16 @@ can reuse the pins that have already been created with the same color */
 #define REUSABLE_PIN_GREEN @"Green"
 #define REUSABLE_PIN_PURPLE @"Purple"
 
-@interface DZObject : NSObject < MKAnnotation >
+@interface DZObject : NSObject < MKAnnotation, NSCoding >
 {
-    CLLocationCoordinate2D coordinate;
 }
 
 
-@property (nonatomic, unsafe_unretained, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, unsafe_unretained) MKPinAnnotationColor pinColor;
+@property (nonatomic, readwrite, assign) CLLocationCoordinate2D coordinate;
+@property (nonatomic) MKPinAnnotationColor pinColor;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *subTitle;
 
-@property (nonatomic, readonly, copy) NSString *title;
-@property (nonatomic, readonly, copy) NSString *subTitle;
 @property (readonly) NSString *locale;
 @property (readonly) NSNumber *latitude;
 @property (readonly) NSNumber *longitude;
@@ -38,11 +37,14 @@ can reuse the pins that have already been created with the same color */
 @property (readonly) NSDate *timestamp;
 
 - (id)initWithAttributes:(NSDictionary *)attributes;
+- (id)initWithCoordinate:(CLLocationCoordinate2D)passedCoordinate;
+- (void)configureWithAttributes:(NSDictionary *)attributes;
+
 
 + (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *dangerZones, NSError *error))block;
 
 + (NSString *)stringFromCategory:(NSUInteger)category;
 
-+ (NSString *)reusableIdentifierforPinColor :(MKPinAnnotationColor)paramColor;
++ (NSString *)reusableIdentifierForPinColor:(MKPinAnnotationColor)paramColor;
 
 @end

@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <Mapkit/MapKit.h>
 
-@class DZTableViewViewController;
+@class DZStoredObjects;
 
 @interface DZMapViewController : UIViewController < MKMapViewDelegate >
 
 
-@property (nonatomic, weak) IBOutlet MKMapView *dangerMap;
-@property (nonatomic, weak) DZTableViewViewController *tableView;
+@property (nonatomic, strong) IBOutlet MKMapView *dangerMap;
+@property (nonatomic, readonly) DZStoredObjects *dangerZones;
+
+-(IBAction)handlePinDrop:(UILongPressGestureRecognizer *)gesture;
 
 @end

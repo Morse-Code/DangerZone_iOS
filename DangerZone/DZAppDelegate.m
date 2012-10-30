@@ -29,13 +29,14 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024
                                                              diskPath:nil];
     [NSURLCache setSharedURLCache:URLCache];
-    UITabBarController *tabBarController = (UITabBarController *)[_window rootViewController];
+    /*UITabBarController *tabBarController = (UITabBarController *)[_window rootViewController];
     NSArray *tabs = [tabBarController viewControllers];
     DZTableViewViewController *tableViewController
             = (DZTableViewViewController *)[(UINavigationController *)[tabs objectAtIndex:2] topViewController];
-    DZMapViewController *mapViewController = (DZMapViewController *)[(UINavigationController *)[tabs objectAtIndex:1] topViewController];
+    DZMapViewController *mapViewController
+            = (DZMapViewController *)[(UINavigationController *)[tabs objectAtIndex:1] topViewController];
     mapViewController.tableView = tableViewController;
-
+*/
 
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 
@@ -53,7 +54,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    // If your application support
+    // s background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 

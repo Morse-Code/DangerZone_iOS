@@ -7,31 +7,21 @@
 #import "DZMapViewController.h"
 #import "DZObject.h"
 #import "DZTableViewViewController.h"
+#import "DZStoredObjects.h"
 
 @interface DZMapViewController ()
 
 
+@property (nonatomic, strong) NSMutableArray *userZones;
+
 @end
 
 @implementation DZMapViewController
-{
-}
 
 
-//@synthesize dangerMap = _dangerMap;
-@synthesize tableView = _tableView;
 @synthesize dangerMap = _dangerMap;
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil
-               bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize dangerZones = _dangerZones;
+@synthesize userZones = _userZones;
 
 
 - (void)viewDidLoad
@@ -39,8 +29,18 @@
     [super viewDidLoad];
 
 
-    [self mapView:_dangerMap regionDidChangeAnimated:YES];
+    [self mapView:_dangerMap regionDidChangeAnimated:NO];
 
+}
+
+
+- (void)viewDidUnload
+{
+    [self.dangerZones removeObserver:self forKeyPath:KVOZonesChangeKey];
+    self.userZones = nil;
+    self.dangerMap.delegate = nil;
+    self.dangerMap = nil;
+    [super viewDidUnload];
 }
 
 
@@ -50,16 +50,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)setDangerZones:(DZStoredObjects *)dangerZones
+{
+    if ([_dangerZones isEqual:dangerZones]) {
+        return;
+    }
+    if (_dangerZones != nil) {
+        [_dangerZones removeObserver:self forKeyPath:KVOZonesChangeKey];
+    }
+    _dangerZones = dangerZones;
+    if (_dangerZones != nil) {
+        [self.dangerZones addObserver:self forKeyPath:KVOZonesChangeKey options:NSKeyValueObservingOptionNew
+                              context:nil];
+    }
+    if (self.isViewLoaded) {
+        [self mapView:_dangerMap regionDidChangeAnimated:NO];
+    }
+}
+
+
 #pragma mark Map View Delegate methods
 
 - (void)        mapView:(MKMapView *)map
 regionDidChangeAnimated:(BOOL)animated
 {
-    NSArray *oldAnnotations = _dangerMap.annotations;
-    [_dangerMap removeAnnotations:oldAnnotations];
+    NSArray *oldAnnotations = self.dangerMap.annotations;
+    [self.dangerMap removeAnnotations:oldAnnotations];
 
-    NSArray *dangerZones = [_tableView dangerZones];
-    [_dangerMap addAnnotations:dangerZones];
+    NSArray *newAnnotations = [self.dangerZones.zones arrayByAddingObjectsFromArray:(NSArray *)self.userZones];
+    [self.dangerMap addAnnotations:newAnnotations];
 }
 
 
@@ -73,30 +93,25 @@ regionDidChangeAnimated:(BOOL)animated
     }
 
     /* Process this event only for the Map View created previously */
-    if ([mapView isEqual:_dangerMap] == NO) {
+    if ([mapView isEqual:self.dangerMap] == NO) {
         return result;
     }
 
-    /* typecast the annotation for which the Map View has fired this delegate message */
     DZObject *senderAnnotation = (DZObject *)annotation;
 
-    /* Using the class method we have defined in our custom annotation class, we will attempt to get a reusable identifier for the pin we are about to create */
-    NSString *pinReusableIdentifier = [DZObject reusableIdentifierforPinColor:senderAnnotation.pinColor];
+    NSString *pinReusableIdentifier = [DZObject reusableIdentifierForPinColor:senderAnnotation.pinColor];
 
-    /* Using the identifier we retrieved above, we will attempt to reuse a pin in the sender Map View */
     MKPinAnnotationView *annotationView
             = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
 
-    /* If we fail to reuse a pin, then we will create one */
     if (annotationView == nil) {
         annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:senderAnnotation
                                                          reuseIdentifier:pinReusableIdentifier];
-
-        /* Make sure we can see the callouts on top of each pin in case we have assigned title and/or subtitle to each pin */
-        [annotationView setCanShowCallout:YES];
     }
 
-    /* Now make sure, whether we have reused a pin or not, that the color of the pin matches the color of the annotation */
+    annotationView.canShowCallout = YES;
+    annotationView.draggable = YES;
+    annotationView.animatesDrop = YES;
     annotationView.pinColor = senderAnnotation.pinColor;
 
     result = annotationView;
@@ -104,4 +119,75 @@ regionDidChangeAnimated:(BOOL)animated
     return result;
 }
 
+#pragma mark - Notification Methods
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+
+    if ([keyPath isEqualToString:KVOZonesChangeKey]) {
+        [self zonesChange:change];
+    }
+}
+
+
+- (void)zonesChange:(NSDictionary *)dictionary
+{
+    [self mapView:self.dangerMap regionDidChangeAnimated:NO];
+}
+
+
+#pragma mark -
+#pragma mark MKMapViewDelegate
+
+- (void)mapView:(MKMapView *)mapView
+    annotationView:(MKAnnotationView *)annotationView
+didChangeDragState:(MKAnnotationViewDragState)newState
+      fromOldState:(MKAnnotationViewDragState)oldState
+{
+
+//    if (oldState == MKAnnotationViewDragStateDragging) {
+//        DZObject *annotation = (DZObject *)annotationView.annotation;
+//    }
+}
+
+
+- (void)      mapView:(MKMapView *)mapView
+didAddAnnotationViews:(NSArray *)views
+{
+    for (MKAnnotationView *aView in views) {
+        if ([aView.reuseIdentifier isEqualToString:@"Purple"]) {
+            aView.alpha = 0;
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.8];
+            aView.alpha = 1;
+            [UIView commitAnimations];
+        }
+    }
+}
+
+
+- (IBAction)handlePinDrop:(UILongPressGestureRecognizer *)gesture
+{
+    if (gesture.state != UIGestureRecognizerStateBegan)
+    {
+        return;
+    }
+
+    CGPoint location = [gesture locationInView:self.dangerMap];
+    CLLocationCoordinate2D touchLocation = [self.dangerMap convertPoint:location toCoordinateFromView:self.dangerMap];
+
+    NSLog(@"Long Press Gesture detected");
+
+    DZObject *newZone = [[DZObject alloc] initWithCoordinate:touchLocation];
+    [self.dangerMap addAnnotation:newZone];
+    if (self.userZones == nil){
+        self.userZones = [NSMutableArray arrayWithObject:newZone];
+    }else{
+        [self.userZones addObject:newZone];
+    }
+
+}
 @end

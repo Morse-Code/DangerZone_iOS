@@ -8,6 +8,7 @@
 #import "DZObject.h"
 #import "DZTableViewViewController.h"
 #import "DZStoredObjects.h"
+#import "DZReportViewController.h"
 
 @interface DZMapViewController ()
 
@@ -15,6 +16,8 @@
 @property (nonatomic, strong) NSMutableArray *userZones;
 
 @end
+
+static NSString *const SubmitViewSegueIdentifier = @"Push Submit View";
 
 @implementation DZMapViewController
 
@@ -89,7 +92,24 @@ regionDidChangeAnimated:(BOOL)animated
     MKAnnotationView *result = nil;
 
     if ([annotation isKindOfClass:[DZObject class]] == NO) {
+        MKPointAnnotation *senderAnnotation = (MKPointAnnotation *)annotation;
+        NSString *pinReusableIdentifier = @"temZone";
+        MKPinAnnotationView *annotationView
+                = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
+        if (annotationView == nil) {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:senderAnnotation
+                                                             reuseIdentifier:pinReusableIdentifier];
+        }
+        annotationView.canShowCallout = YES;
+        [annotationView setRightCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
+        annotationView.draggable = YES;
+        annotationView.animatesDrop = YES;
+        annotationView.pinColor = MKPinAnnotationColorPurple;
+
+        result = annotationView;
+
         return result;
+
     }
 
     /* Process this event only for the Map View created previously */
@@ -110,7 +130,7 @@ regionDidChangeAnimated:(BOOL)animated
     }
 
     annotationView.canShowCallout = YES;
-    annotationView.draggable = YES;
+//    annotationView.draggable = YES;
     annotationView.animatesDrop = YES;
     annotationView.pinColor = senderAnnotation.pinColor;
 
@@ -169,6 +189,31 @@ didAddAnnotationViews:(NSArray *)views
 }
 
 
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    if ([view.annotation isKindOfClass:[DZObject class]]){
+        //handle action for displaying detail of DangerZone
+    }else{
+        
+        [self performSegueWithIdentifier:SubmitViewSegueIdentifier sender:view.annotation];
+    }
+
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:SubmitViewSegueIdentifier]) {
+        DZReportViewController *controller = [segue destinationViewController];
+        if (self.userZones == nil){
+            self.userZones = [NSMutableArray arrayWithCapacity:1];
+        }
+        
+//            self.userZones = [NSMutableArray arrayWithCapacity:1];
+            controller.tempAnnotation = (MKPointAnnotation *)sender;
+            controller.userZones = self.userZones;
+    }
+}
+
+
 - (IBAction)handlePinDrop:(UILongPressGestureRecognizer *)gesture
 {
     if (gesture.state != UIGestureRecognizerStateBegan)
@@ -181,13 +226,12 @@ didAddAnnotationViews:(NSArray *)views
 
     NSLog(@"Long Press Gesture detected");
 
-    DZObject *newZone = [[DZObject alloc] initWithCoordinate:touchLocation];
-    [self.dangerMap addAnnotation:newZone];
-    if (self.userZones == nil){
-        self.userZones = [NSMutableArray arrayWithObject:newZone];
-    }else{
-        [self.userZones addObject:newZone];
-    }
+//    DZObject *newZone = [[DZObject alloc] initWithCoordinate:touchLocation];
+    MKPointAnnotation *tempZone = [[MKPointAnnotation alloc] init];
+    tempZone.coordinate = touchLocation;
+    tempZone.title = @"Submit DangerZone?";
+    [self.dangerMap addAnnotation:tempZone];
+    
 
 }
 @end

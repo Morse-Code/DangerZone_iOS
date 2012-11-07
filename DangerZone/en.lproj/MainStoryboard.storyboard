@@ -228,12 +228,12 @@
                     <navigationItem key="navigationItem" title="Danger Map" id="8zD-j1-tqW">
                         <barButtonItem key="leftBarButtonItem" title="Update" id="gcE-hX-Eta">
                             <connections>
-                                <segue destination="8oh-QD-IO0" kind="push" id="3IC-8t-aJR"/>
+                                <segue destination="8oh-QD-IO0" kind="push" identifier="Request" id="3IC-8t-aJR"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Report" id="5CO-SJ-2xR">
                             <connections>
-                                <segue destination="uPi-Ss-2Yh" kind="push" id="B1r-G1-ogd"/>
+                                <segue destination="uPi-Ss-2Yh" kind="push" identifier="Push Submit View" id="B1r-G1-ogd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

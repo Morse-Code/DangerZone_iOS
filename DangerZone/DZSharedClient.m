@@ -9,7 +9,7 @@
 #import "AFJSONRequestOperation.h"
 
 static NSString *const kDZDangerZoneAPIBaseURLString = @"http://www.cems.uvm.edu/~01cmorse/dz/dangerzone.php";
-//static NSString * const kDZDangerZoneAPIBaseURLString = @"https://alpha-api.app.net/";
+//static NSString * const kDZDangerZoneAPIBaseURLString = @"http://dangerzone.cems.uvm.edu/api";
 
 @implementation DZSharedClient
 {

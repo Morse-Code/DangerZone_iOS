@@ -16,32 +16,37 @@ can reuse the pins that have already been created with the same color */
 #define REUSABLE_PIN_RED @"Red"
 #define REUSABLE_PIN_GREEN @"Green"
 #define REUSABLE_PIN_PURPLE @"Purple"
+static NSString *const request = @"/request?";
+static NSString *const params = @"";
 
-@interface DZObject : NSObject < MKAnnotation, NSCoding >
+@interface DZObject : NSObject <MKAnnotation, NSCoding>
 {
 }
 
 
-@property (nonatomic, readwrite, assign) CLLocationCoordinate2D coordinate;
-@property (nonatomic) MKPinAnnotationColor pinColor;
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *subTitle;
+@property(nonatomic, readwrite, assign) CLLocationCoordinate2D coordinate;
+@property(nonatomic) MKPinAnnotationColor pinColor;
+@property(nonatomic, strong) NSString *title;
+@property(nonatomic, strong) NSString *subTitle;
 
-@property (readonly) NSString *locale;
-@property (readonly) NSNumber *latitude;
-@property (readonly) NSNumber *longitude;
-@property (readonly) NSInteger uid;
-@property (readonly) NSUInteger category;
-@property (readonly) NSInteger range;
-@property (readonly) NSInteger severity;
-@property (readonly) NSDate *timestamp;
+@property(readonly) NSString *locale;
+@property(readonly) NSNumber *latitude;
+@property(readonly) NSNumber *longitude;
+@property(readonly) NSDate *timestamp; //integer
+@property(readonly) NSInteger uid;
+@property(readonly) NSInteger range;
+@property(readonly) NSInteger severity;
+@property(readonly) NSUInteger category;
 
 - (id)initWithAttributes:(NSDictionary *)attributes;
-- (id)initWithCoordinate:(CLLocationCoordinate2D)passedCoordinate;
-- (void)configureWithAttributes:(NSDictionary *)attributes;
+//- (id)initWithCoordinate:(CLLocationCoordinate2D)passedCoordinate;
 
+- (id)initUserSubmittedWithAttributes:(NSDictionary *)attributes;
 
 + (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *dangerZones, NSError *error))block;
+
++ (void)dangerZoneObjectsForParameters:(NSDictionary *)params WithBlock:(void (^)(NSArray *, NSError *))block;
+
 
 + (NSString *)stringFromCategory:(NSUInteger)category;
 

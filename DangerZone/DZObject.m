@@ -52,8 +52,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 #pragma mark -
 #pragma mark MKAnnotationView convenience methods
 
-+ (NSString *)reusableIdentifierForPinColor :(MKPinAnnotationColor)paramColor
-{
++ (NSString *)reusableIdentifierForPinColor :(MKPinAnnotationColor)paramColor {
     NSString *result = nil;
     switch (paramColor) {
         case MKPinAnnotationColorRed:
@@ -76,8 +75,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 }
 
 
-+ (NSString *)stringFromCategory:(NSUInteger)category
-{
++ (NSString *)stringFromCategory:(NSUInteger)category {
     //    NSArray *categories = [NSArray arrayWithObjects:@"Fire", @"Accident", @"Riot", @"Gunfire", nil];
     NSArray *categories = [NSArray arrayWithObjects:CATEGORIES count:5];
     NSString *categoryString = [categories objectAtIndex:category];
@@ -88,15 +86,15 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 #pragma mark -
 #pragma mark MKAnnotation protocol
 
-- (CLLocationCoordinate2D)coordinate
-{
+- (CLLocationCoordinate2D)coordinate {
 
     _coordinate.latitude = [self.latitude doubleValue];
     _coordinate.longitude = [self.longitude doubleValue];
     return _coordinate;
 }
 
-- (void)setCoordinate:(CLLocationCoordinate2D)coordinate{
+
+- (void)setCoordinate:(CLLocationCoordinate2D)coordinate {
     _latitude = [NSNumber numberWithDouble:coordinate.latitude];
     _longitude = [NSNumber numberWithDouble:coordinate.longitude];
 }
@@ -105,8 +103,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 #pragma mark -
 #pragma mark Initialize objects
 
-- (id)initWithAttributes:(NSDictionary *)attributes
-{
+//Initialize with server supplied JSON
+- (id)initWithAttributes:(NSDictionary *)attributes {
     self = [super init];
     if (!self) {
         return nil;
@@ -116,11 +114,11 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
     _locale = [attributes valueForKeyPath:@"locale"];
     _latitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"latitude"] doubleValue]];
     _longitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"longitude"] doubleValue]];
+    _timestamp = [NSDate date];
     _uid = [[attributes valueForKeyPath:@"uid"] integerValue];
-    _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
     _range = [[attributes valueForKeyPath:@"range"] integerValue];
     _severity = [[attributes valueForKeyPath:@"severity"] integerValue];
-    _timestamp = [NSDate date];
+    _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
 
     // Set MKAnnotation properties
     _title = [DZObject stringFromCategory:(NSUInteger)_category];
@@ -131,7 +129,30 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 }
 
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)passedCoordinate
+//Initialize user submitted DangerZone
+- (id)initUserSubmittedWithAttributes:(NSDictionary *)attributes {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    _locale = [attributes valueForKeyPath:@"locale"];
+    _latitude = [attributes valueForKeyPath:@"latitude"];
+    _longitude = [attributes valueForKeyPath:@"longitude"];
+    _uid = [[attributes valueForKeyPath:@"uid"] integerValue];
+    _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
+    _range = [[attributes valueForKeyPath:@"range"] integerValue];
+    _severity = [[attributes valueForKeyPath:@"severity"] integerValue];
+    _timestamp = [NSDate date];
+
+    // Set MKAnnotation properties
+    _title = [DZObject stringFromCategory:(NSUInteger)_category];
+    _subTitle = [NSString stringWithFormat:@"Severity level: %d", _severity];
+    _pinColor = MKPinAnnotationColorPurple;
+
+    return self;
+}
+
+/*- (id)initWithCoordinate:(CLLocationCoordinate2D)passedCoordinate
 {
     self = [super init];
     if (!self) {
@@ -152,32 +173,14 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 
 
     return self;
-}
+}*/
 
 #pragma mark -
 #pragma mark JSON Parsing
 
-- (void)configureWithAttributes:(NSDictionary *)attributes
-{
-    _locale = [attributes valueForKeyPath:@"locale"];
-    _latitude = [attributes valueForKeyPath:@"latitude"];
-    _longitude =[attributes valueForKeyPath:@"longitude"];
-    _uid = [[attributes valueForKeyPath:@"uid"] integerValue];
-    _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
-    _range = [[attributes valueForKeyPath:@"range"] integerValue];
-    _severity = [[attributes valueForKeyPath:@"severity"] integerValue];
-    _timestamp = [NSDate date];
 
-    // Set MKAnnotation properties
-    _title = [DZObject stringFromCategory:(NSUInteger)_category];
-    _subTitle = [NSString stringWithFormat:@"Severity level: %d", _severity];
-}
-
-
-+ (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block
-{
-    [[DZSharedClient sharedClient] getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
-    {
++ (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block {
+    [[DZSharedClient sharedClient] getPath:request parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON) {
         NSMutableArray *mutableDangerZones = [NSMutableArray arrayWithCapacity:[JSON count]];
         for (NSDictionary *attributes in JSON) {
             DZObject *dangerZone = [[DZObject alloc] initWithAttributes:attributes];
@@ -187,13 +190,31 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
         if (block) {
             block([NSArray arrayWithArray:mutableDangerZones], nil);
         }
-    }                              failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
+    }                              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (block) {
             block([NSArray array], error);
         }
     }];
 }
+
++ (void)dangerZoneObjectsForParameters:(NSDictionary *)params WithBlock:(void (^)(NSArray *posts, NSError *error))block {
+    [[DZSharedClient sharedClient] getPath:request parameters:params success:^(AFHTTPRequestOperation *operation, id JSON) {
+        NSMutableArray *mutableDangerZones = [NSMutableArray arrayWithCapacity:[JSON count]];
+        for (NSDictionary *attributes in JSON) {
+            DZObject *dangerZone = [[DZObject alloc] initWithAttributes:attributes];
+            [mutableDangerZones addObject:dangerZone];
+        }
+        
+        if (block) {
+            block([NSArray arrayWithArray:mutableDangerZones], nil);
+        }
+    }                              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (block) {
+            block([NSArray array], error);
+        }
+    }];
+}
+
 
 #pragma mark -
 #pragma mark NSCoder protocol Keyed Arching
@@ -202,8 +223,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 //  Keyed Archiving
 //
 //===========================================================
-- (void)encodeWithCoder:(NSCoder *)encoder
-{
+- (void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:self.locale forKey:kLOCALE_KEY];
     [encoder encodeObject:self.latitude forKey:kLATITUDE_KEY];
     [encoder encodeObject:self.longitude forKey:kLONGITUDE_KEY];
@@ -214,8 +234,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
     [encoder encodeObject:self.timestamp forKey:kTIMESTAMP_KEY];
 }
 
-- (id)initWithCoder:(NSCoder *)decoder
-{
+
+- (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if (self) {
         _locale = [decoder decodeObjectForKey:kLOCALE_KEY];
@@ -226,7 +246,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
         _range = [decoder decodeIntegerForKey:kRANGE_KEY];
         _severity = [decoder decodeIntegerForKey:kSEVERITY_KEY];
         _timestamp = [decoder decodeObjectForKey:kTIMESTAMP_KEY];
-        
+
         // Set MKAnnotation properties
         _title = [DZObject stringFromCategory:(NSUInteger)_category];
         _subTitle = [NSString stringWithFormat:@"Severity level: %d", _severity];

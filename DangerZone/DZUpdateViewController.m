@@ -8,6 +8,8 @@
 
 #import <CoreLocation/CLPlacemark.h>
 #import "DZUpdateViewController.h"
+#import "DZSharedClient.h"
+#import "DZObject.h"
 
 @interface DZUpdateViewController ()
 
@@ -163,6 +165,15 @@ numberOfRowsInComponent:(NSInteger)component
     NSLog(@"locale= %@", self.updateObj.locale);
     NSLog(@"latitude= %f", self.updateObj.latitude);
     NSLog(@"longitude= %f", self.updateObj.longitude);
+
+
+/*    [[DZSharedClient sharedClient] getPath:request parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON){
+        // some stuff
+
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        //some stuff
+    }];*/
+
 }
 
 

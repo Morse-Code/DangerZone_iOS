@@ -9,19 +9,27 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CLGeocoder.h>
 #import "DTMutableObject.h"
+#import <MapKit/MapKit.h>
 
-@interface DZReportViewController : UIViewController < UIPickerViewDelegate, UIPickerViewDataSource >
+//@class DZObject;
+
+@interface DZReportViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 
-@property (nonatomic, retain) IBOutlet UITextField *localeText;
-@property (strong, nonatomic) IBOutlet UIPickerView *picker;
-@property (nonatomic, retain) CLGeocoder *geoCoder;
+@property(nonatomic, retain) IBOutlet UITextField *localeText;
+@property(strong, nonatomic) IBOutlet UIPickerView *picker;
+@property(nonatomic, retain) CLGeocoder *geoCoder;
 @property NSArray *categoryStrings;
-@property (strong, nonatomic) NSArray *severityStrings;
+@property(strong, nonatomic) NSArray *severityStrings;
 @property DTMutableObject *updateObj; // the model's variables, see DTMutableObject.h
+@property(nonatomic, strong) NSMutableArray *userZones;
+@property(nonatomic, weak) MKPointAnnotation *tempAnnotation;
 
 - (IBAction)onReturnPressed:(id)sender;
 
 - (IBAction)onSubmitPressed:(id)sender;
+
+@property(nonatomic, strong);
+
 
 @end

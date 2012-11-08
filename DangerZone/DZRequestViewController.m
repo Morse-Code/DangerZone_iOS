@@ -1,5 +1,5 @@
 //
-//  DZUpdateViewController.m
+//  DZRequestViewController.m
 //  Danger_Tab
 //
 //  Created by rbelford on 10/16/12.
@@ -7,16 +7,16 @@
 //
 
 #import <CoreLocation/CLPlacemark.h>
-#import "DZUpdateViewController.h"
+#import "DZRequestViewController.h"
 #import "DZSharedClient.h"
 #import "DZObject.h"
 
-@interface DZUpdateViewController ()
+@interface DZRequestViewController ()
 
 
 @end
 
-@implementation DZUpdateViewController
+@implementation DZRequestViewController
 
 //@synthesize uid,category,longitude,latitude,range,locale,categoryString,rangeString;
 

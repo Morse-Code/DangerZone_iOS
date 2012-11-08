@@ -1,5 +1,5 @@
 //
-//  DZReportViewController.m
+//  DZSubmitViewController.m
 //  Danger_Tab
 //
 //  Created by rbelford on 10/16/12.
@@ -8,10 +8,10 @@
 
 #import <CoreLocation/CLPlacemark.h>
 #import <CoreLocation/CoreLocation.h>
-#import "DZReportViewController.h"
+#import "DZSubmitViewController.h"
 #import "DZObject.h"
 
-@interface DZReportViewController ()
+@interface DZSubmitViewController ()
 
 
 @property(nonatomic, strong) DZObject *userZone;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation DZReportViewController
+@implementation DZSubmitViewController
 
 
 @synthesize picker = _picker;

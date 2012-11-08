@@ -1,5 +1,5 @@
 //
-//  DZReportViewController.h
+//  DZSubmitViewController.h
 //  Danger_Tab
 //
 //  Created by rbelford on 10/16/12.
@@ -13,7 +13,7 @@
 
 //@class DZObject;
 
-@interface DZReportViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface DZSubmitViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 
 @property(nonatomic, retain) IBOutlet UITextField *localeText;

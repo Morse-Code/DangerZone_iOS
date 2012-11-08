@@ -1,5 +1,5 @@
 //
-//  DZUpdateViewController.h
+//  DZRequestViewController.h
 //  Danger_Tab
 //
 //  Created by rbelford on 10/16/12.
@@ -10,7 +10,7 @@
 #import <CoreLocation/CLGeocoder.h>
 #import "DTMutableObject.h"
 
-@interface DZUpdateViewController : UIViewController < UIPickerViewDelegate, UIPickerViewDataSource >
+@interface DZRequestViewController : UIViewController < UIPickerViewDelegate, UIPickerViewDataSource >
 
 
 @property (nonatomic, retain) IBOutlet UITextField *localeText;

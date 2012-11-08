@@ -29,7 +29,5 @@
 
 - (IBAction)onSubmitPressed:(id)sender;
 
-@property(nonatomic, strong);
-
 
 @end

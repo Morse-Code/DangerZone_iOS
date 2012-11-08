@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CLGeocoder.h>
 #import "DTMutableObject.h"
+#import <MapKit/MapKit.h>
+
+@class DZStoredObjects;
 
 @interface DZRequestViewController : UIViewController < UIPickerViewDelegate, UIPickerViewDataSource >
 
@@ -19,7 +22,9 @@
 @property NSArray *categoryStrings;
 @property (strong, nonatomic) NSArray *rangeStrings;
 @property (strong, nonatomic) NSArray *rangeValues; // in parallel with rangeStrings
-@property DTMutableObject *updateObj; // the model's variables, see DTMutableObject.h
+@property DZStoredObjects *dangerZones; // the model's variables, see DTMutableObject.h
+
+@property (nonatomic, strong) MKPointAnnotation *tempAnnotation;
 
 - (IBAction)onReturnPressed:(id)sender;
 

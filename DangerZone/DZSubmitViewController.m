@@ -115,8 +115,8 @@ numberOfRowsInComponent:(NSInteger)component {
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component {
     NSNumber *value = [NSNumber numberWithInteger:row];
-    component == 0 ? ([self.attributes setValue:(NSNumber *)value forKey:@"category"])
-    : ([self.attributes setValue:(NSNumber *)value forKey:@"severity"]);
+    component == 0 ? ([self.attributes setValue:value forKey:@"category"])
+    : ([self.attributes setValue:value forKey:@"severity"]);
     NSLog(@"Report Selection: row=%d component=%d", row, component);
     NSLog(@"Report Selection: category=%d severity=%d", [[self.attributes valueForKey:@"category"]
                                                                           integerValue], [[self.attributes valueForKey:@"severity"]
@@ -135,11 +135,13 @@ numberOfRowsInComponent:(NSInteger)component {
 //    if (!self.geoCoder) {
 //        self.geoCoder = [[CLGeocoder alloc] init];
 //    }
+    [self.attributes setValue:[NSNumber numberWithInt:[self.picker selectedRowInComponent:0]] forKey:@"category"];
+    [self.attributes setValue:[NSNumber numberWithInt:[self.picker selectedRowInComponent:1]] forKey:@"severity"];
     [self.attributes setValue:self.localeText.text forKey:@"locale"];
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.latitude] forKey:@"latitude"];
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.longitude] forKey:@"longitude"];
-    [self.attributes setValue:[NSNumber numberWithInteger:20] forKey:@"range"];
-    [self.attributes setValue:[NSNumber numberWithInteger:20] forKey:@"uid"];
+    [self.attributes setValue:[NSNumber numberWithInteger:20] forKey:@"radius"];
+    [self.attributes setValue:[NSNumber numberWithInteger:20] forKey:@"id"];
     self.userZone = [[DZObject alloc] initUserSubmittedWithAttributes:self.attributes];
     [self.userZones addObject:self.userZone];
     NSLog(@"Object added");

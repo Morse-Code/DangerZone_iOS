@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--First View Controller - First-->
@@ -228,7 +228,7 @@
                     <navigationItem key="navigationItem" title="Danger Map" id="8zD-j1-tqW">
                         <barButtonItem key="leftBarButtonItem" title="Update" id="gcE-hX-Eta">
                             <connections>
-                                <segue destination="8oh-QD-IO0" kind="push" identifier="Request" id="3IC-8t-aJR"/>
+                                <segue destination="8oh-QD-IO0" kind="push" identifier="Push Request View" id="3IC-8t-aJR"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Report" id="5CO-SJ-2xR">
@@ -250,10 +250,10 @@
             </objects>
             <point key="canvasLocation" x="1053" y="118"/>
         </scene>
-        <!--Report View Controller - Report Danger-->
+        <!--Submit View Controller - Report DangerZone-->
         <scene sceneID="cM9-Oq-kXj">
             <objects>
-                <viewController id="uPi-Ss-2Yh" customClass="DZReportViewController" sceneMemberID="viewController">
+                <viewController id="uPi-Ss-2Yh" customClass="DZSubmitViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zAY-oJ-otb">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -331,7 +331,7 @@
                             <constraint firstAttribute="trailing" secondItem="hqe-xA-Xnw" secondAttribute="trailing" constant="76" id="vG1-uQ-9lZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Report Danger" id="qOn-x5-u8u"/>
+                    <navigationItem key="navigationItem" title="Report DangerZone" id="qOn-x5-u8u"/>
                     <connections>
                         <outlet property="localeText" destination="c6i-7u-FZO" id="GR4-Qi-2Rh"/>
                         <outlet property="picker" destination="OFN-J9-NqJ" id="aP1-QF-DzX"/>
@@ -341,10 +341,10 @@
             </objects>
             <point key="canvasLocation" x="1551" y="-149"/>
         </scene>
-        <!--Update View Controller - Update Dangers-->
+        <!--Request View Controller - Request DangerZones-->
         <scene sceneID="lei-jQ-eVc">
             <objects>
-                <viewController id="8oh-QD-IO0" customClass="DZUpdateViewController" sceneMemberID="viewController">
+                <viewController id="8oh-QD-IO0" customClass="DZRequestViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lwS-AU-uob">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -471,7 +471,7 @@
                             <constraint firstItem="OzZ-LS-qvi" firstAttribute="leading" secondItem="lwS-AU-uob" secondAttribute="leading" type="default" id="gPE-Q2-Qat"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Update Dangers" id="lRu-xs-lk2"/>
+                    <navigationItem key="navigationItem" title="Request DangerZones" id="lRu-xs-lk2"/>
                     <connections>
                         <outlet property="localeText" destination="IhO-8d-tBM" id="AaW-c1-BzX"/>
                         <outlet property="picker" destination="gM5-hM-GRB" id="fKw-LJ-E5v"/>
@@ -501,8 +501,18 @@
                 <relationship kind="outlet" name="dangerMap" candidateClass="MKMapView"/>
             </relationships>
         </class>
-        <class className="DZReportViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZReportViewController.h"/>
+        <class className="DZRequestViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZRequestViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="onGlobalPressed:"/>
+                <relationship kind="action" name="onReturnPressed:"/>
+                <relationship kind="action" name="onSubmitPressed:"/>
+                <relationship kind="outlet" name="localeText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="picker" candidateClass="UIPickerView"/>
+            </relationships>
+        </class>
+        <class className="DZSubmitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZSubmitViewController.h"/>
             <relationships>
                 <relationship kind="action" name="onReturnPressed:"/>
                 <relationship kind="action" name="onSubmitPressed:"/>
@@ -524,16 +534,6 @@
         </class>
         <class className="DZTableViewViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DZTableViewViewController.h"/>
-        </class>
-        <class className="DZUpdateViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZUpdateViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="onGlobalPressed:"/>
-                <relationship kind="action" name="onReturnPressed:"/>
-                <relationship kind="action" name="onSubmitPressed:"/>
-                <relationship kind="outlet" name="localeText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="picker" candidateClass="UIPickerView"/>
-            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

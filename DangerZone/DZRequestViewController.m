@@ -10,8 +10,14 @@
 #import "DZRequestViewController.h"
 #import "DZSharedClient.h"
 #import "DZObject.h"
+#import "DZStoredObjects.h"
+
+static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Horrid Fart", nil};
 
 @interface DZRequestViewController ()
+
+
+@property (nonatomic, strong) NSDictionary *attributes;
 
 
 @end
@@ -21,9 +27,12 @@
 //@synthesize uid,category,longitude,latitude,range,locale,categoryString,rangeString;
 
 @synthesize picker = _picker;
-@synthesize updateObj = _updateObj;
+//@synthesize updateObj = _updateObj;
 @synthesize rangeStrings = _rangeStrings;
 @synthesize rangeValues = _rangeValues;
+@synthesize tempAnnotation = _tempAnnotation;
+@synthesize attributes = _attributes;
+@synthesize dangerZones = _dangerZones;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
@@ -43,7 +52,7 @@
     // Do any additional setup after loading the view.
     //self.updateObj = [[DTMutableObject alloc] initWithZeros];
     //self.categoryStrings = [[NSArray alloc] initWithObjects:
-    self.categoryStrings = [NSArray arrayWithObjects:@"All", @"Fire", @"Accident", @"Riot", @"Gunfire", nil];
+    self.categoryStrings = [NSArray arrayWithObjects:CATEGORIES count:5];
 
     self.rangeStrings = [NSArray arrayWithObjects:@"1k", @"5k", @"10k", @"25k", @"50k", @"100k", @"500k", @"1000k",
                                                   @"5000k", nil];
@@ -53,8 +62,9 @@
                                                  [NSNumber numberWithInt:50], [NSNumber numberWithInt:100],
                                                  [NSNumber numberWithInt:500], [NSNumber numberWithInt:1000],
                                                  [NSNumber numberWithInt:50000], nil];
+    self.attributes = [NSMutableDictionary dictionaryWithCapacity:5];
     // read as:  int i = [[array objectsAtIndex:0] intValue];
-    self.updateObj = [[DTMutableObject alloc] initWithZeros];
+//    self.updateObj = [[DTMutableObject alloc] initWithZeros];
 }
 
 
@@ -119,27 +129,27 @@ numberOfRowsInComponent:(NSInteger)component
 {
     NSLog(@"Update selection: row=%d component=%d", row, component);
     if (component == 0) { // category selected
-        self.updateObj.category = (NSUInteger)row;
+        [self.attributes setValue:[self.categoryStrings objectAtIndex:(NSUInteger)row] forKey:@"category"];
     }
     else
     { // severity selected
-        self.updateObj.range = (NSUInteger)[[self.rangeValues objectAtIndex:(NSUInteger)row] intValue];
+        [self.attributes setValue:[self.rangeValues objectAtIndex:(NSUInteger)row] forKey:@"radius"];
     }
 }
 
 
 - (IBAction)onReturnPressed:(id)sender
 {
-    self.updateObj.locale = self.localeText.text;
-    NSLog(@"onReturnPressed, text field: %@", self.updateObj.locale);
-    self.localeText.text = @"";
-    [sender resignFirstResponder];
+    /* self.updateObj.locale = self.localeText.text;
+     NSLog(@"onReturnPressed, text field: %@", self.updateObj.locale);
+     self.localeText.text = @"";
+     [sender resignFirstResponder];*/
 }
 
 
 - (IBAction)onSubmitPressed:(id)sender
 {
-    if (!self.geoCoder) {
+/*    if (!self.geoCoder) {
         self.geoCoder = [[CLGeocoder alloc] init];
     }
     [self.geoCoder geocodeAddressString:self.updateObj.locale completionHandler:^(NSArray *placemarks, NSError *error)
@@ -167,13 +177,30 @@ numberOfRowsInComponent:(NSInteger)component
     NSLog(@"longitude= %f", self.updateObj.longitude);
 
 
-/*    [[DZSharedClient sharedClient] getPath:request parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON){
+    [[DZSharedClient sharedClient] getPath:request parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON){
         // some stuff
 
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         //some stuff
     }];*/
-
+    [self.attributes setValue:[NSNumber numberWithInt:[self.picker selectedRowInComponent:0]] forKey:@"category"];
+    [self.attributes setValue:[self.rangeValues objectAtIndex:(NSUInteger)[self.picker selectedRowInComponent:1]] forKey:@"radius"];
+    [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.latitude] forKey:@"latitude"];
+    [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.longitude] forKey:@"longitude"];
+    //[self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.longitude] forKey:@"timestamp"];
+    [DZObject dangerZoneObjectsForParameters:self.attributes WithBlock:^(NSArray *dangerZones, NSError *error)
+    {
+        if (error) {
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription]
+                                       delegate:nil cancelButtonTitle:nil
+                              otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
+        }
+        else
+        {
+            [self.dangerZones updateWithArray:dangerZones];
+        }
+    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

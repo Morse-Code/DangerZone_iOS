@@ -24,6 +24,7 @@
 
 
 @synthesize dangerZones = _dangerZones;
+@synthesize attributes = _attributes;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -40,8 +41,15 @@
 {
     [_activityIndicatorView startAnimating];
     self.navigationItem.rightBarButtonItem.enabled = NO;
+    //[self performSegueWithIdentifier:<#(NSString *)identifier#> sender:<#(id)sender#>];
+/*
+    [self.attributes setValue:[NSNumber numberWithInt:2] forKey:@"category"];
+    [self.attributes setValue:[NSNumber numberWithInt:10] forKey:@"radius"];
+    [self.attributes setValue:[NSNumber numberWithDouble:-75.0] forKey:@"latitude"];
+    [self.attributes setValue:[NSNumber numberWithDouble:45.0] forKey:@"longitude"];
 
-    [DZObject dangerZoneObjectsWithBlock:^(NSArray *dangerZones, NSError *error)
+    [DZObject dangerZoneObjectsForParameters:self.attributes
+                                   WithBlock:^(NSArray *dangerZones, NSError *error)
     {
         if (error) {
             [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription]
@@ -57,6 +65,10 @@
         [_activityIndicatorView stopAnimating];
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }];
+*/
+    [self reloadTableData];
+    [_activityIndicatorView stopAnimating];
+    self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 
@@ -81,6 +93,7 @@
                                                                initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                                                                                     target:self
                                                                                     action:@selector(reload:)];
+    self.attributes = [[NSMutableDictionary alloc] initWithCapacity:5];
 
 
     [self reload:nil];
@@ -109,6 +122,7 @@
 - (void)viewDidUnload
 {
     [self.dangerZones removeObserver:self forKeyPath:KVOZonesChangeKey];
+    self.attributes = nil;
     [super viewDidUnload];
 }
 

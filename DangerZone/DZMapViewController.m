@@ -4,11 +4,13 @@
 //
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "DZMapViewController.h"
 #import "DZObject.h"
 #import "DZTableViewViewController.h"
 #import "DZStoredObjects.h"
-#import "DZReportViewController.h"
+#import "DZSubmitViewController.h"
+#import "DZRequestViewController.h"
 
 @interface DZMapViewController ()
 
@@ -18,19 +20,26 @@
 @end
 
 static NSString *const SubmitViewSegueIdentifier = @"Push Submit View";
+static NSString *const RequestViewSegueIdentifier = @"Push Request View";
 
 @implementation DZMapViewController
+{
+@private
+    CLLocationManager *_myLocationManager;
+}
 
 
 @synthesize dangerMap = _dangerMap;
 @synthesize dangerZones = _dangerZones;
 @synthesize userZones = _userZones;
+@synthesize tempPin = _tempPin;
+@synthesize myLocationManager = _myLocationManager;
+@synthesize currentLocation = _currentLocation;
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
 
     [self mapView:_dangerMap regionDidChangeAnimated:NO];
 
@@ -43,6 +52,8 @@ static NSString *const SubmitViewSegueIdentifier = @"Push Submit View";
     self.userZones = nil;
     self.dangerMap.delegate = nil;
     self.dangerMap = nil;
+    [self.myLocationManager stopUpdatingLocation];
+    self.myLocationManager = nil;
     [super viewDidUnload];
 }
 
@@ -93,7 +104,7 @@ regionDidChangeAnimated:(BOOL)animated
 
     if ([annotation isKindOfClass:[DZObject class]] == NO) {
         MKPointAnnotation *senderAnnotation = (MKPointAnnotation *)annotation;
-        NSString *pinReusableIdentifier = @"temZone";
+        NSString *pinReusableIdentifier = @"tempZone";
         MKPinAnnotationView *annotationView
                 = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
         if (annotationView == nil) {
@@ -130,7 +141,6 @@ regionDidChangeAnimated:(BOOL)animated
     }
 
     annotationView.canShowCallout = YES;
-//    annotationView.draggable = YES;
     annotationView.animatesDrop = YES;
     annotationView.pinColor = senderAnnotation.pinColor;
 
@@ -189,28 +199,54 @@ didAddAnnotationViews:(NSArray *)views
 }
 
 
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    if ([view.annotation isKindOfClass:[DZObject class]]){
+- (void)mapView:(MKMapView *)mapView
+               annotationView:(MKAnnotationView *)view
+calloutAccessoryControlTapped:(UIControl *)control
+{
+    if ([view.annotation isKindOfClass:[DZObject class]]) {
         //handle action for displaying detail of DangerZone
-    }else{
-        
+    }
+    else
+    {
+
         [self performSegueWithIdentifier:SubmitViewSegueIdentifier sender:view.annotation];
     }
 
 }
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
+{
     if ([segue.identifier isEqualToString:SubmitViewSegueIdentifier]) {
-        DZReportViewController *controller = [segue destinationViewController];
-        if (self.userZones == nil){
+        DZSubmitViewController *controller = [segue destinationViewController];
+        if (self.userZones == nil) {
             self.userZones = [NSMutableArray arrayWithCapacity:1];
         }
-        
-//            self.userZones = [NSMutableArray arrayWithCapacity:1];
-            controller.tempAnnotation = (MKPointAnnotation *)sender;
-            controller.userZones = self.userZones;
+        controller.tempAnnotation = self.tempPin;
+        controller.userZones = self.userZones;
     }
+    else if ([segue.identifier isEqualToString:RequestViewSegueIdentifier]) {
+        DZRequestViewController *controller = [segue destinationViewController];
+        controller.tempAnnotation = self.tempPin;
+        controller.dangerZones = self.dangerZones;
+    }
+}
+
+
+- (void)   alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"Request"]) {
+        [self performSegueWithIdentifier:RequestViewSegueIdentifier sender:alertView];
+    }
+    else if ([title isEqualToString:@"Submit"]) {
+        [self performSegueWithIdentifier:SubmitViewSegueIdentifier sender:alertView];
+    }
+//    else if (buttonIndex == [alertView cancelButtonIndex]){
+//
+//    }
 }
 
 
@@ -223,15 +259,50 @@ didAddAnnotationViews:(NSArray *)views
 
     CGPoint location = [gesture locationInView:self.dangerMap];
     CLLocationCoordinate2D touchLocation = [self.dangerMap convertPoint:location toCoordinateFromView:self.dangerMap];
-
     NSLog(@"Long Press Gesture detected");
 
 //    DZObject *newZone = [[DZObject alloc] initWithCoordinate:touchLocation];
-    MKPointAnnotation *tempZone = [[MKPointAnnotation alloc] init];
-    tempZone.coordinate = touchLocation;
-    tempZone.title = @"Submit DangerZone?";
-    [self.dangerMap addAnnotation:tempZone];
-    
+
+    self.tempPin = [[MKPointAnnotation alloc] init];
+    self.tempPin.coordinate = touchLocation;
+    [self.dangerMap addAnnotation:self.tempPin];
+
+
+    [[[UIAlertView alloc] initWithTitle:@"Update or Submit?"
+                                message:@"Update: Request DangerZones from server.\nSubmit: Submit a new DangerZone."
+                               delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Request", @"Submit", nil]
+                   show];
+
+//    tempZone.title = @"Submit DangerZone?";
+
 
 }
+
+
+- (void)getCurrentLocation
+{
+    if ([CLLocationManager locationServicesEnabled]) {
+        self.myLocationManager = [[CLLocationManager alloc] init];
+        self.myLocationManager.delegate = self;
+        self.myLocationManager.purpose = @"To provide functionality based on user's current location.";
+        [self.myLocationManager startUpdatingLocation];
+    }
+    else
+    {
+/* Location services are not enabled.
+Take appropriate action: for instance, prompt the user to enable the location services */
+        NSLog(@"Location services are not enabled");
+    }
+}
+
+
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    self.currentLocation = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    [self.myLocationManager stopUpdatingLocation];
+}
+
 @end

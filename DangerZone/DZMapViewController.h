@@ -11,11 +11,16 @@
 
 @class DZStoredObjects;
 
-@interface DZMapViewController : UIViewController < MKMapViewDelegate >
+@interface DZMapViewController : UIViewController < MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate >
 
 
 @property (nonatomic, strong) IBOutlet MKMapView *dangerMap;
 @property (nonatomic, readonly) DZStoredObjects *dangerZones;
+@property (nonatomic) MKPointAnnotation * tempPin;
+
+@property (nonatomic, strong) CLLocationManager *myLocationManager;
+
+@property (nonatomic) CLLocationCoordinate2D currentLocation;
 
 -(IBAction)handlePinDrop:(UILongPressGestureRecognizer *)gesture;
 

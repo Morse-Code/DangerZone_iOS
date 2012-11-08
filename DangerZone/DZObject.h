@@ -16,8 +16,8 @@ can reuse the pins that have already been created with the same color */
 #define REUSABLE_PIN_RED @"Red"
 #define REUSABLE_PIN_GREEN @"Green"
 #define REUSABLE_PIN_PURPLE @"Purple"
-static NSString *const request = @"/request?";
-static NSString *const params = @"";
+//static NSString *const request = @"";
+//static NSString *const params = @"";
 
 @interface DZObject : NSObject <MKAnnotation, NSCoding>
 {
@@ -34,7 +34,7 @@ static NSString *const params = @"";
 @property(readonly) NSNumber *longitude;
 @property(readonly) NSDate *timestamp; //integer
 @property(readonly) NSInteger uid;
-@property(readonly) NSInteger range;
+@property(readonly) NSInteger radius;
 @property(readonly) NSInteger severity;
 @property(readonly) NSUInteger category;
 

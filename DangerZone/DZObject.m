@@ -11,6 +11,8 @@
 #import "DZSharedClient.h"
 
 static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Horrid Fart"};
+//static NSString *const request = @"request";
+static NSString *const request = @"";
 
 //NSCoding Keys
 static NSString *kLOCALE_KEY = @"locale";
@@ -35,7 +37,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 @synthesize longitude = _longitude;
 @synthesize uid = _uid;
 @synthesize category = _category;
-@synthesize range = _range;
+@synthesize radius = _radius;
 @synthesize severity = _severity;
 @synthesize timestamp = _timestamp;
 @synthesize pinColor = _pinColor;
@@ -94,11 +96,10 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 }
 
 
-- (void)setCoordinate:(CLLocationCoordinate2D)coordinate {
+- (void )setCoordinate:(CLLocationCoordinate2D)coordinate {
     _latitude = [NSNumber numberWithDouble:coordinate.latitude];
     _longitude = [NSNumber numberWithDouble:coordinate.longitude];
 }
-
 
 #pragma mark -
 #pragma mark Initialize objects
@@ -112,14 +113,17 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 
     // Set DZObject properties from JSON
     _locale = [attributes valueForKeyPath:@"locale"];
+    //_locale = @"Test";
     _latitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"latitude"] doubleValue]];
     _longitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"longitude"] doubleValue]];
     _timestamp = [NSDate date];
-    _uid = [[attributes valueForKeyPath:@"uid"] integerValue];
-    _range = [[attributes valueForKeyPath:@"range"] integerValue];
-    _severity = [[attributes valueForKeyPath:@"severity"] integerValue];
+    _uid = [[attributes valueForKeyPath:@"id"] integerValue];
+//    _range = [[attributes valueForKeyPath:@"range"] integerValue];
+    _radius = [[attributes valueForKeyPath:@"radius"] integerValue];
+    //_severity = [[attributes valueForKeyPath:@"severity"] integerValue];
+    _severity = 5;
+//    _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
     _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
-
     // Set MKAnnotation properties
     _title = [DZObject stringFromCategory:(NSUInteger)_category];
     _subTitle = [NSString stringWithFormat:@"Severity level: %d", _severity];
@@ -138,9 +142,9 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
     _locale = [attributes valueForKeyPath:@"locale"];
     _latitude = [attributes valueForKeyPath:@"latitude"];
     _longitude = [attributes valueForKeyPath:@"longitude"];
-    _uid = [[attributes valueForKeyPath:@"uid"] integerValue];
+    _uid = [[attributes valueForKeyPath:@"id"] integerValue];
     _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
-    _range = [[attributes valueForKeyPath:@"range"] integerValue];
+    _radius = [[attributes valueForKeyPath:@"radius"] integerValue];
     _severity = [[attributes valueForKeyPath:@"severity"] integerValue];
     _timestamp = [NSDate date];
 
@@ -229,7 +233,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
     [encoder encodeObject:self.longitude forKey:kLONGITUDE_KEY];
     [encoder encodeInteger:self.uid forKey:kUID_KEY];
     [encoder encodeInteger:self.category forKey:kCATEGORY_KEY];
-    [encoder encodeInteger:self.range forKey:kRANGE_KEY];
+    [encoder encodeInteger:self.radius forKey:kRANGE_KEY];
     [encoder encodeInteger:self.severity forKey:kSEVERITY_KEY];
     [encoder encodeObject:self.timestamp forKey:kTIMESTAMP_KEY];
 }
@@ -243,7 +247,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
         _longitude = [decoder decodeObjectForKey:kLONGITUDE_KEY];
         _uid = [decoder decodeIntegerForKey:kUID_KEY];
         _category = (NSUInteger)[decoder decodeIntegerForKey:kCATEGORY_KEY];
-        _range = [decoder decodeIntegerForKey:kRANGE_KEY];
+        _radius = [decoder decodeIntegerForKey:kRANGE_KEY];
         _severity = [decoder decodeIntegerForKey:kSEVERITY_KEY];
         _timestamp = [decoder decodeObjectForKey:kTIMESTAMP_KEY];
 

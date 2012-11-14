@@ -20,7 +20,7 @@ $data = array(
                         'category' => '0',
                         'latitude' => '1.222',
                         'longitude' => '1.3324',
-                        'range' => '30',
+                        'radius' => '30',
                         'severity' => '5',
                         'locale' => 'burlington'),
                 array(  
@@ -28,7 +28,7 @@ $data = array(
                         'category' => '1',
                         'latitude' => '1.222',
                         'longitude' => '1.3324',
-                        'range' => '30',
+                        'radius' => '30',
                         'severity' => '5',
                         'locale' => 'burlington'),
                  array(
@@ -36,7 +36,7 @@ $data = array(
                         'category' => '2',
                         'latitude' => '1.222',
                         'longitude' => '1.3324',
-                        'range' => '30',
+                        'radius' => '30',
                         'severity' => '5',
                         'locale' => 'burlington'),
                 array(
@@ -44,7 +44,7 @@ $data = array(
                         'category' => '3',
                         'latitude' => '1.222',
                         'longitude' => '1.3324',
-                        'range' => '30',
+                        'radius' => '30',
                         'severity' => '5',
                         'locale' => 'burlington'),
                 array(
@@ -52,7 +52,7 @@ $data = array(
                         'category' => '4',
                         'latitude' => '1.222',
                         'longitude' => '1.3324',
-                        'range' => '30',
+                        'radius' => '30',
                         'severity' => '5',
                         'locale' => 'burlington'),
                 array(
@@ -60,7 +60,7 @@ $data = array(
                         'category' => '0',
                         'latitude' => '1.222',
                         'longitude' => '1.3324',
-                        'range' => '30',
+                        'radius' => '30',
                         'severity' => '5',
                         'locale' => 'burlington'),
                 array(  
@@ -68,7 +68,7 @@ $data = array(
                         'category' => '1',
                         'latitude' => '1.222',
                         'longitude' => '1.3324',
-                        'range' => '30',
+                        'radius' => '30',
                         'severity' => '5',
                         'locale' => 'burlington'),
                  array(
@@ -76,7 +76,7 @@ $data = array(
                         'category' => '2',
                         'latitude' => '1.222',
                         'longitude' => '1.3324',
-                        'range' => '30',
+                        'radius' => '30',
                         'severity' => '5',
                         'locale' => 'burlington'),
                 array(
@@ -84,7 +84,7 @@ $data = array(
                         'category' => '3',
                         'latitude' => '1.222',
                         'longitude' => '1.3324',
-                        'range' => '30',
+                        'radius' => '30',
                         'severity' => '5',
                         'locale' => 'burlington'),
                 array(
@@ -92,7 +92,7 @@ $data = array(
                         'category' => '4',
                         'latitude' => '1.222',
                         'longitude' => '1.3324',
-                        'range' => '30',
+                        'radius' => '30',
                         'severity' => '5',
                         'locale' => 'burlington')
                 );

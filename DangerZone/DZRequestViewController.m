@@ -128,13 +128,13 @@ numberOfRowsInComponent:(NSInteger)component
        inComponent:(NSInteger)component
 {
     NSLog(@"Update selection: row=%d component=%d", row, component);
-    if (component == 0) { // category selected
+   /* if (component == 0) { // category selected
         [self.attributes setValue:[self.categoryStrings objectAtIndex:(NSUInteger)row] forKey:@"category"];
     }
     else
     { // severity selected
         [self.attributes setValue:[self.rangeValues objectAtIndex:(NSUInteger)row] forKey:@"radius"];
-    }
+    }*/
 }
 
 
@@ -184,9 +184,13 @@ numberOfRowsInComponent:(NSInteger)component
         //some stuff
     }];*/
     [self.attributes setValue:[NSNumber numberWithInt:[self.picker selectedRowInComponent:0]] forKey:@"category"];
-    [self.attributes setValue:[self.rangeValues objectAtIndex:(NSUInteger)[self.picker selectedRowInComponent:1]] forKey:@"radius"];
+//    [self.attributes setValue:[self.rangeValues objectAtIndex:(NSUInteger)[self.picker selectedRowInComponent:1]] forKey:@"radius"];
+    [self.attributes setValue:[NSNumber numberWithInt:0] forKey:@"radius"];
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.latitude] forKey:@"latitude"];
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.longitude] forKey:@"longitude"];
+    for (NSString* obs in self.attributes) {
+        NSLog(@"%@",[self.attributes objectForKey:obs]);
+    }
     //[self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.longitude] forKey:@"timestamp"];
     [DZObject dangerZoneObjectsForParameters:self.attributes WithBlock:^(NSArray *dangerZones, NSError *error)
     {

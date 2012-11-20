@@ -11,8 +11,8 @@
 #import "DZSharedClient.h"
 
 static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Horrid Fart"};
-//static NSString *const request = @"request";
-static NSString *const request = @"";
+static NSString *const request = @"request";
+//static NSString *const request = @"";
 
 //NSCoding Keys
 static NSString *kLOCALE_KEY = @"locale";
@@ -112,20 +112,23 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
     }
 
     // Set DZObject properties from JSON
-    _locale = [attributes valueForKeyPath:@"locale"];
-    //_locale = @"Test";
+//    _locale = [attributes valueForKeyPath:@"locale"];
+    _locale = @"Test";
     _latitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"latitude"] doubleValue]];
     _longitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"longitude"] doubleValue]];
     _timestamp = [NSDate date];
-    _uid = [[attributes valueForKeyPath:@"id"] integerValue];
+    _uid = [[attributes valueForKeyPath:@"uid"] integerValue];
 //    _range = [[attributes valueForKeyPath:@"range"] integerValue];
-    _radius = [[attributes valueForKeyPath:@"radius"] integerValue];
+//    _radius = [[attributes valueForKeyPath:@"radius"] integerValue];
+    _radius = 5;
     //_severity = [[attributes valueForKeyPath:@"severity"] integerValue];
     _severity = 5;
 //    _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
     _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
     // Set MKAnnotation properties
-    _title = [DZObject stringFromCategory:(NSUInteger)_category];
+    
+    if (_category <= 4){_title = [DZObject stringFromCategory:(NSUInteger)_category];}
+    else{ _title =  [NSString stringWithFormat:@"%d", _category];}
     _subTitle = [NSString stringWithFormat:@"Severity level: %d", _severity];
     _pinColor = MKPinAnnotationColorRed;
 
@@ -252,7 +255,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
         _timestamp = [decoder decodeObjectForKey:kTIMESTAMP_KEY];
 
         // Set MKAnnotation properties
-        _title = [DZObject stringFromCategory:(NSUInteger)_category];
+        if (_category <= 4){_title = [DZObject stringFromCategory:(NSUInteger)_category];}
+        else{ _title =  [NSString stringWithFormat:@"%d", _category];}
         _subTitle = [NSString stringWithFormat:@"Severity level: %d", _severity];
         _pinColor = MKPinAnnotationColorRed;
     }

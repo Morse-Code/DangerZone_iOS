@@ -34,9 +34,13 @@
 {
     _dangerZone = dangerZone;
 
-
-    self.name.text = [NSString stringWithFormat:@"%@ in %@", [DZObject stringFromCategory:_dangerZone.category],
+    if (self.dangerZone.category <= 4){
+        self.name.text = [NSString stringWithFormat:@"%@ in %@", [DZObject stringFromCategory:_dangerZone.category],
                                                 [_dangerZone.locale capitalizedString]];
+    }
+    else{
+        self.name.text = [NSString stringWithFormat:@"%d", _dangerZone.category];
+    }
     self.distance.text = [NSString stringWithFormat:@"%d", _dangerZone.radius];
     self.bearing.text = [NSString stringWithFormat:@"%d", _dangerZone.severity];
 }

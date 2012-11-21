@@ -153,7 +153,8 @@ numberOfRowsInComponent:(NSInteger)component
     // category and radius attributes were initialized in viewDidLoad:, and changed with the picker
     // long and lat attributes are set by the map view on a long touch
     [self.attributes setValue:[NSNumber numberWithInt:[self.picker selectedRowInComponent:0]] forKey:@"category"];
-    [self.attributes setValue:[self.rangeValues objectAtIndex:(NSUInteger)[self.picker selectedRowInComponent:1]] forKey:@"radius"];
+//    [self.attributes setValue:[self.radiusValues objectAtIndex:(NSUInteger)[self.picker selectedRowInComponent:1]] forKey:@"radius"];
+    [self.attributes setValue:[NSNumber numberWithInt:0] forKey:@"radius"];
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.latitude] forKey:@"latitude"];
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.longitude] forKey:@"longitude"];
     //[self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.longitude] forKey:@"timestamp"];

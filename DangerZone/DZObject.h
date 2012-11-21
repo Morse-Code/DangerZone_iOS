@@ -26,7 +26,7 @@ can reuse the pins that have already been created with the same color */
 
 @property(nonatomic, readwrite, assign) CLLocationCoordinate2D coordinate;
 @property(nonatomic) MKPinAnnotationColor pinColor;
-@property(nonatomic, strong) NSString *title;
+@property(nonatomic, copy) NSString *title;
 @property(nonatomic, strong) NSString *subTitle;
 
 @property(readonly) NSString *locale;

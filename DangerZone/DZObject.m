@@ -189,7 +189,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 
 
 
-+ (void)dangerZoneObjectsForOperation: (NSString *) operation WithParameters:(NSDictionary *)params AndBlock:(void (^)(NSArray *posts, NSError *error))block {
++ (void)dangerZoneObjectsForOperation: (NSString *)operation WithParameters:(NSDictionary *)params AndBlock:(void (^)(NSArray *posts, NSError *error))block {
     [[DZSharedClient sharedClient] getPath:operation parameters:params success:^(AFHTTPRequestOperation *operation, id JSON) {
         NSMutableArray *mutableDangerZones = [NSMutableArray arrayWithCapacity:[JSON count]];
         for (NSDictionary *attributes in JSON) {

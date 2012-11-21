@@ -86,7 +86,7 @@
 {
     [super viewDidLoad];
 
-    self.title = NSLocalizedString(@"AFNetworking", nil);
+    self.title = NSLocalizedString(@"Danger Table", nil);
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_activityIndicatorView];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]

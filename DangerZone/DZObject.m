@@ -116,8 +116,9 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
     _locale = @"Test";
     _latitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"latitude"] doubleValue]];
     _longitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"longitude"] doubleValue]];
-    _timestamp = [NSDate date];
-    _uid = [[attributes valueForKeyPath:@"uid"] integerValue];
+    //_timestamp = [NSNumber numberWithDouble:[[attributes valueForKey:@"timestamp"] doubleValue]];
+    _timestamp = nil;
+    _uid = [[attributes valueForKeyPath:@"id"] integerValue];
 //    _range = [[attributes valueForKeyPath:@"range"] integerValue];
 //    _radius = [[attributes valueForKeyPath:@"radius"] integerValue];
     _radius = 5;
@@ -142,14 +143,15 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
     if (!self) {
         return nil;
     }
-    _locale = [attributes valueForKeyPath:@"locale"];
+    //_locale = [attributes valueForKeyPath:@"locale"];
+    _locale = nil;
     _latitude = [attributes valueForKeyPath:@"latitude"];
     _longitude = [attributes valueForKeyPath:@"longitude"];
     _uid = [[attributes valueForKeyPath:@"id"] integerValue];
     _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
     _radius = [[attributes valueForKeyPath:@"radius"] integerValue];
-    _severity = [[attributes valueForKeyPath:@"severity"] integerValue];
-    _timestamp = [NSDate date];
+    _severity = 5; //[[attributes valueForKeyPath:@"severity"] integerValue];
+    _timestamp = [attributes valueForKeyPath:@"timestamp"];
 
     // Set MKAnnotation properties
     _title = [DZObject stringFromCategory:(NSUInteger)_category];
@@ -184,6 +186,27 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 
 #pragma mark -
 #pragma mark JSON Parsing
+
+
+
++ (void)dangerZoneObjectsForOperation: (NSString *) operation WithParameters:(NSDictionary *)params AndBlock:(void (^)(NSArray *posts, NSError *error))block {
+    [[DZSharedClient sharedClient] getPath:operation parameters:params success:^(AFHTTPRequestOperation *operation, id JSON) {
+        NSMutableArray *mutableDangerZones = [NSMutableArray arrayWithCapacity:[JSON count]];
+        for (NSDictionary *attributes in JSON) {
+            DZObject *dangerZone = [[DZObject alloc] initWithAttributes:attributes];
+            [mutableDangerZones addObject:dangerZone];
+        }
+        
+        if (block) {
+            block([NSArray arrayWithArray:mutableDangerZones], nil);
+        }
+    }                              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (block) {
+            block([NSArray array], error);
+        }
+    }];
+}
+
 
 
 + (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block {

@@ -18,11 +18,11 @@
 		49ED6A65EC14DD74F77E32F9 /* DZStoredObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6F41CD020ED8B68F1409 /* DZStoredObjects.m */; };
 		49ED6B61BD1F8A360CC47BF4 /* DZTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED68081F08F2C7F1E83950 /* DZTabBarController.m */; };
 		49ED6F850CBC0A21B6325DC6 /* DZSharedClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */; };
-		B420172E16535A2900AABB8E /* Wire-globe-60.png in Resources */ = {isa = PBXBuildFile; fileRef = B420172D16535A2900AABB8E /* Wire-globe-60.png */; };
 		B420173016535AA000AABB8E /* Wire-globe-40.png in Resources */ = {isa = PBXBuildFile; fileRef = B420172F16535AA000AABB8E /* Wire-globe-40.png */; };
 		B4201736165362F700AABB8E /* table-30.png in Resources */ = {isa = PBXBuildFile; fileRef = B4201735165362F700AABB8E /* table-30.png */; };
 		B42017381653FF4400AABB8E /* Wire-globe-30.png in Resources */ = {isa = PBXBuildFile; fileRef = B42017371653FF4400AABB8E /* Wire-globe-30.png */; };
-		B420173A1653FF8F00AABB8E /* Wire-globe-80.png in Resources */ = {isa = PBXBuildFile; fileRef = B42017391653FF8F00AABB8E /* Wire-globe-80.png */; };
+		B443EA9A1662A4B6001CAAAD /* DZPickerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B443EA991662A4B6001CAAAD /* DZPickerAlertView.m */; };
+		B4CAACAF1666645D0094C99C /* Info-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CAACAE1666645D0094C99C /* Info-25.png */; };
 		DC0B5E640C4245DA98206337 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9B08F97064480596412F15 /* libPods.a */; };
 		FDEC3DA8161C7241009C623E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DA7161C7241009C623E /* UIKit.framework */; };
 		FDEC3DAA161C7241009C623E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DA9161C7241009C623E /* Foundation.framework */; };
@@ -65,11 +65,12 @@
 		49ED6FE5BFEA1FEE5706DF14 /* DZSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSubmitViewController.h; sourceTree = "<group>"; };
 		61F761F1C8A04BAC8522E551 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		9A9B08F97064480596412F15 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B420172D16535A2900AABB8E /* Wire-globe-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wire-globe-60.png"; sourceTree = "<group>"; };
 		B420172F16535AA000AABB8E /* Wire-globe-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wire-globe-40.png"; sourceTree = "<group>"; };
 		B4201735165362F700AABB8E /* table-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-30.png"; sourceTree = "<group>"; };
 		B42017371653FF4400AABB8E /* Wire-globe-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wire-globe-30.png"; sourceTree = "<group>"; };
-		B42017391653FF8F00AABB8E /* Wire-globe-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wire-globe-80.png"; sourceTree = "<group>"; };
+		B443EA981662A4B6001CAAAD /* DZPickerAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZPickerAlertView.h; sourceTree = "<group>"; };
+		B443EA991662A4B6001CAAAD /* DZPickerAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZPickerAlertView.m; sourceTree = "<group>"; };
+		B4CAACAE1666645D0094C99C /* Info-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-25.png"; sourceTree = "<group>"; };
 		FDEC3DA3161C7241009C623E /* DangerZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DangerZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEC3DA7161C7241009C623E /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FDEC3DA9161C7241009C623E /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -116,6 +117,8 @@
 				0765A7A3163B8CE10048CE83 /* DZMapViewController.m */,
 				FDEC3DC2161C7243009C623E /* DZFirstViewController.h */,
 				FDEC3DC3161C7243009C623E /* DZFirstViewController.m */,
+				B443EA981662A4B6001CAAAD /* DZPickerAlertView.h */,
+				B443EA991662A4B6001CAAAD /* DZPickerAlertView.m */,
 			);
 			name = "Map View";
 			sourceTree = "<group>";
@@ -262,11 +265,10 @@
 		FDEC3DE3161C756B009C623E /* Tab Images */ = {
 			isa = PBXGroup;
 			children = (
-				B42017391653FF8F00AABB8E /* Wire-globe-80.png */,
+				B4CAACAE1666645D0094C99C /* Info-25.png */,
 				B42017371653FF4400AABB8E /* Wire-globe-30.png */,
 				B4201735165362F700AABB8E /* table-30.png */,
 				B420172F16535AA000AABB8E /* Wire-globe-40.png */,
-				B420172D16535A2900AABB8E /* Wire-globe-60.png */,
 				FDEC3DC5161C7243009C623E /* first.png */,
 				FDEC3DC7161C7243009C623E /* first@2x.png */,
 				FDEC3DCC161C7243009C623E /* second.png */,
@@ -337,11 +339,10 @@
 				FDEC3DC8161C7243009C623E /* first@2x.png in Resources */,
 				FDEC3DCD161C7243009C623E /* second.png in Resources */,
 				FDEC3DCF161C7243009C623E /* second@2x.png in Resources */,
-				B420172E16535A2900AABB8E /* Wire-globe-60.png in Resources */,
 				B420173016535AA000AABB8E /* Wire-globe-40.png in Resources */,
 				B4201736165362F700AABB8E /* table-30.png in Resources */,
 				B42017381653FF4400AABB8E /* Wire-globe-30.png in Resources */,
-				B420173A1653FF8F00AABB8E /* Wire-globe-80.png in Resources */,
+				B4CAACAF1666645D0094C99C /* Info-25.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +382,7 @@
 				0765A7A4163B8CE10048CE83 /* DZMapViewController.m in Sources */,
 				49ED6A65EC14DD74F77E32F9 /* DZStoredObjects.m in Sources */,
 				49ED6B61BD1F8A360CC47BF4 /* DZTabBarController.m in Sources */,
+				B443EA9A1662A4B6001CAAAD /* DZPickerAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

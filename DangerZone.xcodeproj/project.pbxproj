@@ -13,6 +13,8 @@
 		079B13F4162FA31F00066AA0 /* DZTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 079B13F3162FA31F00066AA0 /* DZTableViewViewController.m */; };
 		079B13F8162FADFC00066AA0 /* DZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 079B13F7162FADFC00066AA0 /* DZTableViewCell.m */; };
 		07A1763A163D093B006D0AF6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A17639163D093B006D0AF6 /* MapKit.framework */; };
+		10BBA2DD1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 10BBA2DB1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png */; };
+		10BBA2DE1666BAEF00DD5D04 /* Location.png in Resources */ = {isa = PBXBuildFile; fileRef = 10BBA2DC1666BAEF00DD5D04 /* Location.png */; };
 		49ED696E00B9F0624C7AEEC4 /* DZRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED65F355C9702985EB95E1 /* DZRequestViewController.m */; };
 		49ED69CBF2B6F5778B186F69 /* DZSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6470453ABD86B509A4CA /* DZSubmitViewController.m */; };
 		49ED6A65EC14DD74F77E32F9 /* DZStoredObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6F41CD020ED8B68F1409 /* DZStoredObjects.m */; };
@@ -53,6 +55,8 @@
 		079B13F6162FADFC00066AA0 /* DZTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTableViewCell.h; sourceTree = "<group>"; };
 		079B13F7162FADFC00066AA0 /* DZTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTableViewCell.m; sourceTree = "<group>"; };
 		07A17639163D093B006D0AF6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		10BBA2DB1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocateMeButtonTrackingPressed.png; sourceTree = "<group>"; };
+		10BBA2DC1666BAEF00DD5D04 /* Location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Location.png; sourceTree = "<group>"; };
 		49ED63AF00E7693359F38122 /* DZSharedClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSharedClient.h; sourceTree = "<group>"; };
 		49ED6470453ABD86B509A4CA /* DZSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSubmitViewController.m; sourceTree = "<group>"; };
 		49ED65F355C9702985EB95E1 /* DZRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZRequestViewController.m; sourceTree = "<group>"; };
@@ -240,6 +244,8 @@
 		FDEC3DE0161C74EA009C623E /* Graphic Assets */ = {
 			isa = PBXGroup;
 			children = (
+				10BBA2DB1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png */,
+				10BBA2DC1666BAEF00DD5D04 /* Location.png */,
 				FDEC3DE3161C756B009C623E /* Tab Images */,
 			);
 			name = "Graphic Assets";
@@ -343,6 +349,8 @@
 				B4201736165362F700AABB8E /* table-30.png in Resources */,
 				B42017381653FF4400AABB8E /* Wire-globe-30.png in Resources */,
 				B4CAACAF1666645D0094C99C /* Info-25.png in Resources */,
+				10BBA2DD1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png in Resources */,
+				10BBA2DE1666BAEF00DD5D04 /* Location.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -243,10 +243,31 @@ Press buttons on map view to request or submit dangers for your current location
                                     <outletCollection property="gestureRecognizers" destination="Jod-TS-qEq" appends="YES" id="cRc-e9-NPM"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCX-Ii-PZ2">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ToO-HA-VPg"/>
+                                    <constraint firstAttribute="width" constant="32" id="l9L-WO-ztn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="titleShadowOffset" width="5" height="5"/>
+                                <state key="normal" image="Location.png" backgroundImage="LocateMeButtonTrackingPressed.png">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="zoomToCurrentLocation:" destination="7it-CO-XD1" eventType="touchUpInside" id="5Mo-iJ-v3V"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="YCX-Ii-PZ2" secondAttribute="bottom" constant="10" type="user" id="Cgb-ht-V9w"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="top" secondItem="wCL-ef-9Be" secondAttribute="top" type="default" id="KD9-sn-O11"/>
+                            <constraint firstItem="YCX-Ii-PZ2" firstAttribute="leading" secondItem="wCL-ef-9Be" secondAttribute="leading" constant="10" type="user" id="Mou-qh-ztE"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="trailing" secondItem="wCL-ef-9Be" secondAttribute="trailing" type="default" id="YSZ-Up-gIo"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="bottom" secondItem="wCL-ef-9Be" secondAttribute="bottom" type="default" id="eEB-QJ-vFP"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="leading" secondItem="wCL-ef-9Be" secondAttribute="leading" type="default" id="pjb-K2-QKl"/>
@@ -481,6 +502,8 @@ Press buttons on map view to request or submit dangers for your current location
     </scenes>
     <resources>
         <image name="Info-25.png" width="25" height="24"/>
+        <image name="LocateMeButtonTrackingPressed.png" width="32" height="30"/>
+        <image name="Location.png" width="20" height="20"/>
         <image name="Wire-globe-40.png" width="40" height="35"/>
         <image name="table-30.png" width="30" height="30"/>
     </resources>
@@ -498,6 +521,7 @@ Press buttons on map view to request or submit dangers for your current location
                 <relationship kind="action" name="currentLocationSubmit:"/>
                 <relationship kind="action" name="currrentLocationRequest:"/>
                 <relationship kind="action" name="handlePinDrop:" candidateClass="UILongPressGestureRecognizer"/>
+                <relationship kind="action" name="zoomToCurrentLocation:"/>
                 <relationship kind="outlet" name="dangerMap" candidateClass="MKMapView"/>
             </relationships>
         </class>

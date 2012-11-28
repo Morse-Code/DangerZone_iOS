@@ -162,7 +162,7 @@ regionDidChangeAnimated:(BOOL)animated
     }
 
     annotationView.canShowCallout = YES;
-    annotationView.animatesDrop = YES;
+    annotationView.animatesDrop = NO;
     annotationView.pinColor = senderAnnotation.pinColor;
 
     result = annotationView;

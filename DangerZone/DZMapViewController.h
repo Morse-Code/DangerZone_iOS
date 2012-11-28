@@ -35,5 +35,6 @@ extern const int SUBMIT_PICKER;  // their appropriate values
 - (IBAction)currrentLocationRequest:(id)sender;
 - (IBAction)currentLocationSubmit:(id)sender;
 - (IBAction)zoomToCurrentLocation:(id)sender;
+- (IBAction)toggleMapType:(id)sender;
 
 @end

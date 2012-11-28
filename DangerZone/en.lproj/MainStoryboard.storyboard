@@ -245,7 +245,6 @@ Press buttons on map view to request or submit dangers for your current location
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCX-Ii-PZ2">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ToO-HA-VPg"/>
                                     <constraint firstAttribute="width" constant="32" id="l9L-WO-ztn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
@@ -262,15 +261,35 @@ Press buttons on map view to request or submit dangers for your current location
                                     <action selector="zoomToCurrentLocation:" destination="7it-CO-XD1" eventType="touchUpInside" id="5Mo-iJ-v3V"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euS-qC-86I">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4WE-68-5y3"/>
+                                    <constraint firstAttribute="width" constant="43" id="uiF-ki-qSr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="View" backgroundImage="LocateMeButtonTrackingPressed.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleMapType:" destination="7it-CO-XD1" eventType="touchUpInside" id="1cW-qV-8T0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="YCX-Ii-PZ2" secondAttribute="bottom" constant="10" type="user" id="Cgb-ht-V9w"/>
+                            <constraint firstItem="YCX-Ii-PZ2" firstAttribute="bottom" secondItem="euS-qC-86I" secondAttribute="bottom" type="default" id="2fY-Zn-3iV"/>
+                            <constraint firstItem="YCX-Ii-PZ2" firstAttribute="leading" secondItem="euS-qC-86I" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ElE-EB-iXJ"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="top" secondItem="wCL-ef-9Be" secondAttribute="top" type="default" id="KD9-sn-O11"/>
-                            <constraint firstItem="YCX-Ii-PZ2" firstAttribute="leading" secondItem="wCL-ef-9Be" secondAttribute="leading" constant="10" type="user" id="Mou-qh-ztE"/>
+                            <constraint firstAttribute="trailing" secondItem="YCX-Ii-PZ2" secondAttribute="trailing" constant="10" type="user" id="Ono-qb-4MY"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="trailing" secondItem="wCL-ef-9Be" secondAttribute="trailing" type="default" id="YSZ-Up-gIo"/>
+                            <constraint firstItem="euS-qC-86I" firstAttribute="top" secondItem="YCX-Ii-PZ2" secondAttribute="top" type="default" id="bgh-45-XEb"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="bottom" secondItem="wCL-ef-9Be" secondAttribute="bottom" type="default" id="eEB-QJ-vFP"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="leading" secondItem="wCL-ef-9Be" secondAttribute="leading" type="default" id="pjb-K2-QKl"/>
+                            <constraint firstAttribute="bottom" secondItem="YCX-Ii-PZ2" secondAttribute="bottom" constant="10" type="user" id="sgM-RS-5j5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Danger Map" id="8zD-j1-tqW">
@@ -521,6 +540,7 @@ Press buttons on map view to request or submit dangers for your current location
                 <relationship kind="action" name="currentLocationSubmit:"/>
                 <relationship kind="action" name="currrentLocationRequest:"/>
                 <relationship kind="action" name="handlePinDrop:" candidateClass="UILongPressGestureRecognizer"/>
+                <relationship kind="action" name="toggleMapType:"/>
                 <relationship kind="action" name="zoomToCurrentLocation:"/>
                 <relationship kind="outlet" name="dangerMap" candidateClass="MKMapView"/>
             </relationships>

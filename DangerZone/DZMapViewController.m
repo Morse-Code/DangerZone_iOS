@@ -22,6 +22,8 @@
 
 static NSString *const SubmitViewSegueIdentifier = @"Push Submit View";
 static NSString *const RequestViewSegueIdentifier = @"Push Request View";
+static NSInteger const defaultRange = 4000;
+static NSInteger mapType;
 
 @implementation DZMapViewController
 {
@@ -70,12 +72,13 @@ static NSString *const RequestViewSegueIdentifier = @"Push Request View";
     //[self.attributes setValue:[self.radiusValues objectAtIndex:(NSUInteger)0] forKey:@"radius"];
     self.attributes = [NSMutableDictionary dictionaryWithCapacity:4];
 
-
-    _myLocationManager = [[CLLocationManager alloc] init];
-    [_myLocationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-    [_myLocationManager setDelegate:self];
-
-    [_myLocationManager startUpdatingLocation];
+	
+	_myLocationManager = [[CLLocationManager alloc] init];
+	[_myLocationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+	[_myLocationManager setDelegate:self];
+	
+	mapType = 0;
+	self.dangerMap.mapType = MKMapTypeStandard;
 
 }
 
@@ -267,7 +270,6 @@ calloutAccessoryControlTapped:(UIControl *)control
     }
 }
 
-
 - (void)   alertView:(UIAlertView *)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -397,29 +399,42 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     [pickerAlertView show];
 }
 
+- (IBAction)zoomToCurrentLocation:(id)sender {
+	NSLog(@"zoomToCurrentLocation");
+	
+		//Start updating location because we want it...
+	[_myLocationManager startUpdatingLocation];
+	
+	NSLog(@"lat:  %f", _myLocationManager.location.coordinate.latitude);
+	NSLog(@"long: %f", _myLocationManager.location.coordinate.longitude);
+	
+	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(_myLocationManager.location.coordinate, defaultRange, defaultRange);
+	[_dangerMap setRegion:viewRegion animated:YES];
+	
+		//Stop updating location to save battery
+	[_myLocationManager stopUpdatingLocation];
+	
+}
 
-- (IBAction)zoomToCurrentLocation:(id)sender
-{
-    NSLog(@"zoomToCurrentLocation");
-    //CLLocation *currentLocation = _myLocationManager.location;
-
-    [_myLocationManager startUpdatingLocation];
-
-    //[_dangerMap setCenterCoordinate:_dangerMap.userLocation.coordinate animated:YES];
-
-    NSLog(@"lat:  %f", _myLocationManager.location.coordinate.latitude);
-    NSLog(@"long: %f", _myLocationManager.location.coordinate.longitude);
-
-    // 2
-    MKCoordinateRegion
-            viewRegion = MKCoordinateRegionMakeWithDistance(_myLocationManager.location.coordinate, 10000, 10000);
-    // 3
-    MKCoordinateRegion adjustedRegion = [_dangerMap regionThatFits:viewRegion];
-    // 4
-    [_dangerMap setRegion:adjustedRegion animated:YES];
-
-    [_myLocationManager stopUpdatingLocation];
-
+- (IBAction)toggleMapType:(id)sender {
+	NSLog(@"toggleMapType");
+	
+	mapType = (mapType + 1 ) % 3;
+	
+	if (mapType == 0) {
+		self.dangerMap.mapType = MKMapTypeStandard;
+	}
+	else if (mapType == 1) {
+		self.dangerMap.mapType = MKMapTypeHybrid;
+	}
+	else if (mapType == 2) {
+		self.dangerMap.mapType = MKMapTypeSatellite;
+	}
+	else {
+		self.dangerMap.mapType = MKMapTypeStandard;
+		mapType = 0;
+	}
+	
 }
 
 
@@ -438,6 +453,7 @@ Take appropriate action: for instance, prompt the user to enable the location se
         NSLog(@"Location services are not enabled");
     }
 }
+
 
 
 - (void)locationManager:(CLLocationManager *)manager

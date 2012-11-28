@@ -63,6 +63,12 @@ static NSString *const RequestViewSegueIdentifier = @"Push Request View";
     //[self.attributes setValue:[NSNumber numberWithInt:0] forKey:@"category"];
     //[self.attributes setValue:[self.radiusValues objectAtIndex:(NSUInteger)0] forKey:@"radius"];
 
+	
+	_myLocationManager = [[CLLocationManager alloc] init];
+	[_myLocationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+	[_myLocationManager setDelegate:self];
+	
+	[_myLocationManager startUpdatingLocation];
 
 }
 
@@ -339,6 +345,26 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc] initWithTitle:@"Category" message:@"Submit" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Submit", nil];
     pickerAlertView.tag = PICKER_ALERT;
     [pickerAlertView show];
+}
+
+- (IBAction)zoomToCurrentLocation:(id)sender {
+	NSLog(@"zoomToCurrentLocation");
+		//CLLocation *currentLocation = _myLocationManager.location;
+	
+	
+	
+		//[_dangerMap setCenterCoordinate:_dangerMap.userLocation.coordinate animated:YES];
+	
+	NSLog(@"lat:  %f", _myLocationManager.location.coordinate.latitude);
+	NSLog(@"long: %f", _myLocationManager.location.coordinate.longitude);
+	
+		// 2
+	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(_myLocationManager.location.coordinate, 10000, 10000);
+    // 3
+	MKCoordinateRegion adjustedRegion = [_dangerMap regionThatFits:viewRegion];
+    // 4
+	[_dangerMap setRegion:adjustedRegion animated:YES];
+	
 }
 
 

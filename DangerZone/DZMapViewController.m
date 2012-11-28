@@ -16,7 +16,7 @@
 @interface DZMapViewController ()
 
 @property (nonatomic, strong) NSMutableArray *userZones;
-
+@property (nonatomic, strong) NSMutableDictionary *attributes;
 @end
 
 static NSString *const SubmitViewSegueIdentifier = @"Push Submit View";
@@ -37,6 +37,7 @@ static NSString *const RequestViewSegueIdentifier = @"Push Request View";
 @synthesize radiusStrings = _radiusStrings;
 @synthesize radiusValues = _radiusValues;
 @synthesize categoryStrings = _categoryStrings;
+@synthesize attributes = _attributes;
 
 - (void)viewDidLoad
 {
@@ -62,6 +63,7 @@ static NSString *const RequestViewSegueIdentifier = @"Push Request View";
     
     //[self.attributes setValue:[NSNumber numberWithInt:0] forKey:@"category"];
     //[self.attributes setValue:[self.radiusValues objectAtIndex:(NSUInteger)0] forKey:@"radius"];
+    self.attributes = [NSMutableDictionary dictionaryWithCapacity:4];
 
 	
 	_myLocationManager = [[CLLocationManager alloc] init];
@@ -168,7 +170,7 @@ regionDidChangeAnimated:(BOOL)animated
     }
 
     annotationView.canShowCallout = YES;
-    annotationView.animatesDrop = NO;
+    annotationView.animatesDrop = YES;
     annotationView.pinColor = senderAnnotation.pinColor;
 
     result = annotationView;
@@ -266,14 +268,16 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
     if ([title isEqualToString:@"Request"]) {
         if (alertView.tag != PICKER_ALERT) { // got here from long touch
-            ///////////////////////////////////
-            //  fill in long/lat at touch point
-            ///////////////////////////////////
+            
+            [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude] forKey:@"latitude"];
+            [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude] forKey:@"longitude"];
+            
             DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc] initWithTitle:@"Radius (kilometers)" message:@"Request" delegate:alertView.delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Request", nil];
             pickerAlertView.tag = PICKER_ALERT;
             [pickerAlertView show];
         } else { // got here from picker
             //////////////////////////////
+            // the dictionary has been filled in, now send it.
             NSLog(@"Process the request");
             //////////////////////////////
         }
@@ -281,14 +285,19 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     }
     else if ([title isEqualToString:@"Submit"]) {
         if (alertView.tag != PICKER_ALERT) { // got here from long touch
-            /////////////////////////////////
-            // fill in timestamp and long/lat at touch point
-            /////////////////////////////////
+            
+            [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude] forKey:@"latitude"];
+            [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude] forKey:@"longitude"];
+            // set the timestamp attribute
+            NSTimeInterval timestamp = [[[NSDate alloc] init] timeIntervalSince1970];
+            [self.attributes setValue: [NSNumber numberWithDouble:timestamp] forKey:@"timestamp"];
+            
             DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc] initWithTitle:@"Category" message:@"Submit" delegate:alertView.delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Submit", nil];
             pickerAlertView.tag = PICKER_ALERT;
             [pickerAlertView show];
         } else { // got here from picker
-            //////////////////////////////
+            ///////////////////////////////
+            // the dictionary has been filled in, now send it.
             NSLog(@"Process the submit");
             //////////////////////////////
         }
@@ -329,9 +338,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 
 - (IBAction)currrentLocationRequest:(id)sender
 {
-    ////////////////////////////////////////
-    //  fill in long/lat at current location
-    ////////////////////////////////////////
+    // fill in long/lat at current location.  THIS IS NOW SET TO TOUCH POINT
+    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude] forKey:@"latitude"];
+    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude] forKey:@"longitude"];
     DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc] initWithTitle:@"Radius (kilometers)" message:@"Request" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Request", nil];
     pickerAlertView.tag = PICKER_ALERT;
     [pickerAlertView show];
@@ -339,9 +348,13 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 
 - (IBAction)currentLocationSubmit:(id)sender
 {
-    /////////////////////////////////
-    // fill in timestamp and long/lat at touch point
-    /////////////////////////////////
+    // fill in long/lat at current location.  THIS IS NOW SET TO TOUCH POINT
+    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude] forKey:@"latitude"];
+    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude] forKey:@"longitude"];
+    // set time stamp
+    NSTimeInterval timestamp = [[[NSDate alloc] init] timeIntervalSince1970];
+    [self.attributes setValue: [NSNumber numberWithDouble:timestamp] forKey:@"timestamp"];
+
     DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc] initWithTitle:@"Category" message:@"Submit" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Submit", nil];
     pickerAlertView.tag = PICKER_ALERT;
     [pickerAlertView show];
@@ -436,16 +449,26 @@ numberOfRowsInComponent:(NSInteger)component
 
 #pragma mark - picker delegate method
 
+
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component
-{
+       inComponent:(NSInteger)component {
+    
     if (pickerView.tag == SUBMIT_PICKER) {
-        NSLog(@"Category selection in map view: row=%d component=%d", row, component);
-    } else {
-        NSLog(@"Radius selection in map view: row=%d component=%d", row, component);
+        
+         //NSLog(@"Category selection in map view: row=%d component=%d", row, component);
+        [self.attributes setValue:[NSNumber numberWithInteger:row] forKey:@"category"];
+        NSLog(@"Category = %d",[[self.attributes valueForKeyPath:@"category"] integerValue]);
+    } else { // REQUEST_PICKER;
+        //NSLog(@"Radius selection in map view: row=%d component=%d", row, component);
+        [self.attributes setValue:[self.radiusValues objectAtIndex:row] forKey:@"radius"];
+        NSLog(@"Radius = %d",[[self.attributes valueForKeyPath:@"radius"] integerValue]);
     }
-    //[self.attributes setValue:[self.rangeValues objectAtIndex:(NSUInteger)row] forKey:@"radius"];
 }
+
+
+
+
+
 
 @end

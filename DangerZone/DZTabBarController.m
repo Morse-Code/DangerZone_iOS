@@ -14,7 +14,6 @@
 
 @synthesize dangerZones = _dangerZones;
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

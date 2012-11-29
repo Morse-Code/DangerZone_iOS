@@ -243,13 +243,53 @@ Press buttons on map view to request or submit dangers for your current location
                                     <outletCollection property="gestureRecognizers" destination="Jod-TS-qEq" appends="YES" id="cRc-e9-NPM"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCX-Ii-PZ2">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="l9L-WO-ztn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="titleShadowOffset" width="5" height="5"/>
+                                <state key="normal" image="Location.png" backgroundImage="LocateMeButtonTrackingPressed.png">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="zoomToCurrentLocation:" destination="7it-CO-XD1" eventType="touchUpInside" id="5Mo-iJ-v3V"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euS-qC-86I">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4WE-68-5y3"/>
+                                    <constraint firstAttribute="width" constant="43" id="uiF-ki-qSr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="View" backgroundImage="LocateMeButtonTrackingPressed.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleMapType:" destination="7it-CO-XD1" eventType="touchUpInside" id="1cW-qV-8T0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="YCX-Ii-PZ2" firstAttribute="bottom" secondItem="euS-qC-86I" secondAttribute="bottom" type="default" id="2fY-Zn-3iV"/>
+                            <constraint firstItem="YCX-Ii-PZ2" firstAttribute="leading" secondItem="euS-qC-86I" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ElE-EB-iXJ"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="top" secondItem="wCL-ef-9Be" secondAttribute="top" type="default" id="KD9-sn-O11"/>
+                            <constraint firstAttribute="trailing" secondItem="YCX-Ii-PZ2" secondAttribute="trailing" constant="10" type="user" id="Ono-qb-4MY"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="trailing" secondItem="wCL-ef-9Be" secondAttribute="trailing" type="default" id="YSZ-Up-gIo"/>
+                            <constraint firstItem="euS-qC-86I" firstAttribute="top" secondItem="YCX-Ii-PZ2" secondAttribute="top" type="default" id="bgh-45-XEb"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="bottom" secondItem="wCL-ef-9Be" secondAttribute="bottom" type="default" id="eEB-QJ-vFP"/>
                             <constraint firstItem="Ti2-29-a49" firstAttribute="leading" secondItem="wCL-ef-9Be" secondAttribute="leading" type="default" id="pjb-K2-QKl"/>
+                            <constraint firstAttribute="bottom" secondItem="YCX-Ii-PZ2" secondAttribute="bottom" constant="10" type="user" id="sgM-RS-5j5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Danger Map" id="8zD-j1-tqW">
@@ -281,7 +321,7 @@ Press buttons on map view to request or submit dangers for your current location
         <!--Submit View Controller - Submit DangerZone-->
         <scene sceneID="cM9-Oq-kXj">
             <objects>
-                <viewController id="uPi-Ss-2Yh" customClass="DZSubmitViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Submit" id="uPi-Ss-2Yh" customClass="DZSubmitViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zAY-oJ-otb">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -354,7 +394,7 @@ Press buttons on map view to request or submit dangers for your current location
         <!--Request View Controller - Request DangerZones-->
         <scene sceneID="lei-jQ-eVc">
             <objects>
-                <viewController id="8oh-QD-IO0" customClass="DZRequestViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Request" id="8oh-QD-IO0" customClass="DZRequestViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lwS-AU-uob">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -481,6 +521,8 @@ Press buttons on map view to request or submit dangers for your current location
     </scenes>
     <resources>
         <image name="Info-25.png" width="25" height="24"/>
+        <image name="LocateMeButtonTrackingPressed.png" width="32" height="30"/>
+        <image name="Location.png" width="20" height="20"/>
         <image name="Wire-globe-40.png" width="40" height="35"/>
         <image name="table-30.png" width="30" height="30"/>
     </resources>
@@ -498,6 +540,8 @@ Press buttons on map view to request or submit dangers for your current location
                 <relationship kind="action" name="currentLocationSubmit:"/>
                 <relationship kind="action" name="currrentLocationRequest:"/>
                 <relationship kind="action" name="handlePinDrop:" candidateClass="UILongPressGestureRecognizer"/>
+                <relationship kind="action" name="toggleMapType:"/>
+                <relationship kind="action" name="zoomToCurrentLocation:"/>
                 <relationship kind="outlet" name="dangerMap" candidateClass="MKMapView"/>
             </relationships>
         </class>

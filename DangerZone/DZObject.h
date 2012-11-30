@@ -34,7 +34,7 @@ can reuse the pins that have already been created with the same color */
 @property(readonly) NSNumber *longitude;
 //@property(readonly) NSDate *timestamp; //integer
 @property(readonly) NSNumber *timestamp;
-@property(readonly) NSInteger uid;
+@property(nonatomic) NSInteger uid;
 @property(readonly) NSInteger radius;
 @property(readonly) NSInteger severity;
 @property(readonly) NSUInteger category;

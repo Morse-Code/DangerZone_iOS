@@ -213,7 +213,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
         {
             NSDictionary *response = [JSON valueForKeyPath:@"response"];
             NSNumber *uid = [NSNumber numberWithInt:[[response valueForKeyPath:@"id"] integerValue]];
-            [mutableDangerZones addObject:uid];
+            [mutableDangerZones insertObject:uid atIndex:0];
         }
         if (block) {
             block([NSArray arrayWithArray:mutableDangerZones], nil);

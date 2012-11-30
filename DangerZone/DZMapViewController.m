@@ -72,13 +72,13 @@ static NSInteger mapType;
     //[self.attributes setValue:[self.radiusValues objectAtIndex:(NSUInteger)0] forKey:@"radius"];
     self.attributes = [NSMutableDictionary dictionaryWithCapacity:4];
 
-	
-	_myLocationManager = [[CLLocationManager alloc] init];
-	[_myLocationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-	[_myLocationManager setDelegate:self];
-	
-	mapType = 0;
-	self.dangerMap.mapType = MKMapTypeStandard;
+
+    _myLocationManager = [[CLLocationManager alloc] init];
+    [_myLocationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    [_myLocationManager setDelegate:self];
+
+    mapType = 0;
+    self.dangerMap.mapType = MKMapTypeStandard;
 
 }
 
@@ -270,6 +270,7 @@ calloutAccessoryControlTapped:(UIControl *)control
     }
 }
 
+
 - (void)   alertView:(UIAlertView *)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -294,6 +295,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
             //////////////////////////////
             // the dictionary has been filled in, now send it.
             NSLog(@"Process the request");
+            [DZObject dangerZoneObjectsForOperation:@"request" WithParameters:self.attributes
+                                           AndBlock:^(NSArray *dangerZones, NSError *error)
+                                           {
+                                               if (error) {
+                                                   [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                                               message:[error localizedDescription]
+                                                                              delegate:nil cancelButtonTitle:nil
+                                                                     otherButtonTitles:NSLocalizedString(@"OK", nil),
+                                                                                       nil] show];
+                                               }
+                                               else
+                                               {
+                                                   [self.dangerZones updateWithArray:dangerZones];
+                                               }
+                                           }];
             //////////////////////////////
         }
         //[self performSegueWithIdentifier:RequestViewSegueIdentifier sender:alertView];
@@ -321,6 +337,26 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
             // the dictionary has been filled in, now send it.
             NSLog(@"Process the submit");
             //////////////////////////////
+            DZObject *userZone = [[DZObject alloc] initUserSubmittedWithAttributes:self.attributes];
+
+            NSLog(@"Object added");
+
+            // do a get to the server
+            [DZObject dangerZoneObjectsForOperation:@"submit"  WithParameters:self.attributes AndBlock:
+                    ^(NSArray *dangerZones, NSError *error)
+                    {
+                        if (error) {
+                            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription]
+                                                       delegate:nil cancelButtonTitle:nil
+                                              otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
+                        }
+                        else
+                        {
+                            userZone.uid = [[dangerZones objectAtIndex:0] integerValue];
+                            [self.userZones addObject:userZone];
+
+                        }
+                    }];
         }
         //[self performSegueWithIdentifier:SubmitViewSegueIdentifier sender:alertView];
     }
@@ -399,42 +435,49 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     [pickerAlertView show];
 }
 
-- (IBAction)zoomToCurrentLocation:(id)sender {
-	NSLog(@"zoomToCurrentLocation");
-	
-		//Start updating location because we want it...
-	[_myLocationManager startUpdatingLocation];
-	
-	NSLog(@"lat:  %f", _myLocationManager.location.coordinate.latitude);
-	NSLog(@"long: %f", _myLocationManager.location.coordinate.longitude);
-	
-	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(_myLocationManager.location.coordinate, defaultRange, defaultRange);
-	[_dangerMap setRegion:viewRegion animated:YES];
-	
-		//Stop updating location to save battery
-	[_myLocationManager stopUpdatingLocation];
-	
+
+- (IBAction)zoomToCurrentLocation:(id)sender
+{
+    NSLog(@"zoomToCurrentLocation");
+
+    //Start updating location because we want it...
+    [_myLocationManager startUpdatingLocation];
+
+    NSLog(@"lat:  %f", _myLocationManager.location.coordinate.latitude);
+    NSLog(@"long: %f", _myLocationManager.location.coordinate.longitude);
+
+    MKCoordinateRegion
+            viewRegion = MKCoordinateRegionMakeWithDistance(_myLocationManager.location.coordinate, defaultRange,
+                                                            defaultRange);
+    [_dangerMap setRegion:viewRegion animated:YES];
+
+    //Stop updating location to save battery
+    [_myLocationManager stopUpdatingLocation];
+
 }
 
-- (IBAction)toggleMapType:(id)sender {
-	NSLog(@"toggleMapType");
-	
-	mapType = (mapType + 1 ) % 3;
-	
-	if (mapType == 0) {
-		self.dangerMap.mapType = MKMapTypeStandard;
-	}
-	else if (mapType == 1) {
-		self.dangerMap.mapType = MKMapTypeHybrid;
-	}
-	else if (mapType == 2) {
-		self.dangerMap.mapType = MKMapTypeSatellite;
-	}
-	else {
-		self.dangerMap.mapType = MKMapTypeStandard;
-		mapType = 0;
-	}
-	
+
+- (IBAction)toggleMapType:(id)sender
+{
+    NSLog(@"toggleMapType");
+
+    mapType = (mapType + 1) % 3;
+
+    if (mapType == 0) {
+        self.dangerMap.mapType = MKMapTypeStandard;
+    }
+    else if (mapType == 1) {
+        self.dangerMap.mapType = MKMapTypeHybrid;
+    }
+    else if (mapType == 2) {
+        self.dangerMap.mapType = MKMapTypeSatellite;
+    }
+    else
+    {
+        self.dangerMap.mapType = MKMapTypeStandard;
+        mapType = 0;
+    }
+
 }
 
 
@@ -453,7 +496,6 @@ Take appropriate action: for instance, prompt the user to enable the location se
         NSLog(@"Location services are not enabled");
     }
 }
-
 
 
 - (void)locationManager:(CLLocationManager *)manager

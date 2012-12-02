@@ -24,6 +24,11 @@
 		B4201736165362F700AABB8E /* table-30.png in Resources */ = {isa = PBXBuildFile; fileRef = B4201735165362F700AABB8E /* table-30.png */; };
 		B42017381653FF4400AABB8E /* Wire-globe-30.png in Resources */ = {isa = PBXBuildFile; fileRef = B42017371653FF4400AABB8E /* Wire-globe-30.png */; };
 		B443EA9A1662A4B6001CAAAD /* DZPickerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B443EA991662A4B6001CAAAD /* DZPickerAlertView.m */; };
+		B46444DD166AE3DC00ED956A /* Accident.png in Resources */ = {isa = PBXBuildFile; fileRef = B46444DC166AE3DC00ED956A /* Accident.png */; };
+		B46444DF166AE3EB00ED956A /* Violence.png in Resources */ = {isa = PBXBuildFile; fileRef = B46444DE166AE3EB00ED956A /* Violence.png */; };
+		B46444E1166AE40200ED956A /* Unclassified.png in Resources */ = {isa = PBXBuildFile; fileRef = B46444E0166AE40200ED956A /* Unclassified.png */; };
+		B46444E9166BAF2500ED956A /* Wire-globe-35.png in Resources */ = {isa = PBXBuildFile; fileRef = B46444E8166BAF2500ED956A /* Wire-globe-35.png */; };
+		B46444EB166BB46900ED956A /* Weather.png in Resources */ = {isa = PBXBuildFile; fileRef = B46444EA166BB46900ED956A /* Weather.png */; };
 		B4CAACAF1666645D0094C99C /* Info-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CAACAE1666645D0094C99C /* Info-25.png */; };
 		DC0B5E640C4245DA98206337 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9B08F97064480596412F15 /* libPods.a */; };
 		FDEC3DA8161C7241009C623E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC3DA7161C7241009C623E /* UIKit.framework */; };
@@ -74,6 +79,11 @@
 		B42017371653FF4400AABB8E /* Wire-globe-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wire-globe-30.png"; sourceTree = "<group>"; };
 		B443EA981662A4B6001CAAAD /* DZPickerAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZPickerAlertView.h; sourceTree = "<group>"; };
 		B443EA991662A4B6001CAAAD /* DZPickerAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZPickerAlertView.m; sourceTree = "<group>"; };
+		B46444DC166AE3DC00ED956A /* Accident.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Accident.png; sourceTree = "<group>"; };
+		B46444DE166AE3EB00ED956A /* Violence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Violence.png; sourceTree = "<group>"; };
+		B46444E0166AE40200ED956A /* Unclassified.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Unclassified.png; sourceTree = "<group>"; };
+		B46444E8166BAF2500ED956A /* Wire-globe-35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wire-globe-35.png"; sourceTree = "<group>"; };
+		B46444EA166BB46900ED956A /* Weather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Weather.png; sourceTree = "<group>"; };
 		B4CAACAE1666645D0094C99C /* Info-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-25.png"; sourceTree = "<group>"; };
 		FDEC3DA3161C7241009C623E /* DangerZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DangerZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEC3DA7161C7241009C623E /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -169,6 +179,17 @@
 			name = Networking;
 			sourceTree = "<group>";
 		};
+		B46444DB166AE3AE00ED956A /* Table Cell Images */ = {
+			isa = PBXGroup;
+			children = (
+				B46444EA166BB46900ED956A /* Weather.png */,
+				B46444E0166AE40200ED956A /* Unclassified.png */,
+				B46444DE166AE3EB00ED956A /* Violence.png */,
+				B46444DC166AE3DC00ED956A /* Accident.png */,
+			);
+			name = "Table Cell Images";
+			sourceTree = "<group>";
+		};
 		FDEC3D98161C7241009C623E = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +265,7 @@
 		FDEC3DE0161C74EA009C623E /* Graphic Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B46444DB166AE3AE00ED956A /* Table Cell Images */,
 				10BBA2DB1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png */,
 				10BBA2DC1666BAEF00DD5D04 /* Location.png */,
 				FDEC3DE3161C756B009C623E /* Tab Images */,
@@ -271,6 +293,7 @@
 		FDEC3DE3161C756B009C623E /* Tab Images */ = {
 			isa = PBXGroup;
 			children = (
+				B46444E8166BAF2500ED956A /* Wire-globe-35.png */,
 				B4CAACAE1666645D0094C99C /* Info-25.png */,
 				B42017371653FF4400AABB8E /* Wire-globe-30.png */,
 				B4201735165362F700AABB8E /* table-30.png */,
@@ -351,6 +374,11 @@
 				B4CAACAF1666645D0094C99C /* Info-25.png in Resources */,
 				10BBA2DD1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png in Resources */,
 				10BBA2DE1666BAEF00DD5D04 /* Location.png in Resources */,
+				B46444DD166AE3DC00ED956A /* Accident.png in Resources */,
+				B46444DF166AE3EB00ED956A /* Violence.png in Resources */,
+				B46444E1166AE40200ED956A /* Unclassified.png in Resources */,
+				B46444E9166BAF2500ED956A /* Wire-globe-35.png in Resources */,
+				B46444EB166BB46900ED956A /* Weather.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,10 +501,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DangerZone/DangerZone-Prefix.pch";
 				INFOPLIST_FILE = "DangerZone/DangerZone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "${inherited}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -489,10 +518,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DangerZone/DangerZone-Prefix.pch";
 				INFOPLIST_FILE = "DangerZone/DangerZone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "${inherited}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

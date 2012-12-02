@@ -384,8 +384,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     [self.dangerMap addAnnotation:self.tempPin];
 
 
-    [[[UIAlertView alloc] initWithTitle:@"Update or Submit?"
-                                message:@"Update: Request DangerZones from server.\nSubmit: Submit a new DangerZone."
+    [[[UIAlertView alloc] initWithTitle:@"Request or Submit?"
+                                message:@"Request: Request DangerZones from server.\nSubmit: Submit a new DangerZone."
                                delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Request", @"Submit", nil]
                    show];
 
@@ -560,12 +560,9 @@ numberOfRowsInComponent:(NSInteger)component
 
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component
-{
-
+       inComponent:(NSInteger)component {
     if (pickerView.tag == SUBMIT_PICKER) {
-
-        //NSLog(@"Category selection in map view: row=%d component=%d", row, component);
+         //NSLog(@"Category selection in map view: row=%d component=%d", row, component);
         [self.attributes setValue:[NSNumber numberWithInteger:row] forKey:@"category"];
         NSLog(@"Category = %d", [[self.attributes valueForKeyPath:@"category"] integerValue]);
     }

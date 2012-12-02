@@ -7,16 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CLGeocoder.h>
 
 @class DZObject;
 
 @interface DZTableViewCell : UITableViewCell
 
 
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UILabel *distance;
-@property (weak, nonatomic) IBOutlet UILabel *bearing;
-@property (retain, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *countryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *categoryImage;
 @property (nonatomic, strong) DZObject *dangerZone;
+@property (nonatomic, retain) CLGeocoder *geoCoder;
 
 @end

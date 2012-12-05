@@ -356,6 +356,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 //            [self.userZones addObject:userZone];
 
             NSLog(@"Object added");
+            [self.attributes setValue:[NSNumber numberWithInt:(NSUInteger)[[(DZPickerAlertView *)alertView pickerView] selectedRowInComponent:0]] forKey:@"category"];
 
             // do a get to the server
             [DZObject dangerZoneObjectsForOperation:@"submit" WithParameters:self.attributes

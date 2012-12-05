@@ -10,7 +10,6 @@
 #import "DZObject.h"
 #import "DZSharedClient.h"
 
-static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Horrid Fart"};
 static NSString *const request = @"request";
 //static NSString *const request = @"";
 
@@ -80,8 +79,10 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 
 + (NSString *)stringFromCategory:(NSUInteger)category
 {
-    //    NSArray *categories = [NSArray arrayWithObjects:@"Fire", @"Accident", @"Riot", @"Gunfire", nil];
-    NSArray *categories = [NSArray arrayWithObjects:CATEGORIES count:5];
+    
+    NSArray *categories = [NSArray arrayWithObjects:@"Unclassified", @"Weather", @"Violence", @"Accident", nil];
+//    NSArray *categories = [NSArray arrayWithObjects:DZTableViewCell.CATEGORIES count:4];
+    if (category > 3)return [NSString stringWithFormat:@"%d",category];
     NSString *categoryString = [categories objectAtIndex:category];
     NSLog(@"%@", categoryString);
     return categoryString;
@@ -133,7 +134,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
     _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
 
     // Set MKAnnotation properties
-    if (_category <= 4) {_title = [DZObject stringFromCategory:(NSUInteger)_category];}
+    if (_category <= 3) {_title = [DZObject stringFromCategory:(NSUInteger)_category];}
     else{_title = [NSString stringWithFormat:@"%d", _category];}
     _subTitle = [NSString stringWithFormat:@"Severity level: %d", _severity];
     _pinColor = MKPinAnnotationColorRed;

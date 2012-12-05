@@ -51,15 +51,17 @@ static NSInteger mapType;
     [self mapView:_dangerMap regionDidChangeAnimated:NO];
 
     // set up the picker display strings and values
-    self.radiusStrings = [NSArray arrayWithObjects:@"      Global", @"         1k", @"         5k", @"        10k",
-                                                   @"        25k", @"        50k", @"       100k", @"       500k",
-                                                   @"      1000k", @"      5000k", nil];
+    self.radiusStrings = [NSArray arrayWithObjects:@"      Global", @"         1k", @"         5k",
+                                                   @"        10k", @"        25k", @"        50k",
+                                                   @"       100k", @"       500k", @"      1000k",
+                                                   @"      5000k", nil];
     // translate radius string to int
     self.radiusValues = [NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:1],
                                                   [NSNumber numberWithInt:5], [NSNumber numberWithInt:10],
                                                   [NSNumber numberWithInt:25], [NSNumber numberWithInt:50],
                                                   [NSNumber numberWithInt:100], [NSNumber numberWithInt:500],
-                                                  [NSNumber numberWithInt:1000], [NSNumber numberWithInt:5000], nil];
+                                                  [NSNumber numberWithInt:1000],
+                                                  [NSNumber numberWithInt:5000], nil];
     self.categoryStrings = [[NSArray alloc] initWithObjects:@" Unclassified", @"    Weather", @"    Violence",
                                                             @"    Accident", nil];
 
@@ -129,7 +131,8 @@ regionDidChangeAnimated:(BOOL)animated
     NSArray *oldAnnotations = self.dangerMap.annotations;
     [self.dangerMap removeAnnotations:oldAnnotations];
 
-    NSArray *newAnnotations = [self.dangerZones.zones arrayByAddingObjectsFromArray:(NSArray *)self.userZones];
+//    NSArray *newAnnotations = [self.dangerZones.zones arrayByAddingObjectsFromArray:(NSArray *)self.userZones];
+    NSArray *newAnnotations = self.dangerZones.zones;
     [self.dangerMap addAnnotations:newAnnotations];
 }
 
@@ -149,8 +152,8 @@ regionDidChangeAnimated:(BOOL)animated
                                                              reuseIdentifier:pinReusableIdentifier];
         }
         annotationView.canShowCallout = YES;
-        [annotationView setRightCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
-        annotationView.draggable = YES;
+//        [annotationView setRightCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
+        annotationView.draggable = NO;
         annotationView.animatesDrop = YES;
         annotationView.pinColor = MKPinAnnotationColorPurple;
 
@@ -176,9 +179,8 @@ regionDidChangeAnimated:(BOOL)animated
         annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:senderAnnotation
                                                          reuseIdentifier:pinReusableIdentifier];
     }
-
     annotationView.canShowCallout = YES;
-    annotationView.animatesDrop = YES;
+    annotationView.animatesDrop = NO;
     annotationView.pinColor = senderAnnotation.pinColor;
 
     result = annotationView;
@@ -278,15 +280,17 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     if ([title isEqualToString:@"Request"]) {
         if (alertView.tag != PICKER_ALERT) { // got here from long touch
 
-            [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude] forKey:@"latitude"];
+            [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude]
+                               forKey:@"latitude"];
             [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude]
                                forKey:@"longitude"];
 
-            DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc] initWithTitle:@"Radius (kilometers)"
-                                                                                  message:@"Request"
-                                                                                 delegate:alertView.delegate
-                                                                        cancelButtonTitle:@"Cancel"
-                                                                        otherButtonTitles:@"Request", nil];
+            DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc]
+                                                                     initWithTitle:@"Radius (kilometers)"
+                                                                           message:@"Request"
+                                                                          delegate:alertView.delegate
+                                                                 cancelButtonTitle:@"Cancel"
+                                                                 otherButtonTitles:@"Request", nil];
             pickerAlertView.tag = PICKER_ALERT;
             [pickerAlertView show];
         }
@@ -294,20 +298,25 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         { // got here from picker
             //////////////////////////////
             // the dictionary has been filled in, now send it.
+            [self.attributes setValue:[self.radiusValues objectAtIndex:(NSUInteger)[[(DZPickerAlertView *)alertView pickerView]
+                                                                                                                    selectedRowInComponent:0]]
+                               forKey:@"radius"];
             NSLog(@"Process the request");
             [DZObject dangerZoneObjectsForOperation:@"request" WithParameters:self.attributes
                                            AndBlock:^(NSArray *dangerZones, NSError *error)
                                            {
                                                if (error) {
-                                                   [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
-                                                                               message:[error localizedDescription]
-                                                                              delegate:nil cancelButtonTitle:nil
-                                                                     otherButtonTitles:NSLocalizedString(@"OK", nil),
-                                                                                       nil] show];
+                                                   [[[UIAlertView alloc]
+                                                                  initWithTitle:NSLocalizedString(@"Error", nil)
+                                                                        message:[error localizedDescription]
+                                                                       delegate:nil cancelButtonTitle:nil
+                                                              otherButtonTitles:NSLocalizedString(@"OK", nil),
+                                                                                nil] show];
                                                }
                                                else
                                                {
                                                    [self.dangerZones updateWithArray:dangerZones];
+                                                   [self checkUserZones];
                                                }
                                            }];
             //////////////////////////////
@@ -317,14 +326,17 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     else if ([title isEqualToString:@"Submit"]) {
         if (alertView.tag != PICKER_ALERT) { // got here from long touch
 
-            [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude] forKey:@"latitude"];
+            [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude]
+                               forKey:@"latitude"];
             [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude]
                                forKey:@"longitude"];
             // set the timestamp attribute
-            NSTimeInterval timestamp = [[[NSDate alloc] init] timeIntervalSince1970];
-            [self.attributes setValue:[NSNumber numberWithDouble:timestamp] forKey:@"timestamp"];
+            NSTimeInterval interval = [[[NSDate alloc] init] timeIntervalSince1970];
+            NSInteger timestamp = round(interval);
+            [self.attributes setValue:[NSNumber numberWithInt:timestamp] forKey:@"timestamp"];
 
-            DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc] initWithTitle:@"Category" message:@"Submit"
+            DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc] initWithTitle:@"Category"
+                                                                                  message:@"Submit"
                                                                                  delegate:alertView.delegate
                                                                         cancelButtonTitle:@"Cancel"
                                                                         otherButtonTitles:@"Submit", nil];
@@ -337,32 +349,62 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
             // the dictionary has been filled in, now send it.
             NSLog(@"Process the submit");
             //////////////////////////////
-            DZObject *userZone = [[DZObject alloc] initUserSubmittedWithAttributes:self.attributes];
+            if (self.userZones == nil) {
+                self.userZones = [NSMutableArray arrayWithCapacity:1];
+            }
+//            DZObject *userZone = [[DZObject alloc] initUserSubmittedWithAttributes:self.attributes];
+//            [self.userZones addObject:userZone];
 
             NSLog(@"Object added");
 
             // do a get to the server
-            [DZObject dangerZoneObjectsForOperation:@"submit"  WithParameters:self.attributes AndBlock:
-                    ^(NSArray *dangerZones, NSError *error)
-                    {
-                        if (error) {
-                            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription]
-                                                       delegate:nil cancelButtonTitle:nil
-                                              otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
-                        }
-                        else
-                        {
-                            userZone.uid = [[dangerZones objectAtIndex:0] integerValue];
-                            [self.userZones addObject:userZone];
+            [DZObject dangerZoneObjectsForOperation:@"submit" WithParameters:self.attributes
+                                           AndBlock:^(NSArray *dangerZones, NSError *error)
+                                           {
+                                               if (error) {
+                                                   [[[UIAlertView alloc]
+                                                                  initWithTitle:NSLocalizedString(@"Error", nil)
+                                                                        message:[error localizedDescription]
+                                                                       delegate:nil cancelButtonTitle:nil
+                                                              otherButtonTitles:NSLocalizedString(@"OK", nil),
+                                                                                nil] show];
+                                               }
+                                               else
+                                               {
 
-                        }
-                    }];
+                                                   [self.attributes setValue:[dangerZones objectAtIndex:0]
+                                                                  forKeyPath:@"uid"];
+                                                   DZObject *userZone = [[DZObject alloc]
+                                                                                   initUserSubmittedWithAttributes:self.attributes];
+                                                   [self.userZones addObject:userZone];
+//                                                   [[self.userZones objectAtIndex:[self.userZones indexOfObject:userZone]]
+//                                                           setUid:[[dangerZones objectAtIndex:0] integerValue]];
+
+                                               }
+                                           }];
         }
         //[self performSegueWithIdentifier:SubmitViewSegueIdentifier sender:alertView];
     }
 //    else if (buttonIndex == [alertView cancelButtonIndex]){
 //
 //    }
+}
+
+
+- (void)checkUserZones
+{
+    for (DZObject *zone in self.dangerZones.zones) {
+        DZObject *object;
+        NSEnumerator *objectEnumerator = [self.userZones objectEnumerator];
+        BOOL Found = NO;
+        while ((object = [objectEnumerator nextObject]) && !Found)
+        {
+            if (object.uid == zone.uid) {
+                [self.userZones removeObject:object];
+                Found = YES;
+            }
+        }
+    }
 }
 
 
@@ -374,7 +416,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     }
 
     CGPoint location = [gesture locationInView:self.dangerMap];
-    CLLocationCoordinate2D touchLocation = [self.dangerMap convertPoint:location toCoordinateFromView:self.dangerMap];
+    CLLocationCoordinate2D
+            touchLocation = [self.dangerMap convertPoint:location toCoordinateFromView:self.dangerMap];
     NSLog(@"Long Press Gesture detected");
 
 //    DZObject *newZone = [[DZObject alloc] initWithCoordinate:touchLocation];
@@ -386,8 +429,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 
     [[[UIAlertView alloc] initWithTitle:@"Request or Submit?"
                                 message:@"Request: Request DangerZones from server.\nSubmit: Submit a new DangerZone."
-                               delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Request", @"Submit", nil]
-                   show];
+                               delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Request",
+                                                                                           @"Submit", nil]
+                                                                                           show];
 
 //    tempZone.title = @"Submit DangerZone?";
 
@@ -403,12 +447,14 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     self.tempPin.coordinate = self.currentLocation;
     [self.dangerMap addAnnotation:self.tempPin];
     // fill in long/lat at current location.  THIS IS NOW SET TO TOUCH POINT
-    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude] forKey:@"latitude"];
-    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude] forKey:@"longitude"];
-    DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc]
-                                                             initWithTitle:@"Radius (kilometers)" message:@"Request"
-                                                                  delegate:self cancelButtonTitle:@"Cancel"
-                                                         otherButtonTitles:@"Request", nil];
+    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude]
+                       forKey:@"latitude"];
+    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude]
+                       forKey:@"longitude"];
+    DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc] initWithTitle:@"Radius (kilometers)"
+                                                                          message:@"Request" delegate:self
+                                                                cancelButtonTitle:@"Cancel"
+                                                                otherButtonTitles:@"Request", nil];
     pickerAlertView.tag = PICKER_ALERT;
     [pickerAlertView show];
 }
@@ -422,15 +468,18 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     self.tempPin.coordinate = self.currentLocation;
     [self.dangerMap addAnnotation:self.tempPin];
     // fill in long/lat at current location.  THIS IS NOW SET TO TOUCH POINT
-    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude] forKey:@"latitude"];
-    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude] forKey:@"longitude"];
+    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude]
+                       forKey:@"latitude"];
+    [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude]
+                       forKey:@"longitude"];
     // set time stamp
     NSTimeInterval timestamp = [[[NSDate alloc] init] timeIntervalSince1970];
     [self.attributes setValue:[NSNumber numberWithDouble:timestamp] forKey:@"timestamp"];
 
     DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc]
-                                                             initWithTitle:@"Category" message:@"Submit" delegate:self
-                                                         cancelButtonTitle:@"Cancel" otherButtonTitles:@"Submit", nil];
+                                                             initWithTitle:@"Category" message:@"Submit"
+                                                                  delegate:self cancelButtonTitle:@"Cancel"
+                                                         otherButtonTitles:@"Submit", nil];
     pickerAlertView.tag = PICKER_ALERT;
     [pickerAlertView show];
 }
@@ -446,9 +495,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     NSLog(@"lat:  %f", _myLocationManager.location.coordinate.latitude);
     NSLog(@"long: %f", _myLocationManager.location.coordinate.longitude);
 
-    MKCoordinateRegion
-            viewRegion = MKCoordinateRegionMakeWithDistance(_myLocationManager.location.coordinate, defaultRange,
-                                                            defaultRange);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(_myLocationManager.location.coordinate,
+                                                                       defaultRange, defaultRange);
     [_dangerMap setRegion:viewRegion animated:YES];
 
     //Stop updating location to save battery
@@ -560,16 +608,17 @@ numberOfRowsInComponent:(NSInteger)component
 
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component {
+       inComponent:(NSInteger)component
+{
     if (pickerView.tag == SUBMIT_PICKER) {
-         //NSLog(@"Category selection in map view: row=%d component=%d", row, component);
+        //NSLog(@"Category selection in map view: row=%d component=%d", row, component);
         [self.attributes setValue:[NSNumber numberWithInteger:row] forKey:@"category"];
         NSLog(@"Category = %d", [[self.attributes valueForKeyPath:@"category"] integerValue]);
     }
     else
     { // REQUEST_PICKER;
         //NSLog(@"Radius selection in map view: row=%d component=%d", row, component);
-        [self.attributes setValue:[self.radiusValues objectAtIndex:row] forKey:@"radius"];
+        [self.attributes setValue:[self.radiusValues objectAtIndex:(NSUInteger)row] forKey:@"radius"];
         NSLog(@"Radius = %d", [[self.attributes valueForKeyPath:@"radius"] integerValue]);
     }
 }

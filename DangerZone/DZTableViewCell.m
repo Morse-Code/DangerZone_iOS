@@ -9,7 +9,7 @@
 #import "DZTableViewCell.h"
 #import "DZObject.h"
 
-static NSString *CATEGORIES[] = {@"Unclassified", @"Weather", @"Violence", @"Accident"};
+//static NSString *CATEGORIES[] = {@"Unclassified", @"Weather", @"Violence", @"Accident"};
 
 @implementation DZTableViewCell
 {
@@ -50,9 +50,9 @@ static NSString *CATEGORIES[] = {@"Unclassified", @"Weather", @"Violence", @"Acc
                            return;
                        }
                        if ([placemarks count] > 0) {
-                           NSString *imageFile = [NSString stringWithFormat:@"%@.png",CATEGORIES[_dangerZone.category]];
+                           NSString *imageFile = [NSString stringWithFormat:@"%@.png",[DZObject stringFromCategory:self.dangerZone.category]];
                            self.categoryImage.image = [UIImage imageNamed:imageFile];
-                           self.categoryLabel.text = CATEGORIES[_dangerZone.category];
+                           self.categoryLabel.text = [DZObject stringFromCategory:self.dangerZone.category];
                            CLPlacemark *thisLocale = [placemarks objectAtIndex:0];
                            self.countryLabel.text = @"";
                            if (thisLocale.locality != nil) {

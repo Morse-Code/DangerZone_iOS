@@ -118,19 +118,13 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
     }
 
     // Set DZObject properties from JSON
-//    _locale = [attributes valueForKeyPath:@"locale"];
     _locale = @"Test";
     _latitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"latitude"] doubleValue]];
     _longitude = [NSNumber numberWithDouble:[[attributes valueForKey:@"longitude"] doubleValue]];
-    //_timestamp = [NSNumber numberWithDouble:[[attributes valueForKey:@"timestamp"] doubleValue]];
     _timestamp = nil;
     _uid = [[attributes valueForKeyPath:@"id"] integerValue];
-//    _range = [[attributes valueForKeyPath:@"range"] integerValue];
-//    _radius = [[attributes valueForKeyPath:@"radius"] integerValue];
     _radius = 5;
-    //_severity = [[attributes valueForKeyPath:@"severity"] integerValue];
     _severity = 5;
-//    _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
     _category = (NSUInteger)[[attributes valueForKeyPath:@"category"] integerValue];
 
     // Set MKAnnotation properties
@@ -167,29 +161,6 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 
     return self;
 }
-
-/*- (id)initWithCoordinate:(CLLocationCoordinate2D)passedCoordinate
-{
-    self = [super init];
-    if (!self) {
-        return nil;
-    }
-    _locale = nil;
-    _latitude = [NSNumber numberWithDouble:passedCoordinate.latitude];
-    _longitude = [NSNumber numberWithDouble:passedCoordinate.longitude];
-    _uid = 0;
-    _category = 0;
-    _range = 0;
-    _severity = 0;
-    _timestamp = [NSDate date];
-    
-    _title = @"Report DangerZone?";
-    _subTitle = @"tap to submit";
-    _pinColor = MKPinAnnotationColorPurple;
-
-
-    return self;
-}*/
 
 #pragma mark -
 #pragma mark JSON Parsing

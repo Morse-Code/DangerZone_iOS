@@ -13,17 +13,17 @@
 
 //@class DZObject;
 
-@interface DZSubmitViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface DZSubmitViewController : UIViewController < UIPickerViewDelegate, UIPickerViewDataSource >
 
 
 //@property(nonatomic, retain) IBOutlet UITextField *localeText;
-@property(strong, nonatomic) IBOutlet UIPickerView *picker;
+@property (strong, nonatomic) IBOutlet UIPickerView *picker;
 //@property(nonatomic, retain) CLGeocoder *geoCoder;
 @property NSArray *categoryStrings;
-@property(strong, nonatomic) NSArray *severityStrings;
+@property (strong, nonatomic) NSArray *severityStrings;
 //@property DTMutableObject *updateObj; // the model's variables, see DTMutableObject.h
-@property(nonatomic, strong) NSMutableArray *userZones;
-@property(nonatomic, weak) MKPointAnnotation *tempAnnotation;
+@property (nonatomic, strong) NSMutableArray *userZones;
+@property (nonatomic, weak) MKPointAnnotation *tempAnnotation;
 
 - (IBAction)onReturnPressed:(id)sender;
 

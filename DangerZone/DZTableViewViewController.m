@@ -27,7 +27,8 @@
 @synthesize attributes = _attributes;
 
 
-- (id)initWithStyle:(UITableViewStyle)style {
+- (id)initWithStyle:(UITableViewStyle)style
+{
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -36,7 +37,8 @@
 }
 
 
-- (void)reload:(id)sender {
+- (void)reload:(id)sender
+{
     [_activityIndicatorView startAnimating];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [self reloadTableData];
@@ -45,7 +47,8 @@
 }
 
 
-- (void)loadView {
+- (void)loadView
+{
     [super loadView];
 
     _activityIndicatorView = [[UIActivityIndicatorView alloc]
@@ -54,15 +57,17 @@
 }
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     self.title = NSLocalizedString(@"Danger Table", nil);
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                                              initWithCustomView:_activityIndicatorView];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_activityIndicatorView];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                                               initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload:)];
+                                                               initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                                                                    target:self
+                                                                                    action:@selector(reload:)];
     self.attributes = [[NSMutableDictionary alloc] initWithCapacity:5];
 
 
@@ -70,7 +75,8 @@
 }
 
 
-- (void)setDangerZones:(DZStoredObjects *)dangerZones {
+- (void)setDangerZones:(DZStoredObjects *)dangerZones
+{
     if ([_dangerZones isEqual:dangerZones]) {
         return;
     }
@@ -79,7 +85,8 @@
     }
     _dangerZones = dangerZones;
     if (_dangerZones != nil) {
-        [self.dangerZones addObserver:self forKeyPath:KVOZonesChangeKey options:NSKeyValueObservingOptionNew context:nil];
+        [self.dangerZones addObserver:self forKeyPath:KVOZonesChangeKey options:NSKeyValueObservingOptionNew
+                              context:nil];
     }
     if (self.isViewLoaded) {
         [self reloadTableData];
@@ -87,19 +94,22 @@
 }
 
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     [self.dangerZones removeObserver:self forKeyPath:KVOZonesChangeKey];
     self.attributes = nil;
     [super viewDidUnload];
 }
 
 
-- (void)reloadTableData {
+- (void)reloadTableData
+{
     [self.tableView reloadData];
 }
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -108,14 +118,16 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section {
+ numberOfRowsInSection:(NSInteger)section
+{
     // Return the number of rows in the section.
     return [self.dangerZones.zones count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CellIdentifier = @"DangerZone";
     DZTableViewCell *cell;
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -129,7 +141,8 @@
 #pragma mark - Table view delegate
 
 - (void)      tableView:(UITableView *)tableView
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
 
 }
 
@@ -138,7 +151,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
-                       context:(void *)context {
+                       context:(void *)context
+{
 
     if ([keyPath isEqualToString:KVOZonesChangeKey]) {
         [self zonesChange:change];
@@ -146,7 +160,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 
-- (void)zonesChange:(NSDictionary *)dictionary {
+- (void)zonesChange:(NSDictionary *)dictionary
+{
     NSLog(@"Received KVO notification");
     [self reloadTableData];
 }

@@ -11,7 +11,7 @@
 @interface DZPickerAlertView : UIAlertView
 
 
-@property(nonatomic, retain) UIPickerView *pickerView;
+@property (nonatomic, retain) UIPickerView *pickerView;
 
 - (void)createPickerWithDelegate:(id)delegate;
 

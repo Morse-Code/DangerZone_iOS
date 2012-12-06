@@ -23,7 +23,8 @@
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style
-    reuseIdentifier:(NSString *)reuseIdentifier {
+    reuseIdentifier:(NSString *)reuseIdentifier
+{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
@@ -32,7 +33,8 @@
 }
 
 
-- (void)setDangerZone:(DZObject *)dangerZone {
+- (void)setDangerZone:(DZObject *)dangerZone
+{
     _dangerZone = dangerZone;
 
     // reverse geocoding will potentially return many parameters.  Based on what we get, we prioritize
@@ -40,23 +42,24 @@
     if (!self.geoCoder) {
         self.geoCoder = [[CLGeocoder alloc] init];
     }
-    CLLocation *location = [[CLLocation alloc]
-                                        initWithLatitude:[_dangerZone.latitude doubleValue] longitude:[_dangerZone.longitude doubleValue]];
-    [self.geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:[_dangerZone.latitude doubleValue]
+                                                      longitude:[_dangerZone.longitude doubleValue]];
+    [self.geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error)
+    {
         if (error != nil) {
             NSLog(@"Server returned an error");
             return;
         }
         if ([placemarks count] > 0) {
-            NSString *imageFile
-                    = [NSString stringWithFormat:@"%@.png", [DZObject stringFromCategory:self.dangerZone.category]];
+            NSString *imageFile = [NSString stringWithFormat:@"%@.png",
+                                                             [DZObject stringFromCategory:self.dangerZone.category]];
             self.categoryImage.image = [UIImage imageNamed:imageFile];
             self.categoryLabel.text = [DZObject stringFromCategory:self.dangerZone.category];
             CLPlacemark *thisLocale = [placemarks objectAtIndex:0];
             self.countryLabel.text = @"";
             if (thisLocale.locality != nil) {
-                self.cityLabel.text
-                        = [NSString stringWithFormat:@"%@, %@", thisLocale.locality, thisLocale.administrativeArea];
+                self.cityLabel.text = [NSString stringWithFormat:@"%@, %@", thisLocale.locality,
+                                                                 thisLocale.administrativeArea];
                 self.countryLabel.text = thisLocale.country;
             }
             else if (thisLocale.name != nil) {
@@ -97,7 +100,8 @@
 
 
 - (void)setSelected:(BOOL)selected
-           animated:(BOOL)animated {
+           animated:(BOOL)animated
+{
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state

@@ -19,7 +19,7 @@ typedef void (^dangerZoneAccessHandler)(BOOL success, DZStoredObjects *dangerZon
 @interface DZStoredObjects : UIDocument
 
 
-@property(nonatomic, readonly) NSArray *zones;
+@property (nonatomic, readonly) NSArray *zones;
 
 + (void)accessDangerZoneObject:(dangerZoneAccessHandler)completionHandler;
 

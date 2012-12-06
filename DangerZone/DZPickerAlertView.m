@@ -17,7 +17,8 @@ const int PICKER_ALERT = 3;
 const int REQUEST_PICKER = 4; // so that the two pickers get initialized with
 const int SUBMIT_PICKER = 5;  // their appropriate values
 
-- (id)init {
+- (id)init
+{
     self = [super init];
     if (self) {
         // Initialization code here.
@@ -26,20 +27,23 @@ const int SUBMIT_PICKER = 5;  // their appropriate values
 }
 
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     if (self = [super initWithFrame:frame]) {
     }
     return self;
 }
 
 
-- (void)setFrame:(CGRect)rect {
+- (void)setFrame:(CGRect)rect
+{
     [super setFrame:CGRectMake(0, 0, 320, 300)];
     self.center = CGPointMake(320 / 2, 280);
 }
 
 
-- (void)layoutSubviews {
+- (void)layoutSubviews
+{
     if (!self.pickerView) {
         [self createPickerWithDelegate:self.delegate];
     }
@@ -52,7 +56,8 @@ const int SUBMIT_PICKER = 5;  // their appropriate values
 }
 
 
-- (void)createPickerWithDelegate:(id)delegate {
+- (void)createPickerWithDelegate:(id)delegate
+{
 
     self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
     if ([self.message isEqualToString:@"Submit"]) {

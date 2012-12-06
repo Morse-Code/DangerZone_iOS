@@ -19,25 +19,25 @@ can reuse the pins that have already been created with the same color */
 //static NSString *const request = @"";
 //static NSString *const params = @"";
 
-@interface DZObject : NSObject <MKAnnotation, NSCoding>
+@interface DZObject : NSObject < MKAnnotation, NSCoding >
 {
 }
 
 
-@property(nonatomic, readwrite, assign) CLLocationCoordinate2D coordinate;
-@property(nonatomic) MKPinAnnotationColor pinColor;
-@property(nonatomic, copy) NSString *title;
-@property(nonatomic, strong) NSString *subTitle;
+@property (nonatomic, readwrite, assign) CLLocationCoordinate2D coordinate;
+@property (nonatomic) MKPinAnnotationColor pinColor;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, strong) NSString *subTitle;
 
-@property(readonly) NSString *locale;
-@property(readonly) NSNumber *latitude;
-@property(readonly) NSNumber *longitude;
+@property (readonly) NSString *locale;
+@property (readonly) NSNumber *latitude;
+@property (readonly) NSNumber *longitude;
 //@property(readonly) NSDate *timestamp; //integer
-@property(readonly) NSNumber *timestamp;
-@property(nonatomic) NSInteger uid;
-@property(readonly) NSInteger radius;
-@property(readonly) NSInteger severity;
-@property(readonly) NSUInteger category;
+@property (readonly) NSNumber *timestamp;
+@property (nonatomic) NSInteger uid;
+@property (readonly) NSInteger radius;
+@property (readonly) NSInteger severity;
+@property (readonly) NSUInteger category;
 
 - (id)initWithAttributes:(NSDictionary *)attributes;
 //- (id)initWithCoordinate:(CLLocationCoordinate2D)passedCoordinate;
@@ -48,7 +48,9 @@ can reuse the pins that have already been created with the same color */
 
 //+ (void)dangerZoneObjectsForParameters:(NSDictionary *)params WithBlock:(void (^)(NSArray *, NSError *))block;
 
-+ (void)dangerZoneObjectsForOperation:(NSString *)operation WithParameters:(NSDictionary *)params AndBlock:(void (^)(NSArray *, NSError *))block;
++ (void)dangerZoneObjectsForOperation:(NSString *)operation
+                       WithParameters:(NSDictionary *)params
+                             AndBlock:(void (^)(NSArray *, NSError *))block;
 
 
 + (NSString *)stringFromCategory:(NSUInteger)category;

@@ -53,7 +53,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 #pragma mark -
 #pragma mark MKAnnotationView convenience methods
 
-+ (NSString *)reusableIdentifierForPinColor :(MKPinAnnotationColor)paramColor {
++ (NSString *)reusableIdentifierForPinColor :(MKPinAnnotationColor)paramColor
+{
     NSString *result = nil;
     switch (paramColor) {
         case MKPinAnnotationColorRed:
@@ -76,10 +77,10 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 }
 
 
-+ (NSString *)stringFromCategory:(NSUInteger)category {
++ (NSString *)stringFromCategory:(NSUInteger)category
+{
 
-    NSArray *categories
-            = [NSArray arrayWithObjects:@"Unclassified", @"Weather", @"Violence", @"Accident", nil];
+    NSArray *categories = [NSArray arrayWithObjects:@"Unclassified", @"Weather", @"Violence", @"Accident", nil];
 //    NSArray *categories = [NSArray arrayWithObjects:DZTableViewCell.CATEGORIES count:4];
     if (category > 3)return [NSString stringWithFormat:@"%d", category];
     NSString *categoryString = [categories objectAtIndex:category];
@@ -90,7 +91,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 #pragma mark -
 #pragma mark MKAnnotation protocol
 
-- (CLLocationCoordinate2D)coordinate {
+- (CLLocationCoordinate2D)coordinate
+{
 
     _coordinate.latitude = [self.latitude doubleValue];
     _coordinate.longitude = [self.longitude doubleValue];
@@ -98,7 +100,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 }
 
 
-- (void)setCoordinate:(CLLocationCoordinate2D)coordinate {
+- (void)setCoordinate:(CLLocationCoordinate2D)coordinate
+{
     _latitude = [NSNumber numberWithDouble:coordinate.latitude];
     _longitude = [NSNumber numberWithDouble:coordinate.longitude];
 }
@@ -107,7 +110,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 #pragma mark Initialize objects
 
 //Initialize with server supplied JSON
-- (id)initWithAttributes:(NSDictionary *)attributes {
+- (id)initWithAttributes:(NSDictionary *)attributes
+{
     self = [super init];
     if (!self) {
         return nil;
@@ -135,7 +139,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 
 
 //Initialize user submitted DangerZone
-- (id)initUserSubmittedWithAttributes:(NSDictionary *)attributes {
+- (id)initUserSubmittedWithAttributes:(NSDictionary *)attributes
+{
     self = [super init];
     if (!self) {
         return nil;
@@ -165,9 +170,11 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 
 + (void)dangerZoneObjectsForOperation:(NSString *)operationType
                        WithParameters:(NSDictionary *)params
-                             AndBlock:(void (^)(NSArray *posts, NSError *error))block {
+                             AndBlock:(void (^)(NSArray *posts, NSError *error))block
+{
     [[DZSharedClient sharedClient]
-                     getPath:operationType parameters:params success:^(AFHTTPRequestOperation *operation, id JSON) {
+                     getPath:operationType parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
+    {
         NSMutableArray *mutableDangerZones = [NSMutableArray arrayWithCapacity:[JSON count]];
         if ([operationType isEqualToString:@"request"]) {
             for (NSDictionary *attributes in JSON) {
@@ -184,7 +191,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
         if (block) {
             block([NSArray arrayWithArray:mutableDangerZones], nil);
         }
-    }                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    }                failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
         if (block) {
             block([NSArray array], error);
         }
@@ -192,9 +200,10 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 }
 
 
-+ (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block {
-    [[DZSharedClient sharedClient]
-                     getPath:request parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON) {
++ (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block
+{
+    [[DZSharedClient sharedClient] getPath:request parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
+    {
         NSMutableArray *mutableDangerZones = [NSMutableArray arrayWithCapacity:[JSON count]];
         for (NSDictionary *attributes in JSON) {
             DZObject *dangerZone = [[DZObject alloc] initWithAttributes:attributes];
@@ -204,7 +213,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
         if (block) {
             block([NSArray arrayWithArray:mutableDangerZones], nil);
         }
-    }                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    }                              failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
         if (block) {
             block([NSArray array], error);
         }
@@ -213,9 +223,11 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 
 
 + (void)dangerZoneObjectsForParameters:(NSDictionary *)params
-                             WithBlock:(void (^)(NSArray *posts, NSError *error))block {
+                             WithBlock:(void (^)(NSArray *posts, NSError *error))block
+{
     [[DZSharedClient sharedClient]
-                     getPath:request parameters:params success:^(AFHTTPRequestOperation *operation, id JSON) {
+                     getPath:request parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
+    {
         NSMutableArray *mutableDangerZones = [NSMutableArray arrayWithCapacity:[JSON count]];
         for (NSDictionary *attributes in JSON) {
             DZObject *dangerZone = [[DZObject alloc] initWithAttributes:attributes];
@@ -225,7 +237,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
         if (block) {
             block([NSArray arrayWithArray:mutableDangerZones], nil);
         }
-    }                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    }                failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
         if (block) {
             block([NSArray array], error);
         }
@@ -240,7 +253,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 //  Keyed Archiving
 //
 //===========================================================
-- (void)encodeWithCoder:(NSCoder *)encoder {
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
     [encoder encodeObject:self.locale forKey:kLOCALE_KEY];
     [encoder encodeObject:self.latitude forKey:kLATITUDE_KEY];
     [encoder encodeObject:self.longitude forKey:kLONGITUDE_KEY];
@@ -252,7 +266,8 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 }
 
 
-- (id)initWithCoder:(NSCoder *)decoder {
+- (id)initWithCoder:(NSCoder *)decoder
+{
     self = [super init];
     if (self) {
         _locale = [decoder decodeObjectForKey:kLOCALE_KEY];

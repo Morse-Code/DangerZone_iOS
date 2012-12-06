@@ -14,11 +14,11 @@
 @interface DZTableViewCell : UITableViewCell
 
 
-@property(weak, nonatomic) IBOutlet UILabel *cityLabel;
-@property(weak, nonatomic) IBOutlet UILabel *countryLabel;
-@property(weak, nonatomic) IBOutlet UILabel *categoryLabel;
-@property(retain, nonatomic) IBOutlet UIImageView *categoryImage;
-@property(nonatomic, strong) DZObject *dangerZone;
-@property(nonatomic, retain) CLGeocoder *geoCoder;
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *countryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *categoryImage;
+@property (nonatomic, strong) DZObject *dangerZone;
+@property (nonatomic, retain) CLGeocoder *geoCoder;
 
 @end

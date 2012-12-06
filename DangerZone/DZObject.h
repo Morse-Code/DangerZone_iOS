@@ -48,7 +48,7 @@ can reuse the pins that have already been created with the same color */
 
 //+ (void)dangerZoneObjectsForParameters:(NSDictionary *)params WithBlock:(void (^)(NSArray *, NSError *))block;
 
-+ (void)dangerZoneObjectsForOperation: (NSString *) operation WithParameters:(NSDictionary *)params AndBlock: (void (^)(NSArray *, NSError *))block;
++ (void)dangerZoneObjectsForOperation:(NSString *)operation WithParameters:(NSDictionary *)params AndBlock:(void (^)(NSArray *, NSError *))block;
 
 
 + (NSString *)stringFromCategory:(NSUInteger)category;

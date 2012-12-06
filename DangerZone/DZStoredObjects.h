@@ -13,14 +13,16 @@ static NSString *const DZStoredObjectsChangedZonesNotification = @"DZStoredObjec
 static NSString *const KVOZonesChangeKey = @"dangerZoneObjects";
 
 @class DZStoredObjects;
-typedef void (^dangerZoneAccessHandler)
-        (BOOL success, DZStoredObjects* dangerZoneObjects);
+
+typedef void (^dangerZoneAccessHandler)(BOOL success, DZStoredObjects *dangerZoneObjects);
 
 @interface DZStoredObjects : UIDocument
 
 
-@property (nonatomic, readonly) NSArray *zones;
+@property(nonatomic, readonly) NSArray *zones;
+
 + (void)accessDangerZoneObject:(dangerZoneAccessHandler)completionHandler;
+
 - (void)updateWithArray:(NSArray *)array;
 
 @end

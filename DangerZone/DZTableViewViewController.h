@@ -12,8 +12,9 @@
 
 @interface DZTableViewViewController : UITableViewController
 
-@property (nonatomic, strong) DZStoredObjects *dangerZones;
-@property (nonatomic, strong) NSMutableDictionary *attributes;
+
+@property(nonatomic, strong) DZStoredObjects *dangerZones;
+@property(nonatomic, strong) NSMutableDictionary *attributes;
 
 - (void)reloadTableData;
 

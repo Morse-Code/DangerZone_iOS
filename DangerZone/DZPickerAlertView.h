@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DZPickerAlertView : UIAlertView 	
+@interface DZPickerAlertView : UIAlertView
 
-@property (nonatomic,retain) UIPickerView *pickerView;
 
-- (void)createPickerWithDelegate:(id) delegate;
+@property(nonatomic, retain) UIPickerView *pickerView;
+
+- (void)createPickerWithDelegate:(id)delegate;
 
 @end

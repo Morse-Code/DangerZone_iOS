@@ -20,8 +20,7 @@
 @synthesize severity = _severity;
 
 
-- (id)initWithZeros
-{
+- (id)initWithZeros {
     self = [super init];
     if (!self) {
         return nil;

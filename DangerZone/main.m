@@ -6,12 +6,9 @@
 //  Copyright (c) 2012 iCompute. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "DZAppDelegate.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([DZAppDelegate class]));
     }

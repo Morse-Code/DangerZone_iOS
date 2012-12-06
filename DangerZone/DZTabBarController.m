@@ -14,19 +14,17 @@
 
 @synthesize dangerZones = _dangerZones;
 
-- (void)viewDidLoad
-{
+
+- (void)viewDidLoad {
     [super viewDidLoad];
-    [DZStoredObjects accessDangerZoneObject:^(BOOL success, DZStoredObjects *dangerZones)
-    {
+    [DZStoredObjects accessDangerZoneObject:^(BOOL success, DZStoredObjects *dangerZones) {
         if (!success) {
             // An error occurred while instantiating our
             // history. This probably indicates a catastrophic
             // failure (e.g., the device’s hard drive is out of
             // space).
 
-            [NSException raise:NSInternalInconsistencyException
-                        format:@"An error occurred while trying to instantiate our history"];
+            [NSException raise:NSInternalInconsistencyException format:@"An error occurred while trying to instantiate our history"];
         }
         self.dangerZones = dangerZones;
         // Create a stack and load it with the view controllers from
@@ -53,8 +51,7 @@
 }
 
 
-- (void)viewDidDisappear:(BOOL)animated
-{
+- (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 //    [self.dangerZones closeWithCompletionHandler:nil];
 }

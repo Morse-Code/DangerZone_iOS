@@ -12,6 +12,6 @@
 @interface DZTabBarController : UITabBarController <UITabBarControllerDelegate>
 
 
-@property (nonatomic, strong) DZStoredObjects *dangerZones;
+@property(nonatomic, strong) DZStoredObjects *dangerZones;
 
 @end

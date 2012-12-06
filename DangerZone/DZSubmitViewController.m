@@ -48,7 +48,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.categoryStrings = [[NSArray alloc] initWithObjects:@"Fire", @"Accident", @"Riot", @"Gunfire", nil];
-    self.severityStrings = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", nil];
+    self.severityStrings
+            = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", nil];
     self.attributes = [NSMutableDictionary dictionaryWithCapacity:4];
     // initialize category
     [self.attributes setValue:[NSNumber numberWithInt:(NSUInteger)0] forKey:@"category"];
@@ -137,40 +138,38 @@ numberOfRowsInComponent:(NSInteger)component {
 
 
 - (IBAction)onSubmitPressed:(id)sender {
-    
+
     // category was initialized in viewDidLoad:, and changed with the picker
     // long and lat attributes are set by the map view on a long touch
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.latitude] forKey:@"latitude"];
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.longitude] forKey:@"longitude"];
-    
+
     // set the timestamp attribute
     NSTimeInterval timestamp = [[[NSDate alloc] init] timeIntervalSince1970];
-    [self.attributes setValue: [NSNumber numberWithDouble:timestamp] forKey:@"timestamp"];
-    
+    [self.attributes setValue:[NSNumber numberWithDouble:timestamp] forKey:@"timestamp"];
+
     // severity not yet used.
     //[self.attributes setValue:[NSNumber numberWithInt:[self.picker selectedRowInComponent:1]] forKey:@"severity"];
-    
+
     self.userZone = [[DZObject alloc] initUserSubmittedWithAttributes:self.attributes];
-    
+
     [self.userZones addObject:self.userZone];
     NSLog(@"Object added");
-    
+
     // do a get to the server
-    [DZObject dangerZoneObjectsForOperation:@"submit"  WithParameters:(NSDictionary *)self.attributes AndBlock:
-     ^(NSArray *dangerZones, NSError *error)
-     {
-         if (error) {
-             [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription]
-                                        delegate:nil cancelButtonTitle:nil
-                               otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
-         }
-         else
-         {
-             //[self.userZones addObject:[dangerZones objectAtIndex:0]];
-         }
-     }];
+    [DZObject dangerZoneObjectsForOperation:@"submit" WithParameters:(NSDictionary *)self.attributes AndBlock:^(NSArray *dangerZones, NSError *error) {
+        if (error) {
+            [[[UIAlertView alloc]
+                           initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil]
+                           show];
+        }
+        else
+        {
+            //[self.userZones addObject:[dangerZones objectAtIndex:0]];
+        }
+    }];
     [self.navigationController popViewControllerAnimated:YES];
-    
+
 }
 
 

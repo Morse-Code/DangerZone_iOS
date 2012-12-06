@@ -8,8 +8,6 @@
 
 #import "DZFirstViewController.h"
 #import "AFJSONRequestOperation.h"
-#import "AFHTTPClient.h"
-#import "DZObject.h"
 
 
 @interface DZFirstViewController ()
@@ -30,8 +28,7 @@
 @synthesize webView;
 
 
-- (void)loadView
-{
+- (void)loadView {
     [super loadView];
 
     _activityIndicatorView = [[UIActivityIndicatorView alloc]
@@ -40,8 +37,7 @@
 }
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     //[self sendGet];
@@ -49,8 +45,7 @@
 }
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -58,8 +53,7 @@
 
 /* URL = http://pixolity.com/get.php?param1=First&param2=Second */
 
-- (void)sendGet
-{
+- (void)sendGet {
 
     NSString *urlAsString = @"http://10.245.15.67/api/request";
 
@@ -79,60 +73,50 @@
 
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(
-            NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
-    {
-        NSLog(@"Public Timeline: %@", JSON);
-    }                                                                                   failure:nil];
+    AFJSONRequestOperation *operation
+            = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                NSLog(@"Public Timeline: %@", JSON);
+            }                                                 failure:nil];
     [operation start];
 
 
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-                           {
-                               NSString *output;
-                               if ([data length] > 0 && error == nil) {
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSString *output;
+        if ([data length] > 0 && error == nil) {
 
-                                   NSString *jsonString = [[NSString alloc]
-                                                                     initWithData:data encoding:NSUTF8StringEncoding];
-                                   NSLog(@"Successfully downloaded JSON from server.");
-                                   NSLog(@"JSON String = %@\n", jsonString);
+            NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"Successfully downloaded JSON from server.");
+            NSLog(@"JSON String = %@\n", jsonString);
 
-                                   NSError *jsonParsingError = nil;
+            NSError *jsonParsingError = nil;
 
-                                   NSDictionary *deserializedJson = [NSJSONSerialization JSONObjectWithData:data
-                                                                                                    options:NSJSONReadingAllowFragments
-                                                                                                      error:&jsonParsingError];
+            NSDictionary *deserializedJson
+                    = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonParsingError];
 
-                                   output = [NSString stringWithFormat:@"Dictionary: \n%@\n%@", deserializedJson,
-                                                                       jsonString];
+            output = [NSString stringWithFormat:@"Dictionary: \n%@\n%@", deserializedJson, jsonString];
 
-                                   NSLog(@"Dictionary String = %@\n", deserializedJson);
-                               }
-                               else if ([data length] == 0 && error == nil) {
-                                   NSLog(@"Nothing was downloaded.");
-                               }
-                               else if (error != nil) {
-                                   output = [NSString stringWithFormat:@"HTTP response status: %@\n", error];
-                               }
+            NSLog(@"Dictionary String = %@\n", deserializedJson);
+        }
+        else if ([data length] == 0 && error == nil) {
+            NSLog(@"Nothing was downloaded.");
+        }
+        else if (error != nil) {
+            output = [NSString stringWithFormat:@"HTTP response status: %@\n", error];
+        }
 
-                               [self performSelectorOnMainThread:@selector(displayText:) withObject:output
-                                                   waitUntilDone:NO];
-                               [self performSelectorOnMainThread:@selector(displayPage:) withObject:output
-                                                   waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(displayText:) withObject:output waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(displayPage:) withObject:output waitUntilDone:NO];
 
-                           }];
+    }];
 }
 
 
-- (void)displayText:(NSString *)text
-{
+- (void)displayText:(NSString *)text {
     self.textView.text = text;
 }
 
 
-- (void)displayPage:(NSString *)text
-{
+- (void)displayPage:(NSString *)text {
     [webView loadHTMLString:text baseURL:[NSURL URLWithString:@"http://10.245.15.67/"]];
 }
 

@@ -17,7 +17,7 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 @interface DZRequestViewController ()
 
 
-@property (nonatomic, strong) NSDictionary *attributes;
+@property(nonatomic, strong) NSDictionary *attributes;
 
 
 @end
@@ -35,8 +35,7 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
-               bundle:(NSBundle *)nibBundleOrNil
-{
+               bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -45,42 +44,36 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 }
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     // picker strings
     self.categoryStrings = [NSArray arrayWithObjects:CATEGORIES count:5];
 
-    self.radiusStrings = [NSArray arrayWithObjects:@"1k", @"5k", @"10k", @"25k", @"50k", @"100k", @"500k", @"1000k",
-                                                  @"5000k", nil];
+    self.radiusStrings
+            = [NSArray arrayWithObjects:@"1k", @"5k", @"10k", @"25k", @"50k", @"100k", @"500k", @"1000k", @"5000k", nil];
     // translate radius string to int
-    self.radiusValues = [NSArray arrayWithObjects:[NSNumber numberWithInt:1], [NSNumber numberWithInt:5],
-                                                 [NSNumber numberWithInt:10], [NSNumber numberWithInt:25],
-                                                 [NSNumber numberWithInt:50], [NSNumber numberWithInt:100],
-                                                 [NSNumber numberWithInt:500], [NSNumber numberWithInt:1000],
-                                                 [NSNumber numberWithInt:50000], nil];
-    
+    self.radiusValues
+            = [NSArray arrayWithObjects:[NSNumber numberWithInt:1], [NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:25], [NSNumber numberWithInt:50], [NSNumber numberWithInt:100], [NSNumber numberWithInt:500], [NSNumber numberWithInt:1000], [NSNumber numberWithInt:50000], nil];
+
     self.attributes = [NSMutableDictionary dictionaryWithCapacity:4];
-    
+
     // defaults for category and radius attributes
     // long and lat are set from long map touch, before loading this view
-    
+
     [self.attributes setValue:[NSNumber numberWithInt:0] forKey:@"category"];
     [self.attributes setValue:[self.radiusValues objectAtIndex:(NSUInteger)0] forKey:@"radius"];
 }
 
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 2;
 }
 
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView
-    widthForComponent:(NSInteger)component
-{
+    widthForComponent:(NSInteger)component {
     //NSLog(@"in row width");
     if (component == 0) {
         return 105; // category width
@@ -93,16 +86,14 @@ static NSString *CATEGORIES[] = {@"Fire", @"Accident", @"Riot", @"Gunfire", @"Ho
 
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView
-rowHeightForComponent:(NSInteger)component
-{
+rowHeightForComponent:(NSInteger)component {
     //NSLog(@"in row height");
     return 35;
 }
 
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView
-numberOfRowsInComponent:(NSInteger)component
-{
+numberOfRowsInComponent:(NSInteger)component {
     if (component == 0) { // category #rows
         return [self.categoryStrings count];
     }
@@ -115,8 +106,7 @@ numberOfRowsInComponent:(NSInteger)component
 
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row
-            forComponent:(NSInteger)component
-{
+            forComponent:(NSInteger)component {
     if (component == 0) { // category strings
         return [self.categoryStrings objectAtIndex:(NSUInteger)row];
     }
@@ -129,8 +119,7 @@ numberOfRowsInComponent:(NSInteger)component
 
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component
-{
+       inComponent:(NSInteger)component {
     NSLog(@"Update selection: row=%d component=%d", row, component);
     /*if (component == 0) { // category selected
         [self.attributes setValue:[self.categoryStrings objectAtIndex:(NSUInteger)row] forKey:@"category"];
@@ -142,14 +131,13 @@ numberOfRowsInComponent:(NSInteger)component
 }
 
 
-- (IBAction)onReturnPressed:(id)sender
-{
-    
-     [sender resignFirstResponder];
+- (IBAction)onReturnPressed:(id)sender {
+
+    [sender resignFirstResponder];
 }
 
-- (IBAction)onRequestPressed:(id)sender
-{
+
+- (IBAction)onRequestPressed:(id)sender {
     // category and radius attributes were initialized in viewDidLoad:, and changed with the picker
     // long and lat attributes are set by the map view on a long touch
     [self.attributes setValue:[NSNumber numberWithInt:[self.picker selectedRowInComponent:0]] forKey:@"category"];
@@ -158,12 +146,11 @@ numberOfRowsInComponent:(NSInteger)component
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.latitude] forKey:@"latitude"];
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.longitude] forKey:@"longitude"];
     //[self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.longitude] forKey:@"timestamp"];
-    [DZObject dangerZoneObjectsForOperation:@"request" WithParameters:self.attributes AndBlock:^(NSArray *dangerZones, NSError *error)
-    {
+    [DZObject dangerZoneObjectsForOperation:@"request" WithParameters:self.attributes AndBlock:^(NSArray *dangerZones, NSError *error) {
         if (error) {
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription]
-                                       delegate:nil cancelButtonTitle:nil
-                              otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
+            [[[UIAlertView alloc]
+                           initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil]
+                           show];
         }
         else
         {
@@ -174,32 +161,28 @@ numberOfRowsInComponent:(NSInteger)component
 }
 
 
-- (IBAction)onGlobalPressed:(id)sender
-{
+- (IBAction)onGlobalPressed:(id)sender {
     // This is a kludge. If these aren't set initUserSubmittedWithAttributes: spews.
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.latitude] forKey:@"latitude"];
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempAnnotation.coordinate.longitude] forKey:@"longitude"];
-    
+
     // do a get to the server
-    [DZObject dangerZoneObjectsForOperation:@"global"  WithParameters:(NSDictionary *)self.attributes AndBlock:
-     ^(NSArray *dangerZones, NSError *error)
-     {
-         if (error) {
-             [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription]
-                                        delegate:nil cancelButtonTitle:nil
-                               otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
-         }
-         else
-         {
-             [self.dangerZones updateWithArray:dangerZones];
-         }
-     }];
+    [DZObject dangerZoneObjectsForOperation:@"global" WithParameters:(NSDictionary *)self.attributes AndBlock:^(NSArray *dangerZones, NSError *error) {
+        if (error) {
+            [[[UIAlertView alloc]
+                           initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil]
+                           show];
+        }
+        else
+        {
+            [self.dangerZones updateWithArray:dangerZones];
+        }
+    }];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

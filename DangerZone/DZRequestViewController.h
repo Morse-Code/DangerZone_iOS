@@ -13,18 +13,18 @@
 
 @class DZStoredObjects;
 
-@interface DZRequestViewController : UIViewController < UIPickerViewDelegate, UIPickerViewDataSource >
+@interface DZRequestViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 
 //@property (nonatomic, retain) IBOutlet UITextField *localeText;
-@property (strong, nonatomic) IBOutlet UIPickerView *picker;
+@property(strong, nonatomic) IBOutlet UIPickerView *picker;
 //@property (nonatomic, retain) CLGeocoder *geoCoder;
 @property NSArray *categoryStrings;
-@property (strong, nonatomic) NSArray *radiusStrings;
-@property (strong, nonatomic) NSArray *radiusValues; // in parallel with rangeStrings
+@property(strong, nonatomic) NSArray *radiusStrings;
+@property(strong, nonatomic) NSArray *radiusValues; // in parallel with rangeStrings
 @property DZStoredObjects *dangerZones; // the model's variables
 
-@property (nonatomic, strong) MKPointAnnotation *tempAnnotation;
+@property(nonatomic, strong) MKPointAnnotation *tempAnnotation;
 
 - (IBAction)onReturnPressed:(id)sender;
 

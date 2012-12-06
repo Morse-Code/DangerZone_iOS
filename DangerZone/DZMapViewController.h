@@ -16,25 +16,29 @@ extern const int PICKER_ALERT;
 extern const int REQUEST_PICKER; // so that the two pickers get initialized with
 extern const int SUBMIT_PICKER;  // their appropriate values
 
-@interface DZMapViewController : UIViewController < MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface DZMapViewController : UIViewController <MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 
-@property (nonatomic, strong) IBOutlet MKMapView *dangerMap;
-@property (nonatomic, readonly) DZStoredObjects *dangerZones;
-@property (nonatomic) MKPointAnnotation * tempPin;
-@property (strong, nonatomic) NSArray *radiusStrings;
-@property (strong, nonatomic) NSArray *radiusValues; // in parallel with radiusStrings
-@property (strong, nonatomic) NSArray *categoryStrings;
+@property(nonatomic, strong) IBOutlet MKMapView *dangerMap;
+@property(nonatomic, readonly) DZStoredObjects *dangerZones;
+@property(nonatomic) MKPointAnnotation *tempPin;
+@property(strong, nonatomic) NSArray *radiusStrings;
+@property(strong, nonatomic) NSArray *radiusValues; // in parallel with radiusStrings
+@property(strong, nonatomic) NSArray *categoryStrings;
 
 
-@property (nonatomic, strong) CLLocationManager *myLocationManager;
+@property(nonatomic, strong) CLLocationManager *myLocationManager;
 
-@property (nonatomic) CLLocationCoordinate2D currentLocation;
+@property(nonatomic) CLLocationCoordinate2D currentLocation;
 
-- (IBAction) handlePinDrop:(UILongPressGestureRecognizer *)gesture;
+- (IBAction)handlePinDrop:(UILongPressGestureRecognizer *)gesture;
+
 - (IBAction)currrentLocationRequest:(id)sender;
+
 - (IBAction)currentLocationSubmit:(id)sender;
+
 - (IBAction)zoomToCurrentLocation:(id)sender;
+
 - (IBAction)toggleMapType:(id)sender;
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -319,206 +319,6 @@ Press buttons on map view to request or submit dangers for your current location
             </objects>
             <point key="canvasLocation" x="1053" y="118"/>
         </scene>
-        <!--Submit View Controller - Submit DangerZone-->
-        <scene sceneID="cM9-Oq-kXj">
-            <objects>
-                <viewController storyboardIdentifier="Submit" id="uPi-Ss-2Yh" customClass="DZSubmitViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zAY-oJ-otb">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <pickerView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="OFN-J9-NqJ">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="u6J-SF-3JI"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="uPi-Ss-2Yh" id="KAo-dx-Fhx"/>
-                                    <outlet property="delegate" destination="uPi-Ss-2Yh" id="nsw-Vs-pD1"/>
-                                </connections>
-                            </pickerView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfA-1g-mKO">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Ihh-xD-X13"/>
-                                    <constraint firstAttribute="width" constant="74" id="s9H-gk-PK8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQK-tk-2fy">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="112" id="NPA-Ve-vZK"/>
-                                    <constraint firstAttribute="height" constant="42" id="Tgw-r8-FP9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onSubmitPressed:" destination="uPi-Ss-2Yh" eventType="touchUpInside" id="9RQ-fd-qtD"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sev" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqe-xA-Xnw">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="6bi-e3-e6h"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="OFN-J9-NqJ" firstAttribute="centerX" secondItem="lQK-tk-2fy" secondAttribute="centerX" type="default" id="9Nz-a6-4dH"/>
-                            <constraint firstItem="hfA-1g-mKO" firstAttribute="top" secondItem="zAY-oJ-otb" secondAttribute="top" constant="25" id="BV7-ae-wvL"/>
-                            <constraint firstAttribute="trailing" secondItem="hqe-xA-Xnw" secondAttribute="trailing" constant="75" id="DYg-5m-erl"/>
-                            <constraint firstItem="OFN-J9-NqJ" firstAttribute="top" secondItem="hqe-xA-Xnw" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="gg3-P8-nZq"/>
-                            <constraint firstItem="hqe-xA-Xnw" firstAttribute="top" secondItem="zAY-oJ-otb" secondAttribute="top" constant="29" id="rtW-XD-IcG"/>
-                            <constraint firstItem="OFN-J9-NqJ" firstAttribute="leading" secondItem="zAY-oJ-otb" secondAttribute="leading" type="default" id="v0V-5e-TD4"/>
-                            <constraint firstItem="hfA-1g-mKO" firstAttribute="leading" secondItem="zAY-oJ-otb" secondAttribute="leading" constant="89" id="vXl-Xi-52C"/>
-                            <constraint firstAttribute="bottom" secondItem="lQK-tk-2fy" secondAttribute="bottom" constant="28" id="xX3-yM-q2t"/>
-                            <constraint firstItem="OFN-J9-NqJ" firstAttribute="trailing" secondItem="zAY-oJ-otb" secondAttribute="trailing" type="default" id="zEV-pa-d0o"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Submit DangerZone" id="qOn-x5-u8u"/>
-                    <connections>
-                        <outlet property="picker" destination="OFN-J9-NqJ" id="aP1-QF-DzX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GJM-rB-yb9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1551" y="-149"/>
-        </scene>
-        <!--Request View Controller - Request DangerZones-->
-        <scene sceneID="lei-jQ-eVc">
-            <objects>
-                <viewController storyboardIdentifier="Request" id="8oh-QD-IO0" customClass="DZRequestViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lwS-AU-uob">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OzZ-LS-qvi">
-                                <subviews>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gM5-hM-GRB">
-                                        <color key="backgroundColor" red="0.54289180560000005" green="1" blue="0.5489626058" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="216" id="yiV-a6-och"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="dataSource" destination="8oh-QD-IO0" id="AiO-EZ-LI6"/>
-                                            <outlet property="delegate" destination="8oh-QD-IO0" id="WHU-fV-CIw"/>
-                                        </connections>
-                                    </pickerView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgk-FS-K1N">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="43" id="RZb-vj-bG7"/>
-                                            <constraint firstAttribute="width" constant="105" id="Zb1-Kb-VGf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                        <state key="normal" title="Selective">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onRequestPressed:" destination="8oh-QD-IO0" eventType="touchUpInside" id="WIf-XP-juK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egF-rd-EuS">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="UdE-EU-Y3K"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                        <state key="normal" title="Global">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onGlobalPressed:" destination="8oh-QD-IO0" eventType="touchUpInside" id="VxM-oI-0HO"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Category " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zaa-Xf-NBA">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="69" id="ZON-Fe-wEs"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Set params and request:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="114" translatesAutoresizingMaskIntoConstraints="NO" id="NJD-9T-tu4">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="KrQ-Zj-haL"/>
-                                            <constraint firstAttribute="width" constant="114" id="khz-mL-jIw"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Or             request:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="101" translatesAutoresizingMaskIntoConstraints="NO" id="aWa-N1-qOC">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="101" id="LlB-XC-WMH"/>
-                                            <constraint firstAttribute="height" constant="68" id="M5B-Ny-d70"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Range" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0N-LV-eQQ">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="54" id="wlN-W2-LY1"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="k0N-LV-eQQ" firstAttribute="baseline" secondItem="Zaa-Xf-NBA" secondAttribute="baseline" type="default" id="584-Fb-Wri"/>
-                                    <constraint firstItem="gM5-hM-GRB" firstAttribute="top" secondItem="OzZ-LS-qvi" secondAttribute="top" constant="32" id="5pm-cH-fIp"/>
-                                    <constraint firstItem="NJD-9T-tu4" firstAttribute="trailing" secondItem="jgk-FS-K1N" secondAttribute="trailing" type="default" id="8qO-xv-1wC"/>
-                                    <constraint firstItem="Zaa-Xf-NBA" firstAttribute="leading" secondItem="OzZ-LS-qvi" secondAttribute="leading" constant="95" id="DrQ-yO-cXR"/>
-                                    <constraint firstItem="egF-rd-EuS" firstAttribute="top" secondItem="jgk-FS-K1N" secondAttribute="top" type="default" id="EdW-no-1TR"/>
-                                    <constraint firstItem="gM5-hM-GRB" firstAttribute="leading" secondItem="OzZ-LS-qvi" secondAttribute="leading" type="default" id="Hct-be-wZQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="aWa-N1-qOC" secondAttribute="bottom" constant="50" id="IXS-ig-7lU"/>
-                                    <constraint firstAttribute="trailing" secondItem="aWa-N1-qOC" secondAttribute="trailing" constant="31" id="JKB-fO-SyY"/>
-                                    <constraint firstItem="aWa-N1-qOC" firstAttribute="trailing" secondItem="egF-rd-EuS" secondAttribute="trailing" type="default" id="JXt-Co-kxF"/>
-                                    <constraint firstAttribute="bottom" secondItem="jgk-FS-K1N" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="WJE-hv-3tf"/>
-                                    <constraint firstAttribute="bottom" secondItem="egF-rd-EuS" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="b3W-Ui-tzF"/>
-                                    <constraint firstItem="gM5-hM-GRB" firstAttribute="trailing" secondItem="OzZ-LS-qvi" secondAttribute="trailing" type="default" id="bBU-oa-gQr"/>
-                                    <constraint firstItem="aWa-N1-qOC" firstAttribute="centerY" secondItem="NJD-9T-tu4" secondAttribute="centerY" type="default" id="dvm-5R-YdG"/>
-                                    <constraint firstItem="Zaa-Xf-NBA" firstAttribute="top" secondItem="OzZ-LS-qvi" secondAttribute="top" constant="8" id="hBC-Ua-v6N"/>
-                                    <constraint firstItem="k0N-LV-eQQ" firstAttribute="top" secondItem="Zaa-Xf-NBA" secondAttribute="top" type="default" id="nHr-eU-XRL"/>
-                                    <constraint firstItem="k0N-LV-eQQ" firstAttribute="leading" secondItem="aWa-N1-qOC" secondAttribute="leading" type="default" id="oXS-W6-YRn"/>
-                                    <constraint firstItem="NJD-9T-tu4" firstAttribute="leading" secondItem="OzZ-LS-qvi" secondAttribute="leading" constant="24" id="uco-IO-F9p"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="OzZ-LS-qvi" firstAttribute="top" secondItem="lwS-AU-uob" secondAttribute="top" type="default" id="0uy-Ie-7ef"/>
-                            <constraint firstItem="OzZ-LS-qvi" firstAttribute="bottom" secondItem="lwS-AU-uob" secondAttribute="bottom" type="default" id="dPF-q9-M1c"/>
-                            <constraint firstItem="OzZ-LS-qvi" firstAttribute="trailing" secondItem="lwS-AU-uob" secondAttribute="trailing" type="default" id="dce-JY-RmI"/>
-                            <constraint firstItem="OzZ-LS-qvi" firstAttribute="leading" secondItem="lwS-AU-uob" secondAttribute="leading" type="default" id="gPE-Q2-Qat"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Request DangerZones" id="lRu-xs-lk2"/>
-                    <connections>
-                        <outlet property="picker" destination="gM5-hM-GRB" id="fKw-LJ-E5v"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pWv-aW-aWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1551" y="425"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Info-25.png" width="25" height="24"/>
@@ -527,6 +327,44 @@ Press buttons on map view to request or submit dangers for your current location
         <image name="Wire-globe-35.png" width="35" height="35"/>
         <image name="table-30.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="DZFirstViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZFirstViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="DZMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZMapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="currentLocationSubmit:"/>
+                <relationship kind="action" name="currrentLocationRequest:"/>
+                <relationship kind="action" name="handlePinDrop:" candidateClass="UILongPressGestureRecognizer"/>
+                <relationship kind="action" name="toggleMapType:"/>
+                <relationship kind="action" name="zoomToCurrentLocation:"/>
+                <relationship kind="outlet" name="dangerMap" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="DZTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZTabBarController.h"/>
+        </class>
+        <class className="DZTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="categoryImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="categoryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="countryLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DZTableViewViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DZTableViewViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

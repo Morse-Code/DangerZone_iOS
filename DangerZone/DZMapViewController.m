@@ -65,13 +65,6 @@ static NSInteger mapType;
     self.categoryStrings = [[NSArray alloc] initWithObjects:@" Unclassified", @"    Weather", @"    Violence",
                                                             @"    Accident", nil];
 
-    //self.attributes = [NSMutableDictionary dictionaryWithCapacity:4];
-
-    // defaults for category and radius attributes
-    // long and lat are set from long map touch, before loading this view
-
-    //[self.attributes setValue:[NSNumber numberWithInt:0] forKey:@"category"];
-    //[self.attributes setValue:[self.radiusValues objectAtIndex:(NSUInteger)0] forKey:@"radius"];
     self.attributes = [NSMutableDictionary dictionaryWithCapacity:4];
 
 
@@ -131,7 +124,6 @@ regionDidChangeAnimated:(BOOL)animated
     NSArray *oldAnnotations = self.dangerMap.annotations;
     [self.dangerMap removeAnnotations:oldAnnotations];
 
-//    NSArray *newAnnotations = [self.dangerZones.zones arrayByAddingObjectsFromArray:(NSArray *)self.userZones];
     NSArray *newAnnotations = self.dangerZones.zones;
     [self.dangerMap addAnnotations:newAnnotations];
 }
@@ -152,7 +144,6 @@ regionDidChangeAnimated:(BOOL)animated
                                                              reuseIdentifier:pinReusableIdentifier];
         }
         annotationView.canShowCallout = YES;
-//        [annotationView setRightCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
         annotationView.draggable = NO;
         annotationView.animatesDrop = YES;
         annotationView.pinColor = MKPinAnnotationColorPurple;
@@ -217,9 +208,6 @@ didChangeDragState:(MKAnnotationViewDragState)newState
       fromOldState:(MKAnnotationViewDragState)oldState
 {
 
-//    if (oldState == MKAnnotationViewDragStateDragging) {
-//        DZObject *annotation = (DZObject *)annotationView.annotation;
-//    }
 }
 
 
@@ -296,7 +284,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         }
         else
         { // got here from picker
-            //////////////////////////////
             // the dictionary has been filled in, now send it.
             [self.attributes setValue:[self.radiusValues objectAtIndex:(NSUInteger)[[(DZPickerAlertView *)alertView pickerView]
                                                                                                                     selectedRowInComponent:0]]
@@ -319,9 +306,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
                                                    [self checkUserZones];
                                                }
                                            }];
-            //////////////////////////////
         }
-        //[self performSegueWithIdentifier:RequestViewSegueIdentifier sender:alertView];
     }
     else if ([title isEqualToString:@"Submit"]) {
         if (alertView.tag != PICKER_ALERT) { // got here from long touch
@@ -345,15 +330,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         }
         else
         { // got here from picker
-            ///////////////////////////////
             // the dictionary has been filled in, now send it.
             NSLog(@"Process the submit");
-            //////////////////////////////
+
             if (self.userZones == nil) {
                 self.userZones = [NSMutableArray arrayWithCapacity:1];
             }
-//            DZObject *userZone = [[DZObject alloc] initUserSubmittedWithAttributes:self.attributes];
-//            [self.userZones addObject:userZone];
 
             NSLog(@"Object added");
             [self.attributes setValue:[NSNumber numberWithInt:(NSUInteger)[[(DZPickerAlertView *)alertView pickerView] selectedRowInComponent:0]] forKey:@"category"];
@@ -378,17 +360,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
                                                    DZObject *userZone = [[DZObject alloc]
                                                                                    initUserSubmittedWithAttributes:self.attributes];
                                                    [self.userZones addObject:userZone];
-//                                                   [[self.userZones objectAtIndex:[self.userZones indexOfObject:userZone]]
-//                                                           setUid:[[dangerZones objectAtIndex:0] integerValue]];
 
                                                }
                                            }];
         }
-        //[self performSegueWithIdentifier:SubmitViewSegueIdentifier sender:alertView];
     }
-//    else if (buttonIndex == [alertView cancelButtonIndex]){
-//
-//    }
 }
 
 
@@ -468,7 +444,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     self.tempPin = [[MKPointAnnotation alloc] init];
     self.tempPin.coordinate = self.currentLocation;
     [self.dangerMap addAnnotation:self.tempPin];
-    // fill in long/lat at current location.  THIS IS NOW SET TO TOUCH POINT
+    // fill in long/lat at current location.  
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude]
                        forKey:@"latitude"];
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude]

@@ -15,14 +15,10 @@
 		07A1763A163D093B006D0AF6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A17639163D093B006D0AF6 /* MapKit.framework */; };
 		10BBA2DD1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 10BBA2DB1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png */; };
 		10BBA2DE1666BAEF00DD5D04 /* Location.png in Resources */ = {isa = PBXBuildFile; fileRef = 10BBA2DC1666BAEF00DD5D04 /* Location.png */; };
-		49ED696E00B9F0624C7AEEC4 /* DZRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED65F355C9702985EB95E1 /* DZRequestViewController.m */; };
-		49ED69CBF2B6F5778B186F69 /* DZSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6470453ABD86B509A4CA /* DZSubmitViewController.m */; };
 		49ED6A65EC14DD74F77E32F9 /* DZStoredObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6F41CD020ED8B68F1409 /* DZStoredObjects.m */; };
 		49ED6B61BD1F8A360CC47BF4 /* DZTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED68081F08F2C7F1E83950 /* DZTabBarController.m */; };
 		49ED6F850CBC0A21B6325DC6 /* DZSharedClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */; };
-		B420173016535AA000AABB8E /* Wire-globe-40.png in Resources */ = {isa = PBXBuildFile; fileRef = B420172F16535AA000AABB8E /* Wire-globe-40.png */; };
 		B4201736165362F700AABB8E /* table-30.png in Resources */ = {isa = PBXBuildFile; fileRef = B4201735165362F700AABB8E /* table-30.png */; };
-		B42017381653FF4400AABB8E /* Wire-globe-30.png in Resources */ = {isa = PBXBuildFile; fileRef = B42017371653FF4400AABB8E /* Wire-globe-30.png */; };
 		B443EA9A1662A4B6001CAAAD /* DZPickerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B443EA991662A4B6001CAAAD /* DZPickerAlertView.m */; };
 		B46444DD166AE3DC00ED956A /* Accident.png in Resources */ = {isa = PBXBuildFile; fileRef = B46444DC166AE3DC00ED956A /* Accident.png */; };
 		B46444DF166AE3EB00ED956A /* Violence.png in Resources */ = {isa = PBXBuildFile; fileRef = B46444DE166AE3EB00ED956A /* Violence.png */; };
@@ -63,20 +59,14 @@
 		10BBA2DB1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocateMeButtonTrackingPressed.png; sourceTree = "<group>"; };
 		10BBA2DC1666BAEF00DD5D04 /* Location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Location.png; sourceTree = "<group>"; };
 		49ED63AF00E7693359F38122 /* DZSharedClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSharedClient.h; sourceTree = "<group>"; };
-		49ED6470453ABD86B509A4CA /* DZSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSubmitViewController.m; sourceTree = "<group>"; };
-		49ED65F355C9702985EB95E1 /* DZRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZRequestViewController.m; sourceTree = "<group>"; };
 		49ED66438B547CB79F9E5438 /* DZStoredObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZStoredObjects.h; sourceTree = "<group>"; };
-		49ED67E347C315D1F7E60788 /* DZRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRequestViewController.h; sourceTree = "<group>"; };
 		49ED68081F08F2C7F1E83950 /* DZTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTabBarController.m; sourceTree = "<group>"; };
 		49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSharedClient.m; sourceTree = "<group>"; };
 		49ED6F41CD020ED8B68F1409 /* DZStoredObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZStoredObjects.m; sourceTree = "<group>"; };
 		49ED6FB46F90FE4A92894D7A /* DZTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTabBarController.h; sourceTree = "<group>"; };
-		49ED6FE5BFEA1FEE5706DF14 /* DZSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSubmitViewController.h; sourceTree = "<group>"; };
 		61F761F1C8A04BAC8522E551 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		9A9B08F97064480596412F15 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B420172F16535AA000AABB8E /* Wire-globe-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wire-globe-40.png"; sourceTree = "<group>"; };
 		B4201735165362F700AABB8E /* table-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-30.png"; sourceTree = "<group>"; };
-		B42017371653FF4400AABB8E /* Wire-globe-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wire-globe-30.png"; sourceTree = "<group>"; };
 		B443EA981662A4B6001CAAAD /* DZPickerAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZPickerAlertView.h; sourceTree = "<group>"; };
 		B443EA991662A4B6001CAAAD /* DZPickerAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZPickerAlertView.m; sourceTree = "<group>"; };
 		B46444DC166AE3DC00ED956A /* Accident.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Accident.png; sourceTree = "<group>"; };
@@ -146,17 +136,6 @@
 				079B13F3162FA31F00066AA0 /* DZTableViewViewController.m */,
 			);
 			name = "Table View";
-			sourceTree = "<group>";
-		};
-		0765A7AD163B91FB0048CE83 /* Update and  Submit Views */ = {
-			isa = PBXGroup;
-			children = (
-				49ED6FE5BFEA1FEE5706DF14 /* DZSubmitViewController.h */,
-				49ED6470453ABD86B509A4CA /* DZSubmitViewController.m */,
-				49ED67E347C315D1F7E60788 /* DZRequestViewController.h */,
-				49ED65F355C9702985EB95E1 /* DZRequestViewController.m */,
-			);
-			name = "Update and  Submit Views";
 			sourceTree = "<group>";
 		};
 		0785E47E162F50A800BC98F6 /* Model */ = {
@@ -253,7 +232,6 @@
 		FDEC3DDE161C74B9009C623E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0765A7AD163B91FB0048CE83 /* Update and  Submit Views */,
 				0765A7AC163B91DE0048CE83 /* Table View */,
 				0765A7AB163B91D20048CE83 /* Map View */,
 				49ED6FB46F90FE4A92894D7A /* DZTabBarController.h */,
@@ -295,9 +273,7 @@
 			children = (
 				B46444E8166BAF2500ED956A /* Wire-globe-35.png */,
 				B4CAACAE1666645D0094C99C /* Info-25.png */,
-				B42017371653FF4400AABB8E /* Wire-globe-30.png */,
 				B4201735165362F700AABB8E /* table-30.png */,
-				B420172F16535AA000AABB8E /* Wire-globe-40.png */,
 				FDEC3DC5161C7243009C623E /* first.png */,
 				FDEC3DC7161C7243009C623E /* first@2x.png */,
 				FDEC3DCC161C7243009C623E /* second.png */,
@@ -368,9 +344,7 @@
 				FDEC3DC8161C7243009C623E /* first@2x.png in Resources */,
 				FDEC3DCD161C7243009C623E /* second.png in Resources */,
 				FDEC3DCF161C7243009C623E /* second@2x.png in Resources */,
-				B420173016535AA000AABB8E /* Wire-globe-40.png in Resources */,
 				B4201736165362F700AABB8E /* table-30.png in Resources */,
-				B42017381653FF4400AABB8E /* Wire-globe-30.png in Resources */,
 				B4CAACAF1666645D0094C99C /* Info-25.png in Resources */,
 				10BBA2DD1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png in Resources */,
 				10BBA2DE1666BAEF00DD5D04 /* Location.png in Resources */,
@@ -413,8 +387,6 @@
 				49ED6F850CBC0A21B6325DC6 /* DZSharedClient.m in Sources */,
 				079B13F4162FA31F00066AA0 /* DZTableViewViewController.m in Sources */,
 				079B13F8162FADFC00066AA0 /* DZTableViewCell.m in Sources */,
-				49ED69CBF2B6F5778B186F69 /* DZSubmitViewController.m in Sources */,
-				49ED696E00B9F0624C7AEEC4 /* DZRequestViewController.m in Sources */,
 				0765A7A4163B8CE10048CE83 /* DZMapViewController.m in Sources */,
 				49ED6A65EC14DD74F77E32F9 /* DZStoredObjects.m in Sources */,
 				49ED6B61BD1F8A360CC47BF4 /* DZTabBarController.m in Sources */,

@@ -32,15 +32,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     UITabBarController *tabBar = (UITabBarController *)self.window.rootViewController;
     tabBar.selectedViewController = [tabBar.viewControllers objectAtIndex:1];
 
-    /*UITabBarController *tabBarController = (UITabBarController *)[_window rootViewController];
-    NSArray *tabs = [tabBarController viewControllers];
-    DZTableViewViewController *tableViewController
-            = (DZTableViewViewController *)[(UINavigationController *)[tabs objectAtIndex:2] topViewController];
-    DZMapViewController *mapViewController
-            = (DZMapViewController *)[(UINavigationController *)[tabs objectAtIndex:1] topViewController];
-    mapViewController.tableView = tableViewController;
-*/
-
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 
     return YES;

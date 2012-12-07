@@ -58,8 +58,8 @@ static NSInteger mapType;
                                                   [NSNumber numberWithInt:25], [NSNumber numberWithInt:50],
                                                   [NSNumber numberWithInt:100], [NSNumber numberWithInt:500],
                                                   [NSNumber numberWithInt:1000], [NSNumber numberWithInt:5000], nil];
-    self.categoryStrings = [[NSArray alloc] initWithObjects:@" Unclassified", @"    Weather", @"    Violence",
-                                                            @"    Accident", nil];
+    
+    self.categoryStrings = [[NSArray alloc] initWithObjects:@" Unclassified", @"    Weather", @"    Violence",@"    Accident", nil];
 
     self.attributes = [NSMutableDictionary dictionaryWithCapacity:4];
 
@@ -262,8 +262,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
     if ([title isEqualToString:@"Request"]) {
-        if (alertView.tag != PICKER_ALERT) { // got here from long touch
-
+        if (alertView.tag == REQ_SUB_ALERT) { // got here from long touch, now put up the picker alert.
             [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude] forKey:@"latitude"];
             [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude]
                                forKey:@"longitude"];
@@ -273,11 +272,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
                                                                                  delegate:alertView.delegate
                                                                         cancelButtonTitle:@"Cancel"
                                                                         otherButtonTitles:@"Request", nil];
-            pickerAlertView.tag = PICKER_ALERT;
+            pickerAlertView.tag = PICKER_ALERT; // the next alert will be the picker alert.
             [pickerAlertView show];
         }
         else
-        { // got here from picker
+        { // PICKER_ALERT got here from picker
             // the dictionary has been filled in, now send it.
             [self.attributes setValue:[self.radiusValues objectAtIndex:(NSUInteger)[[(DZPickerAlertView *)alertView pickerView]
                                                                                                                     selectedRowInComponent:0]]
@@ -302,8 +301,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         }
     }
     else if ([title isEqualToString:@"Submit"]) {
-        if (alertView.tag != PICKER_ALERT) { // got here from long touch
-
+        if (alertView.tag == REQ_SUB_ALERT) { // got here from long touch, now put up the picker alert.
             [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude] forKey:@"latitude"];
             [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude]
                                forKey:@"longitude"];
@@ -316,11 +314,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
                                                                                  delegate:alertView.delegate
                                                                         cancelButtonTitle:@"Cancel"
                                                                         otherButtonTitles:@"Submit", nil];
-            pickerAlertView.tag = PICKER_ALERT;
+            pickerAlertView.tag = PICKER_ALERT; // the next alert will be the picker alert
             [pickerAlertView show];
         }
         else
-        { // got here from picker
+        { // PICKER_ALERT got here from picker
             // the dictionary has been filled in, now send it.
             NSLog(@"Process the submit");
 
@@ -394,12 +392,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     self.tempPin.coordinate = touchLocation;
     [self.dangerMap addAnnotation:self.tempPin];
 
-
-    [[[UIAlertView alloc] initWithTitle:@"Request or Submit?"
+    UIAlertView *DZAlert = [[UIAlertView alloc] initWithTitle:@"Request or Submit?"
                                 message:@"Request: Request DangerZones from server.\nSubmit: Submit a new DangerZone."
-                               delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Request", @"Submit", nil]
-                   show];
-
+                               delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Request", @"Submit", nil];
+    DZAlert.tag = REQ_SUB_ALERT;
+    [DZAlert show];
 //    tempZone.title = @"Submit DangerZone?";
 
 
@@ -413,7 +410,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     self.tempPin = [[MKPointAnnotation alloc] init];
     self.tempPin.coordinate = self.currentLocation;
     [self.dangerMap addAnnotation:self.tempPin];
-    // fill in long/lat at current location.  THIS IS NOW SET TO TOUCH POINT
+    // fill in long/lat at current location. 
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.latitude] forKey:@"latitude"];
     [self.attributes setValue:[NSNumber numberWithDouble:self.tempPin.coordinate.longitude] forKey:@"longitude"];
     DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc]
@@ -520,6 +517,7 @@ Take appropriate action: for instance, prompt the user to enable the location se
 
 #pragma mark - picker data methods
 
+// Two pickers use these: SUBMIT_PICKER and REQUEST_PICKER
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -529,7 +527,7 @@ Take appropriate action: for instance, prompt the user to enable the location se
 - (CGFloat)pickerView:(UIPickerView *)pickerView
     widthForComponent:(NSInteger)component
 {
-    return 150; // category width
+    return 150;
 }
 
 

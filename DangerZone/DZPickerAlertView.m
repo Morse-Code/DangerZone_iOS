@@ -5,6 +5,7 @@
 //  Created by rbelford on 11/25/12.
 //  Copyright (c) 2012 iCompute. All rights reserved.
 //
+//  Put a picker in an alert view.
 
 #import "DZPickerAlertView.h"
 
@@ -13,9 +14,14 @@
 
 @synthesize pickerView = _pickerView;
 
+// The alert delegate methods are used by both the picker alert and the long touch submit/request alert
+// (which invokes the picker alert). These tags differentiate.
 const int PICKER_ALERT = 3;
-const int REQUEST_PICKER = 4; // so that the two pickers get initialized with
-const int SUBMIT_PICKER = 5;  // their appropriate values
+const int REQ_SUB_ALERT = 6;
+
+// Two types of picker alert access tags.
+const int REQUEST_PICKER = 4; 
+const int SUBMIT_PICKER = 5;  
 
 - (id)init
 {
@@ -69,6 +75,7 @@ const int SUBMIT_PICKER = 5;  // their appropriate values
     }
     self.pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     self.pickerView.frame = CGRectMake(75, 45, 175, 180);
+    // delegate is the DZMapViewController. That's who uses our picks. 
     self.pickerView.delegate = delegate;
     self.pickerView.dataSource = delegate;
     self.pickerView.showsSelectionIndicator = true;

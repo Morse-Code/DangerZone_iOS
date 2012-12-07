@@ -12,9 +12,14 @@
 
 @class DZStoredObjects;
 
+// The alert delegate methods are used by both the picker alert and the long touch submit/request alert
+// (which invokes the picker alert). These tags differentiate.
 extern const int PICKER_ALERT;
-extern const int REQUEST_PICKER; // so that the two pickers get initialized with
-extern const int SUBMIT_PICKER;  // their appropriate values
+extern const int REQ_SUB_ALERT;
+
+// Two types of picker alert access tags.
+extern const int REQUEST_PICKER; 
+extern const int SUBMIT_PICKER;  
 
 @interface DZMapViewController : UIViewController < MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource >
 

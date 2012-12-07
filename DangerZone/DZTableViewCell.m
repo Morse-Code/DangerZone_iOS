@@ -37,7 +37,7 @@
 {
     _dangerZone = dangerZone;
 
-    // reverse geocoding will potentially return many parameters.  Based on what we get, we prioritize
+    // reverse geocoding will potentially return many parameters per placemark.  Based on what we get, we prioritize
     // them and build strings
     if (!self.geoCoder) {
         self.geoCoder = [[CLGeocoder alloc] init];
@@ -50,7 +50,8 @@
             NSLog(@"Server returned an error");
             return;
         }
-        if ([placemarks count] > 0) {
+        if ([placemarks count] > 0) { // Potential for more than one placemark returned by server. Haven't seen more
+                                      //than one, though, so we just grab the one at index 0 (as does Apple sample code).
             NSString *imageFile = [NSString stringWithFormat:@"%@.png",
                                                              [DZObject stringFromCategory:self.dangerZone.category]];
             self.categoryImage.image = [UIImage imageNamed:imageFile];

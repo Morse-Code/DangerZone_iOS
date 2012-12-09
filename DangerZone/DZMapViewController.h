@@ -18,8 +18,8 @@ extern const int PICKER_ALERT;
 extern const int REQ_SUB_ALERT;
 
 // Two types of picker alert access tags.
-extern const int REQUEST_PICKER; 
-extern const int SUBMIT_PICKER;  
+extern const int REQUEST_PICKER;
+extern const int SUBMIT_PICKER;
 
 @interface DZMapViewController : UIViewController < MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource >
 
@@ -38,7 +38,7 @@ extern const int SUBMIT_PICKER;
 
 - (IBAction)handlePinDrop:(UILongPressGestureRecognizer *)gesture;
 
-- (IBAction)currrentLocationRequest:(id)sender;
+- (IBAction)currentLocationRequest:(id)sender;
 
 - (IBAction)currentLocationSubmit:(id)sender;
 

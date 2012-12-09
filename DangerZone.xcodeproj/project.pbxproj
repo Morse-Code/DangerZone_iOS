@@ -15,6 +15,7 @@
 		07A1763A163D093B006D0AF6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A17639163D093B006D0AF6 /* MapKit.framework */; };
 		10BBA2DD1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 10BBA2DB1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png */; };
 		10BBA2DE1666BAEF00DD5D04 /* Location.png in Resources */ = {isa = PBXBuildFile; fileRef = 10BBA2DC1666BAEF00DD5D04 /* Location.png */; };
+		49ED68A0F787881866794368 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49ED6061DFBF6DDE2A10DFE3 /* Localizable.strings */; };
 		49ED6A65EC14DD74F77E32F9 /* DZStoredObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6F41CD020ED8B68F1409 /* DZStoredObjects.m */; };
 		49ED6B61BD1F8A360CC47BF4 /* DZTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED68081F08F2C7F1E83950 /* DZTabBarController.m */; };
 		49ED6F850CBC0A21B6325DC6 /* DZSharedClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED6A6AD4C93116B7937D98 /* DZSharedClient.m */; };
@@ -58,6 +59,7 @@
 		07A17639163D093B006D0AF6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		10BBA2DB1666BAEF00DD5D04 /* LocateMeButtonTrackingPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocateMeButtonTrackingPressed.png; sourceTree = "<group>"; };
 		10BBA2DC1666BAEF00DD5D04 /* Location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Location.png; sourceTree = "<group>"; };
+		49ED6061DFBF6DDE2A10DFE3 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		49ED63AF00E7693359F38122 /* DZSharedClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSharedClient.h; sourceTree = "<group>"; };
 		49ED66438B547CB79F9E5438 /* DZStoredObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZStoredObjects.h; sourceTree = "<group>"; };
 		49ED68081F08F2C7F1E83950 /* DZTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTabBarController.m; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				FDEC3DE1161C7511009C623E /* View */,
 				FDEC3DE0161C74EA009C623E /* Graphic Assets */,
 				FDEC3DAE161C7242009C623E /* Supporting Files */,
+				49ED6061DFBF6DDE2A10DFE3 /* Localizable.strings */,
 			);
 			path = DangerZone;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				B46444E1166AE40200ED956A /* Unclassified.png in Resources */,
 				B46444E9166BAF2500ED956A /* Wire-globe-35.png in Resources */,
 				B46444EB166BB46900ED956A /* Weather.png in Resources */,
+				49ED68A0F787881866794368 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

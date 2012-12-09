@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class DZObject;
-static NSString *const DZStoredObjectsChangedZonesNotification = @"DZStoredObjects changed zones";
+static NSString __unused *const DZStoredObjectsChangedZonesNotification = @"DZStoredObjects changed zones";
 static NSString *const KVOZonesChangeKey = @"dangerZoneObjects";
 
 @class DZStoredObjects;

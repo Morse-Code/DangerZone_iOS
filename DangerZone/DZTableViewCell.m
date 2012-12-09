@@ -51,7 +51,7 @@
             return;
         }
         if ([placemarks count] > 0) { // Potential for more than one placemark returned by server. Haven't seen more
-                                      //than one, though, so we just grab the one at index 0 (as does Apple sample code).
+            //than one, though, so we just grab the one at index 0 (as does Apple sample code).
             NSString *imageFile = [NSString stringWithFormat:@"%@.png",
                                                              [DZObject stringFromCategory:self.dangerZone.category]];
             self.categoryImage.image = [UIImage imageNamed:imageFile];

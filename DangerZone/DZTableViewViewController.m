@@ -61,7 +61,7 @@
 {
     [super viewDidLoad];
 
-    self.title = NSLocalizedString(@"Danger Table", nil);
+    self.title = NSLocalizedString([NSString stringWithFormat:@"Danger Table"], nil);
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_activityIndicatorView];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
@@ -98,7 +98,7 @@
 {
     [self.dangerZones removeObserver:self forKeyPath:KVOZonesChangeKey];
     self.attributes = nil;
-    [super viewDidUnload];
+//    [super viewDidUnload];
 }
 
 
@@ -160,7 +160,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 
-- (void)zonesChange:(NSDictionary *)dictionary
+- (void)zonesChange:(__unused NSDictionary *)dictionary
 {
     NSLog(@"Received KVO notification");
     [self reloadTableData];

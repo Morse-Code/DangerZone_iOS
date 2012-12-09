@@ -20,8 +20,9 @@ const int PICKER_ALERT = 3;
 const int REQ_SUB_ALERT = 6;
 
 // Two types of picker alert access tags.
-const int REQUEST_PICKER = 4; 
-const int SUBMIT_PICKER = 5;  
+const int REQUEST_PICKER = 4;
+const int SUBMIT_PICKER = 5;
+
 
 - (id)init
 {

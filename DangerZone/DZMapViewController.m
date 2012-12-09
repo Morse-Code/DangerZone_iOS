@@ -49,7 +49,7 @@ static NSInteger mapType;
     [self mapView:_dangerMap regionDidChangeAnimated:NO];
 
     // set up the picker display strings and values
-    self.radiusStrings = [NSArray arrayWithObjects:@"      Global", @"         1k", @"         5k", @"        10k",
+    self.radiusStrings = [NSArray arrayWithObjects:@"     Global", @"         1k", @"         5k", @"        10k",
                                                    @"        25k", @"        50k", @"       100k", @"       500k",
                                                    @"      1000k", @"      5000k", nil];
     // translate radius string to int
@@ -58,8 +58,9 @@ static NSInteger mapType;
                                                   [NSNumber numberWithInt:25], [NSNumber numberWithInt:50],
                                                   [NSNumber numberWithInt:100], [NSNumber numberWithInt:500],
                                                   [NSNumber numberWithInt:1000], [NSNumber numberWithInt:5000], nil];
-    
-    self.categoryStrings = [[NSArray alloc] initWithObjects:@" Unclassified", @"    Weather", @"    Violence",@"    Accident", nil];
+
+    self.categoryStrings = [[NSArray alloc] initWithObjects:@" Unclassified", @"    Weather", @"    Violence",
+                                                            @"    Accident", nil];
 
     self.attributes = [NSMutableDictionary dictionaryWithCapacity:4];
 
@@ -82,7 +83,7 @@ static NSInteger mapType;
     self.dangerMap = nil;
     [self.myLocationManager stopUpdatingLocation];
     self.myLocationManager = nil;
-    [super viewDidUnload];
+    //[super viewDidUnload];
 }
 
 
@@ -152,7 +153,7 @@ regionDidChangeAnimated:(BOOL)animated
 
     /* Process this event only for the Map View created previously */
     if ([mapView isEqual:self.dangerMap] == NO) {
-        return result;
+        return nil;
     }
 
     DZObject *senderAnnotation = (DZObject *)annotation;
@@ -189,7 +190,7 @@ regionDidChangeAnimated:(BOOL)animated
 }
 
 
-- (void)zonesChange:(NSDictionary *)dictionary
+- (void)zonesChange:(__unused NSDictionary *)dictionary
 {
     [self mapView:self.dangerMap regionDidChangeAnimated:NO];
 }
@@ -286,11 +287,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
                                            AndBlock:^(NSArray *dangerZones, NSError *error)
                                            {
                                                if (error) {
-                                                   [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
-                                                                               message:[error localizedDescription]
-                                                                              delegate:nil cancelButtonTitle:nil
-                                                                     otherButtonTitles:NSLocalizedString(@"OK", nil),
-                                                                                       nil] show];
+                                                   [[[UIAlertView alloc]
+                                                                  initWithTitle:NSLocalizedString([NSString stringWithFormat:@"Error"], nil)
+                                                                        message:[error localizedDescription]
+                                                                       delegate:nil cancelButtonTitle:nil
+                                                              otherButtonTitles:NSLocalizedString(@"OK", nil), nil]
+                                                                  show];
                                                }
                                                else
                                                {
@@ -307,7 +309,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
                                forKey:@"longitude"];
             // set the timestamp attribute
             NSTimeInterval interval = [[[NSDate alloc] init] timeIntervalSince1970];
-            NSInteger timestamp = round(interval);
+            NSInteger timestamp = (NSInteger)round(interval);
             [self.attributes setValue:[NSNumber numberWithInt:timestamp] forKey:@"timestamp"];
 
             DZPickerAlertView *pickerAlertView = [[DZPickerAlertView alloc] initWithTitle:@"Category" message:@"Submit"
@@ -393,8 +395,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     [self.dangerMap addAnnotation:self.tempPin];
 
     UIAlertView *DZAlert = [[UIAlertView alloc] initWithTitle:@"Request or Submit?"
-                                message:@"Request: Request DangerZones from server.\nSubmit: Submit a new DangerZone."
-                               delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Request", @"Submit", nil];
+                                                      message:@"Request: Request DangerZones from server.\nSubmit: Submit a new DangerZone."
+                                                     delegate:self cancelButtonTitle:@"Cancel"
+                                            otherButtonTitles:@"Request", @"Submit", nil];
     DZAlert.tag = REQ_SUB_ALERT;
     [DZAlert show];
 //    tempZone.title = @"Submit DangerZone?";
@@ -403,7 +406,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 }
 
 
-- (IBAction)currrentLocationRequest:(id)sender
+- (IBAction)currentLocationRequest:(id)sender
 {
     [self.myLocationManager startUpdatingLocation];
     [self zoomToCurrentLocation:self];
@@ -489,12 +492,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 }
 
 
-- (void)getCurrentLocation
+- (void)getCurrentLocation __unused
 {
     if ([CLLocationManager locationServicesEnabled]) {
         self.myLocationManager = [[CLLocationManager alloc] init];
         self.myLocationManager.delegate = self;
-        self.myLocationManager.purpose = @"To provide functionality based on user's current location.";
+        //self.myLocationManager.purpose = @"To provide functionality based on user's current location.";
         [self.myLocationManager startUpdatingLocation];
     }
     else

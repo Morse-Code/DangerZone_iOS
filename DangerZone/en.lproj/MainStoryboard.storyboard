@@ -296,7 +296,7 @@ Press buttons on map view to request or submit dangers for your current location
                     <navigationItem key="navigationItem" title="Danger Map" id="8zD-j1-tqW">
                         <barButtonItem key="leftBarButtonItem" title="Request" id="gcE-hX-Eta">
                             <connections>
-                                <action selector="currrentLocationRequest:" destination="7it-CO-XD1" id="4V6-rr-W1i"/>
+                                <action selector="currentLocationRequest:" destination="7it-CO-XD1" id="4V6-rr-W1i"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Submit" id="5CO-SJ-2xR">

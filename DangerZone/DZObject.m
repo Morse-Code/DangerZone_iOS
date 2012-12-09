@@ -200,7 +200,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 }
 
 
-+ (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block
++ (void)dangerZoneObjectsWithBlock:(void (^)(NSArray *posts, NSError *error))block __unused
 {
     [[DZSharedClient sharedClient] getPath:request parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
     {
@@ -223,7 +223,7 @@ static NSString *kTIMESTAMP_KEY = @"timestamp";
 
 
 + (void)dangerZoneObjectsForParameters:(NSDictionary *)params
-                             WithBlock:(void (^)(NSArray *posts, NSError *error))block
+                             WithBlock:(void (^)(NSArray *posts, NSError *error))block __unused
 {
     [[DZSharedClient sharedClient]
                      getPath:request parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
